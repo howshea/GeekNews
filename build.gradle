@@ -34,7 +34,8 @@ ext {
     versionCode = 1
     versionName = "0.1"
     dependencies = [
-            "lifecycle": "android.arch.lifecycle:extensions:$lifecycle_version"
+            "lifecycle": "android.arch.lifecycle:extensions:$lifecycle_version",
+            "design":"com.android.support:design:27.1.1"
     ]
     tests = [
             "junit" :"junit:junit:4.12",

@@ -20,6 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -28,8 +31,9 @@ dependencies {
     androidTestImplementation rootProject.ext.tests['runner']
     androidTestImplementation rootProject.ext.tests['espresso-core']
     implementation rootProject.ext.dependencies['lifecycle']
-    implementation project(':basemodule')
+    implementation rootProject.ext.dependencies['design']
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':baseutils')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 }

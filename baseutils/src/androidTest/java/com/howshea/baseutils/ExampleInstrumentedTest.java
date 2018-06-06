@@ -1,4 +1,4 @@
-package com.howshea.basemodule;
+package com.howshea.baseutils;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.howshea.basemodule.test", appContext.getPackageName());
+        assertEquals("com.howshea.baseutils.test", appContext.getPackageName());
     }
 }

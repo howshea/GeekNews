@@ -1,1 +1,1 @@
-include ':app', ':basemodule'
+include ':app', ':basemodule', ':baseutils'

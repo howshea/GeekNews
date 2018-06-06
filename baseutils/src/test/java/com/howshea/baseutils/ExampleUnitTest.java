@@ -1,4 +1,4 @@
-package com.howshea.basemodule;
+package com.howshea.baseutils;
 
 import org.junit.Test;
 
