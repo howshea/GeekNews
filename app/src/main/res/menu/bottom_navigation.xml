@@ -10,6 +10,6 @@
         android:icon="@drawable/round_home_black_36"
         android:title="@string/app_name"/>
     <item android:id="@+id/me"
-        android:icon="@drawable/round_home_black_24"
-        android:title="@string/app_name"/>
+        android:icon="@drawable/home"
+        android:title="我的"/>
 </menu>
