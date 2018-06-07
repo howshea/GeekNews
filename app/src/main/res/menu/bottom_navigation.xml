@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home"
-        android:title="首页"/>
+        android:title="首页"
+        android:icon="@drawable/home"/>
     <item android:id="@+id/hot"
+        android:icon="@drawable/round_home_black_36"
         android:title="@string/app_name"/>
     <item android:id="@+id/code"
+        android:icon="@drawable/round_home_black_36"
         android:title="@string/app_name"/>
     <item android:id="@+id/me"
+        android:icon="@drawable/round_home_black_24"
         android:title="@string/app_name"/>
 </menu>
