@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Home</string>
+    <string name="personal">Me</string>
+    <string name="girl">Girls</string>
+    <string name="geek">Geek</string>
+</resources>

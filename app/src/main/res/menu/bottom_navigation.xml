@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home"
-        android:title="首页"
-        android:icon="@drawable/home"/>
-    <item android:id="@+id/hot"
-        android:icon="@drawable/round_home_black_36"
-        android:title="@string/app_name"/>
-    <item android:id="@+id/code"
-        android:icon="@drawable/round_home_black_36"
-        android:title="@string/app_name"/>
+        android:title="@string/home"
+        android:icon="@drawable/ic_tabbar_home"/>
+    <item android:id="@+id/geek"
+        android:icon="@drawable/ic_tabbar_books"
+        android:title="@string/geek"/>
+    <item android:id="@+id/girl"
+        android:icon="@drawable/ic_girl"
+        android:title="@string/girl"/>
     <item android:id="@+id/me"
-        android:icon="@drawable/home"
-        android:title="我的"/>
+        android:icon="@drawable/ic_tabbar_man"
+        android:title="@string/personal"/>
 </menu>
