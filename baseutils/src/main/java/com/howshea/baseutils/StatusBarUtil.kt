@@ -46,6 +46,9 @@ fun <T : Activity> T.setStatusTransparent() {
     }
 }
 
+/**
+ * 设置状态栏透明且反色
+ */
 fun <T : Activity> T.setStatusBarTransAndDark(){
     setStatusTransparent()
     setDarkStatusIcon(true)
