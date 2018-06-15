@@ -32,11 +32,8 @@ dependencies {
     androidTestImplementation rootProject.ext.tests['espresso-core']
     implementation rootProject.ext.dependencies['lifecycle']
     implementation rootProject.ext.dependencies['design']
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':basemodule')
     implementation project(':home')
     implementation project(':girl')
     implementation project(':geek')
     implementation project(':personalcenter')
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
 }

@@ -1,6 +1,7 @@
 package com.howshea.baseutils
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.view.View
@@ -49,7 +50,21 @@ fun <T : Activity> T.setStatusTransparent() {
 /**
  * 设置状态栏透明且反色
  */
-fun <T : Activity> T.setStatusBarTransAndDark(){
+fun <T : Activity> T.setStatusBarTransAndDark() {
     setStatusTransparent()
     setDarkStatusIcon(true)
+}
+
+/**
+ * 获取状态栏高度
+ * @return px
+ */
+fun <T : Context> T.getStatusBarHeight(): Int {
+    var statusBarHeight = 0
+    val res = this.resources
+    val resourceId = res.getIdentifier("status_bar_height", "dimen", "android")
+    if (resourceId > 0) {
+        statusBarHeight = res.getDimensionPixelSize(resourceId)
+    }
+    return statusBarHeight
 }
