@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         override fun getItem(position: Int): Fragment {
             return HomeFragment()
         }
-
         override fun getCount() = 4
     }
 }

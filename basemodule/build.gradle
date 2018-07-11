@@ -29,5 +29,5 @@ dependencies {
     androidTestImplementation rootProject.ext.tests['espresso-core']
     api project(':baseutils')
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'com.android.support.constraint:constraint-layout:1.1.1'
+    api 'com.android.support.constraint:constraint-layout:1.1.2'
 }
