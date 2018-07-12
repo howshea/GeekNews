@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion build_versions.target_sdk
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
 
@@ -22,12 +22,12 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api "com.android.support:appcompat-v7:$support_version"
-    testImplementation rootProject.ext.tests['junit']
-    androidTestImplementation rootProject.ext.tests['runner']
-    androidTestImplementation rootProject.ext.tests['espresso-core']
+    api deps.support.app_compat
+    api deps.kotlin.stdlib
+    api deps.support.constraint
+    //test
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
     api project(':baseutils')
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api "com.android.support.constraint:constraint-layout:$constraint_version"
 }
