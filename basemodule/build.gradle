@@ -23,11 +23,11 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.android.support:appcompat-v7:27.1.1'
+    api "com.android.support:appcompat-v7:$support_version"
     testImplementation rootProject.ext.tests['junit']
     androidTestImplementation rootProject.ext.tests['runner']
     androidTestImplementation rootProject.ext.tests['espresso-core']
     api project(':baseutils')
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'com.android.support.constraint:constraint-layout:1.1.2'
+    api "com.android.support.constraint:constraint-layout:$constraint_version"
 }

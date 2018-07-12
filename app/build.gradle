@@ -5,11 +5,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
     defaultConfig {
         applicationId "com.howshea.gankio"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,14 +27,20 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation rootProject.ext.tests['junit']
-    androidTestImplementation rootProject.ext.tests['runner']
-    androidTestImplementation rootProject.ext.tests['espresso-core']
-    implementation rootProject.ext.dependencies['lifecycle']
-    implementation rootProject.ext.dependencies['design']
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //lifecycle
+    implementation deps.lifecycle.extensions
+    //support design
+    implementation deps.support.design
+
+    //module
     implementation project(':home')
     implementation project(':girl')
     implementation project(':geek')
     implementation project(':personalcenter')
+
+    //test
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
 }
