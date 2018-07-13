@@ -5,9 +5,8 @@ android {
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -25,9 +24,14 @@ dependencies {
     api deps.support.app_compat
     api deps.kotlin.stdlib
     api deps.support.constraint
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    api deps.retrofit.rxjava
+    api deps.okhttp_logging_interceptor
+    api deps.rxjava2
+    api deps.rx_android
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
-    api project(':baseutils')
 }

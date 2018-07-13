@@ -1,5 +1,7 @@
 package com.howshea.basemodule
 
+import com.howshea.basemodule.extentions.otherwise
+import com.howshea.basemodule.extentions.yes
 import junit.framework.Assert
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.howshea.basemodule
+package com.howshea.basemodule.extentions
 
 /**
  * Created by 陶海啸

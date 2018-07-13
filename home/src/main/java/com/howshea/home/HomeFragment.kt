@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.howshea.baseutils.getStatusBarHeight
+import com.howshea.basemodule.utils.getStatusBarHeight
 import kotlinx.android.synthetic.main.frg_home.*
 
 /**
@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.title = "今日热点"
+        toolbar.title = getString(R.string.app_name)
         toolbar.setPadding(0, context?.getStatusBarHeight()!!, 0, 0)
     }
 }

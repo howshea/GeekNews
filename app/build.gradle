@@ -11,8 +11,8 @@ android {
         applicationId "com.howshea.gankio"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        versionCode build_versions.version_code
+        versionName build_versions.version_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,6 +34,7 @@ dependencies {
     implementation deps.support.design
 
     //module
+    implementation project(':basemodule')
     implementation project(':home')
     implementation project(':girl')
     implementation project(':geek')

@@ -1,4 +1,4 @@
-package com.howshea.baseutils
+package com.howshea.basemodule.utils
 
 import android.app.Activity
 import android.content.Context

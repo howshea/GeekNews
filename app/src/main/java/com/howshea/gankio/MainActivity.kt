@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
-import com.howshea.baseutils.setStatusBarTransAndDark
+import com.howshea.basemodule.utils.setStatusBarTransAndDark
 import com.howshea.gankio.utils.disableShiftMode
 import com.howshea.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
