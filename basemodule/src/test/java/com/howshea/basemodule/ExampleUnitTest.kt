@@ -2,6 +2,8 @@ package com.howshea.basemodule
 
 import com.howshea.basemodule.extentions.otherwise
 import com.howshea.basemodule.extentions.yes
+import com.howshea.basemodule.utils.getDay
+import com.howshea.basemodule.utils.getMonth
 import junit.framework.Assert
 import org.junit.Test
 
@@ -21,5 +23,12 @@ class ExampleUnitTest {
         Assert.assertEquals(result, 1)
     }
 
+    @Test
+    fun getDate() {
+        val month = getMonth()
+        Assert.assertEquals(month, 7)
+        val day = getDay()
+        Assert.assertEquals(day, 16)
+    }
 
 }

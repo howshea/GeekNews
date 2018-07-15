@@ -1,4 +1,4 @@
-package com.howshea.home
+package com.howshea.home.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.howshea.basemodule.utils.getStatusBarHeight
+import com.howshea.home.R
 import kotlinx.android.synthetic.main.frg_home.*
 
 /**
