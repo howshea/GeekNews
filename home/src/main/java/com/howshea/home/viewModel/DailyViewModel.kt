@@ -9,7 +9,7 @@ import com.howshea.home.model.Results
 import com.howshea.home.repository.HomeService
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/16.
  */
 class DailyViewModel : ViewModel() {

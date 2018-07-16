@@ -3,7 +3,7 @@ package com.howshea.basemodule.utils
 import java.util.*
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/16.
  */
 fun getYear(): Int {

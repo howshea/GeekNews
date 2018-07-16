@@ -7,7 +7,7 @@ import retrofit2.http.Path
 import rx.Observable
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/14.
  */
 interface HomeApi {

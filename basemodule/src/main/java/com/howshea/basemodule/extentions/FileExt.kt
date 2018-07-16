@@ -4,7 +4,7 @@ import android.util.Log
 import java.io.File
 
 /**
- * Created by 陶海啸
+ * Created by Howshea
  * on 2018/7/13.
  */
 private const val TAG = "FileExt"

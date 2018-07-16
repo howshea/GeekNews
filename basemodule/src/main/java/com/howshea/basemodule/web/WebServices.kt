@@ -12,7 +12,7 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
- * Created by 陶海啸
+ * Created by Howshea
  * on 2018/7/13.
  */
 private const val BASE_URL = "http://gank.io/api"

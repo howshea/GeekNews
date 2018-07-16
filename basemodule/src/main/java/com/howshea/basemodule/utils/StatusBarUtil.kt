@@ -8,7 +8,7 @@ import android.view.View
 import android.view.WindowManager
 
 /**
- * Created by 陶海啸
+ * Created by Howshea
  * on 2018/6/6.
  */
 

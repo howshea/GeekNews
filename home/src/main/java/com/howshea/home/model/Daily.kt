@@ -3,7 +3,7 @@ package com.howshea.home.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/14.
  */
 

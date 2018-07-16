@@ -1,7 +1,7 @@
 package com.howshea.basemodule.extentions
 
 /**
- * Created by 陶海啸
+ * Created by Howshea
  * on 2018/7/11.
  */
 sealed class BooleanExt<out T>

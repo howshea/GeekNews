@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.view.ViewPager
 import android.util.Log
 
 
 /**
- * Created by 陶海啸
+ * Created by Howshea
  * on 2018/6/7.
  */
 /**
@@ -34,6 +35,17 @@ fun BottomNavigationView.disableShiftMode() {
     } catch (e: IllegalAccessException) {
         Log.e("BNVHelper", "Unable to change value of shift mode", e)
     }
+}
 
+fun BottomNavigationView.setupWithViewPager(viewPager: ViewPager) {
+    setOnNavigationItemSelectedListener { item ->
+        (0 until menu.size()).forEach {
+            if (item == menu.getItem(it)) {
+                viewPager.setCurrentItem(it, false)
+                return@setOnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
 }
 
