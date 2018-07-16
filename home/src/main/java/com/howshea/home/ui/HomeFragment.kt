@@ -25,6 +25,5 @@ class HomeFragment : LazyFragment() {
     }
 
     override fun initView() {
-        toolbar.setPadding(0, context?.getStatusBarHeight()!!, 0, 0)
     }
 }

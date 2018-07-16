@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import com.howshea.basemodule.R
+import com.howshea.basemodule.utils.dip
 
 /**
  * Created by Howshea
@@ -54,8 +55,8 @@ class SimpleToolbar : RelativeLayout {
                 R.attr.toolbarNavigationButtonStyle)
             navButton!!.setImageDrawable(navImage)
             val lp = generateDefaultLayoutParams() as RelativeLayout.LayoutParams
-            lp.height = 120
-            lp.width =120
+            lp.height = dip(36)
+            lp.width =dip(36)
             lp.apply {
                 addRule(ALIGN_PARENT_START)
                 addRule(CENTER_VERTICAL)
