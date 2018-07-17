@@ -10,34 +10,51 @@ import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.howshea.basemodule.R
+import com.howshea.basemodule.extentions.invoke
 import com.howshea.basemodule.utils.dip
 
 /**
  * Created by Howshea
  * on 2018/7/16.
  */
-
+/**
+ * @attr R.styleable.SimpleToolbar_navIcon
+ * @attr R.styleable.SimpleToolbar_menuIcon
+ * @attr R.styleable.SimpleToolbar_contentHeight
+ * @attr R.styleable.SimpleToolbar_title
+ * @attr R.styleable.SimpleToolbar_titleStyle
+ * @attr R.styleable.SimpleToolbar_titleSize
+ * @attr R.styleable.SimpleToolbar_titleColor
+ */
 
 class SimpleToolbar : FrameLayout {
     private var navButton: ImageButton? = null
     private var navigationDrawable: Drawable? = null
+    private val iconSize = dip(24)
+    //默认高度48dp
+    private var contentHeight = dip(48)
+    private val iconTopBottomMargin
+        get() = (contentHeight - iconSize) / 2
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        context?.obtainStyledAttributes(attrs, R.styleable.SimpleToolbar)?.apply {
-            if (hasValue(R.styleable.SimpleToolbar_navIcon))
-                navigationDrawable = getDrawable(R.styleable.SimpleToolbar_navIcon)
-            recycle()
-        }
+        context
+            ?.obtainStyledAttributes(attrs, R.styleable.SimpleToolbar)
+            ?.apply {
+                if (hasValue(R.styleable.SimpleToolbar_navIcon))
+                    navigationDrawable = getDrawable(R.styleable.SimpleToolbar_navIcon)
+                if (hasValue(R.styleable.SimpleToolbar_contentHeight)) {
+                    contentHeight = getDimension(R.styleable.SimpleToolbar_contentHeight, 0f).toInt()
+                    (contentHeight < iconSize) {
+                        throw IllegalArgumentException("contentHeight must be greater than iconSize")
+                    }
+                }
+                recycle()
+            }
         initSubView()
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        navButton?.setOnClickListener { }
-    }
 
     private fun initSubView() {
         ensureNavButtonView()
@@ -57,7 +74,7 @@ class SimpleToolbar : FrameLayout {
     }
 
     private fun ensureNavButtonView() {
-        if (navButton == null && navigationDrawable != null) {
+        (navButton == null && navigationDrawable != null) {
             navButton = AppCompatImageButton(context, null,
                 R.attr.toolbarNavigationButtonStyle).apply {
                 scaleType = ImageView.ScaleType.FIT_CENTER
@@ -69,15 +86,19 @@ class SimpleToolbar : FrameLayout {
         }
     }
 
-    private val navButtonLp:FrameLayout.LayoutParams by lazy {
+    private val navButtonLp: FrameLayout.LayoutParams by lazy {
         (generateDefaultLayoutParams() as FrameLayout.LayoutParams).apply {
-            height = dip(24)
-            width = dip(24)
-            topMargin = dip(12)
-            bottomMargin = dip(12)
-            marginStart = dip(10)
+            height = iconSize
+            width = iconSize
+            topMargin = iconTopBottomMargin
+            bottomMargin = iconTopBottomMargin
+            marginStart = dip(12)
             gravity = Gravity.START
         }
+    }
+
+    fun setNavOnClick(click: (v: View) -> Unit) {
+        navButton?.setOnClickListener { click(it) }
     }
 
 }

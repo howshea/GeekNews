@@ -28,7 +28,7 @@ class ExampleUnitTest {
         val month = getMonth()
         Assert.assertEquals(month, 7)
         val day = getDay()
-        Assert.assertEquals(day, 16)
+        Assert.assertEquals(day, 18)
     }
 
 }
