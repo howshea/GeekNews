@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="SimpleToolbar">
-        <attr name="navigationImage" format="reference" />
+        <attr name="navIcon" format="reference" />
+        <attr name="menuIcon" format="reference" />
+        <attr name="contentHeight" format="dimension" />
+        <attr name="title" format="string" />
+        <attr name="titleStyle" format="enum" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="titleColor" format="color" />
     </declare-styleable>
 </resources>

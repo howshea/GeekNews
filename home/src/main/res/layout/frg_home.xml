@@ -2,22 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-    <com.howshea.basemodule.component.SimpleToolbar
-        android:id="@+id/toolbar"
-        app:navigationImage="@drawable/ic_man"
-        android:layout_width="match_parent"
-        android:minHeight="48dp"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Gank"
-            android:textSize="18sp"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </com.howshea.basemodule.component.SimpleToolbar>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+
+
+        <com.howshea.basemodule.component.SimpleToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:navIcon="@drawable/ic_man">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="News"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+        </com.howshea.basemodule.component.SimpleToolbar>
 
 </LinearLayout>
 

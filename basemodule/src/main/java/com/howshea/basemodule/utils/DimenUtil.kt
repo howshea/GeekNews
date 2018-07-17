@@ -1,19 +1,17 @@
 package com.howshea.basemodule.utils
 
-import android.app.Activity
 import android.app.Fragment
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 
 /**
  * Created by haipo
  * on 2018/7/17.
  */
 //returns dip(dp) dimension value in pixels
-fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density + 0.5f).toInt()
+fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
-fun Context.dip(value: Float): Int = (value * resources.displayMetrics.density + 0.5f).toInt()
+fun Context.dip(value: Float): Int = (value * resources.displayMetrics.density).toInt()
 
 //return sp dimension value in pixels
 fun Context.sp(value: Int): Int = (value * resources.displayMetrics.scaledDensity + 0.5f).toInt()

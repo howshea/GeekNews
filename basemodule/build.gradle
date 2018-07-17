@@ -30,6 +30,10 @@ dependencies {
     api deps.okhttp_logging_interceptor
     api deps.rxjava2
     api deps.rx_android
+    //lifecycle
+    api deps.lifecycle.extensions
+    //support design
+    api deps.support.design
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner

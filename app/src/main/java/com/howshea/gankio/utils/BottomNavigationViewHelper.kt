@@ -37,6 +37,9 @@ fun BottomNavigationView.disableShiftMode() {
     }
 }
 
+/**
+ * BottomNavigationView 和 ViewPager 联动
+ */
 fun BottomNavigationView.setupWithViewPager(viewPager: ViewPager) {
     setOnNavigationItemSelectedListener { item ->
         (0 until menu.size()).forEach {

@@ -30,12 +30,7 @@ android {
 }
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //lifecycle
-    implementation deps.lifecycle.extensions
-    //support design
-    implementation deps.support.design
-
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //module
     implementation project(':basemodule')
     implementation project(':home')
