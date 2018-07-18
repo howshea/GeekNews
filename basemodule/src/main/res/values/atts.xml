@@ -5,7 +5,11 @@
         <attr name="menuIcon" format="reference" />
         <attr name="contentHeight" format="dimension" />
         <attr name="title" format="string" />
-        <attr name="titleStyle" format="enum" />
+        <attr name="titleStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
         <attr name="titleSize" format="dimension" />
         <attr name="titleColor" format="color" />
     </declare-styleable>
