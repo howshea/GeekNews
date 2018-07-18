@@ -87,14 +87,13 @@ class SimpleToolbar : FrameLayout {
     private fun initSubView() {
         ensureNavButtonView()
         ensureMenuButtonView()
-        ensureTitleView()
     }
 
     private fun View.addSystemView() {
         val vlp = this.layoutParams
         val lp: LayoutParams
         lp = if (vlp == null) {
-            generateDefaultLayoutParams() as LayoutParams
+            generateDefaultLayoutParams()
         } else if (!checkLayoutParams(vlp)) {
             generateLayoutParams(vlp) as LayoutParams
         } else {
@@ -141,7 +140,7 @@ class SimpleToolbar : FrameLayout {
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setSingleLine()
                 gravity = Gravity.CENTER
-                layoutParams = getTitleLp(paint)
+                layoutParams = getTitleLp()
             }.apply {
                 addSystemView()
             }
@@ -170,10 +169,18 @@ class SimpleToolbar : FrameLayout {
         }
     }
 
-    private fun getTitleLp(paint: Paint): FrameLayout.LayoutParams {
+    private fun getTitleLp(): FrameLayout.LayoutParams {
         return generateDefaultLayoutParams().apply {
-            width = paint.measureText(titleText).toInt() + dip(12)
+            width = this@SimpleToolbar.measuredWidth - (iconSize * 2 + dip(48))
             gravity = Gravity.CENTER
+        }
+    }
+
+    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
+        super.onWindowFocusChanged(hasWindowFocus)
+        if (hasWindowFocus){
+            //等viewGroup加载完再加载title，以获得正确的可用宽度
+            ensureTitleView()
         }
     }
 
@@ -189,7 +196,7 @@ class SimpleToolbar : FrameLayout {
     fun setTitle(text: CharSequence) {
         titleTextView?.let {
             titleText = text.toString()
-            it.layoutParams = getTitleLp(it.paint)
+            it.layoutParams = getTitleLp()
             it.text = titleText
         }
     }

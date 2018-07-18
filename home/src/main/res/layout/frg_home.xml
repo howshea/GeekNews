@@ -13,6 +13,5 @@
         app:menuIcon="@drawable/ic_calendar_24dp"
         app:navIcon="@drawable/ic_search_24dp"
         app:title="Gank News" />
-
 </LinearLayout>
 
