@@ -20,10 +20,7 @@ class HomeFragment : LazyFragment() {
         return inflater.inflate(R.layout.frg_home, container, false)
     }
 
-
-    override fun getData() {
-
-    }
+    override fun getData() { }
 
     override fun initView() {
         toolbar.topPadding = activity?.getStatusBarHeight() ?: 0
