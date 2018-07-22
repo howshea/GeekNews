@@ -2,7 +2,6 @@ package com.howshea.basemodule.component
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorInt
@@ -178,7 +177,7 @@ class SimpleToolbar : FrameLayout {
 
     override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
         super.onWindowFocusChanged(hasWindowFocus)
-        if (hasWindowFocus){
+        if (hasWindowFocus) {
             //等viewGroup加载完再加载title，以获得正确的可用宽度
             ensureTitleView()
         }

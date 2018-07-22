@@ -12,6 +12,6 @@
         android:background="@android:color/white"
         app:menuIcon="@drawable/ic_calendar_24dp"
         app:navIcon="@drawable/ic_search_24dp"
-        app:title="Gank News" />
+        app:title="Geek News" />
 </LinearLayout>
 
