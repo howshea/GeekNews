@@ -6,6 +6,8 @@ import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.util.Log
+import com.howshea.basemodule.AppContext
+import com.howshea.basemodule.utils.toast
 
 
 /**

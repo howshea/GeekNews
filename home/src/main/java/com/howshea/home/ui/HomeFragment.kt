@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.component.LazyFragment
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
+import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.frg_home.*
 
@@ -25,10 +27,10 @@ class HomeFragment : LazyFragment() {
     override fun initView() {
         toolbar.topPadding = activity?.getStatusBarHeight() ?: 0
         toolbar.setOnNavClick {
-            Toast.makeText(context, "navigationIcon", Toast.LENGTH_SHORT).show()
+            toast("navigationIcon")
         }
         toolbar.setOnMenuClick {
-            toolbar.setTitle("Google")
+            toast("hahaha")
         }
     }
 }
