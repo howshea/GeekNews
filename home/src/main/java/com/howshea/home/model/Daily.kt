@@ -34,6 +34,7 @@ data class Common(
     val type: String,
     val url: String,
     val used: Boolean,
-    val who: String
+    val who: String,
+    var images: List<String>
 )
 
