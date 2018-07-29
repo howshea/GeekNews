@@ -18,6 +18,9 @@ interface HomeApi {
         @Path("month") month: Int,
         @Path("day") day: Int
     ): Observable<Daily>
+
+    @GET("/today")
+    fun getToday(): Observable<Daily>
 }
 
-object HomeService:HomeApi by retrofit.create(HomeApi::class.java)
+object HomeService : HomeApi by retrofit.create(HomeApi::class.java)

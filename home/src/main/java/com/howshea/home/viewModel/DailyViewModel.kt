@@ -14,8 +14,9 @@ import com.howshea.home.repository.HomeService
  */
 class DailyViewModel : ViewModel() {
     val dailyData: MutableLiveData<Results> = MutableLiveData()
+
     fun getToday(){
-        HomeService.getDaily(getYear(), getMonth(), getDay())
+        HomeService.getToday()
     }
 
 }

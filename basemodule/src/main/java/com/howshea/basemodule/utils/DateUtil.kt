@@ -11,9 +11,9 @@ fun getYear(): Int {
 }
 
 fun getMonth(): Int {
-    return Calendar.getInstance().get(Calendar.MONTH)+1
+    return Calendar.getInstance().get(Calendar.MONTH) + 1
 }
 
-fun getDay():Int{
+fun getDay(): Int {
     return Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 }

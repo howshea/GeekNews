@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.component.LazyFragment
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
@@ -22,7 +20,7 @@ class HomeFragment : LazyFragment() {
         return inflater.inflate(R.layout.frg_home, container, false)
     }
 
-    override fun getData() { }
+    override fun getData() {}
 
     override fun initView() {
         toolbar.topPadding = activity?.getStatusBarHeight() ?: 0
