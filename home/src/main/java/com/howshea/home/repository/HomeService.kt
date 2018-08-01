@@ -2,9 +2,9 @@ package com.howshea.home.repository
 
 import com.howshea.basemodule.web.retrofit
 import com.howshea.home.model.Daily
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
-import rx.Observable
 
 /**
  * Created by Howshea
