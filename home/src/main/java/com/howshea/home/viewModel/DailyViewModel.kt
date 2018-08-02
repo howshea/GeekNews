@@ -1,25 +1,35 @@
 package com.howshea.home.viewModel
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.home.model.Results
 import com.howshea.home.repository.HomeService
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+
 /**
  * Created by Howshea
  * on 2018/7/16.
  */
-class DailyViewModel : ViewModel(){
-    val dailyData: MutableLiveData<Results> = MutableLiveData()
+class DailyViewModel : RxViewModel() {
+    private val dailyData: MutableLiveData<Results> = MutableLiveData()
 
-    fun getToday(){
-        HomeService.getToday()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+
+    fun getTodayData(): LiveData<Results> {
+        getToday()
+        return dailyData
     }
 
-    override fun onCleared() {
-        super.onCleared()
+    private fun getToday() {
+        HomeService.getToday()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onNext = { dailyData.value = it.results },
+                onError = {}
+            )
+            .addDispose()
     }
 }

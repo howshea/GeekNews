@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.howshea.basemodule.component.LazyFragment
+import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.toast

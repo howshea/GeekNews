@@ -1,4 +1,4 @@
-package com.howshea.basemodule.component
+package com.howshea.basemodule.component.viewGroup
 
 import android.content.Context
 import android.support.v4.view.ViewPager

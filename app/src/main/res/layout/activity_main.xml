@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation" />
 
-    <com.howshea.basemodule.component.NoScrollViewPager
+    <com.howshea.basemodule.component.viewGroup.NoScrollViewPager
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:id="@+id/view_pager"
@@ -24,5 +24,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    </com.howshea.basemodule.component.NoScrollViewPager>
+    </com.howshea.basemodule.component.viewGroup.NoScrollViewPager>
 </android.support.constraint.ConstraintLayout>

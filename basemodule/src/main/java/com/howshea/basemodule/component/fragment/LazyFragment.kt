@@ -1,4 +1,4 @@
-package com.howshea.basemodule.component
+package com.howshea.basemodule.component.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
