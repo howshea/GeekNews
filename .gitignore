@@ -51,3 +51,6 @@ freeline_project_description.json
 
 .DS_Store
 .app/release/
+.project
+.settings/
+.classpath

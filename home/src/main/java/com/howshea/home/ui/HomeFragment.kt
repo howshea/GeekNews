@@ -24,11 +24,5 @@ class HomeFragment : LazyFragment() {
 
     override fun initView() {
         toolbar.topPadding = activity?.getStatusBarHeight() ?: 0
-        toolbar.setOnNavClick {
-            toast("navigationIcon")
-        }
-        toolbar.setOnMenuClick {
-            toast("hahaha")
-        }
     }
 }

@@ -22,6 +22,8 @@ class DailyViewModel : RxViewModel() {
         return dailyData
     }
 
+    fun refresh() = getToday()
+
     private fun getToday() {
         HomeService.getToday()
             .subscribeOn(Schedulers.io())

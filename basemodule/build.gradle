@@ -28,7 +28,7 @@ dependencies {
     api deps.retrofit.gson
     api deps.retrofit.rxjava
     api deps.okhttp_logging_interceptor
-    api deps.rxjava2
+    api deps.rxkotlin2
     api deps.rx_android
     //lifecycle
     api deps.lifecycle.extensions
