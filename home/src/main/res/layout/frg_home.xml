@@ -13,5 +13,10 @@
         app:menuIcon="@drawable/ic_calendar_24dp"
         app:navIcon="@drawable/ic_search_24dp"
         app:title="Geek News" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ryc_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
 
