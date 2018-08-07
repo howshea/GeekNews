@@ -34,6 +34,7 @@ dependencies {
     api deps.lifecycle.extensions
     //support design
     api deps.support.design
+    api deps.BRVAH
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner

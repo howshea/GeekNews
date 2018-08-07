@@ -9,7 +9,9 @@ import com.howshea.basemodule.extentions.yes
  * Created by Howshea
  * on 2018/7/16.
  */
-
+/**
+ * 用于ViewPager中的懒加载Fragment
+ */
 abstract class LazyFragment : Fragment() {
     private var isInit = false
     private var isFirstVisible = true
