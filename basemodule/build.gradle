@@ -26,7 +26,7 @@ dependencies {
     api deps.support.constraint
     api deps.retrofit.runtime
     api deps.retrofit.gson
-    api deps.retrofit.rxjava
+    api deps.retrofit.rxjava2
     api deps.okhttp_logging_interceptor
     api deps.rxjava2
     api deps.rx_android
