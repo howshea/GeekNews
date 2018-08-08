@@ -26,7 +26,6 @@ class HomeFragment : LazyFragment() {
     override fun getData() {}
 
     override fun initView() {
-        toolbar.topPadding = activity?.getStatusBarHeight() ?: 0
         val model = ViewModelProviders.of(this).get(DailyViewModel::class.java)
         model.getTodayData().observe(this, Observer {
 

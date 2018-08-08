@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/white"
         app:menuIcon="@drawable/ic_calendar_24dp"
         app:navIcon="@drawable/ic_search_24dp"
         app:title="Geek News" />
