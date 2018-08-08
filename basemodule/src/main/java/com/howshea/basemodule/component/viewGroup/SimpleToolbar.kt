@@ -20,6 +20,8 @@ import com.howshea.basemodule.extentions.invoke
 import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.dip
 import com.howshea.basemodule.utils.sp
+import android.graphics.drawable.ColorDrawable
+
 
 /**
  * Created by Howshea
@@ -46,7 +48,7 @@ class SimpleToolbar : FrameLayout {
     private var titleText = ""
     private var titleStyle = 1
     @ColorInt
-    private var titleColor = Color.parseColor("#656565")
+    private var titleColor = Color.parseColor("#424242")
     private var titleSize = sp(20).toFloat()
     //默认高度48dp
     private var contentHeight = dip(48)

@@ -12,14 +12,14 @@ import retrofit2.http.Path
  */
 interface HomeApi {
 
-    @GET("/day/{year}/{month}/{day}")
+    @GET("day/{year}/{month}/{day}")
     fun getDaily(
         @Path("year") year: Int,
         @Path("month") month: Int,
         @Path("day") day: Int
     ): Observable<Daily>
 
-    @GET("/today")
+    @GET("today")
     fun getToday(): Observable<Daily>
 }
 
