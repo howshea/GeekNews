@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import com.howshea.basemodule.utils.setStatusBarTransAndDark
 import com.howshea.gankio.utils.disableShiftMode
 import com.howshea.gankio.utils.setupWithViewPager
-import com.howshea.home.ui.HomeFragment
+import com.howshea.home.ui.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

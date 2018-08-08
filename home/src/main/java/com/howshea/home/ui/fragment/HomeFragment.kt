@@ -1,4 +1,4 @@
-package com.howshea.home.ui
+package com.howshea.home.ui.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
