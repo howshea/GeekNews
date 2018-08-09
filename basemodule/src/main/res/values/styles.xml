@@ -6,13 +6,20 @@
         <item name="colorPrimary">@color/turquoisBlue</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimaryInverse">@color/textPrimaryDark</item>
-        <item name="android:textColorSecondaryInverse">@color/textSecondaryDark</item>
-        <item name="android:textColorPrimary">@color/white</item>
     </style>
 
     <style name="AppTheme.WhiteStatusBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="item_desc" parent="AppTheme">
+        <item name="android:textColor">@color/textPrimaryDark</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="item_author">
+        <item name="android:textColor">@color/textSecondaryDark</item>
+        <item name="android:textSize">11sp</item>
     </style>
 </resources>

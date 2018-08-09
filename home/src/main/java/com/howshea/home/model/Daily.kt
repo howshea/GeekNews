@@ -14,8 +14,12 @@ data class Daily(
 )
 
 data class Results(
+    @SerializedName("Android")
     val android: List<Common>?,
+    @SerializedName("iOS")
     val ios: List<Common>?,
+    @SerializedName("App")
+    val app: List<Common>?,
     @SerializedName("休息视频")
     val video: List<Common>?,
     @SerializedName("拓展资源")

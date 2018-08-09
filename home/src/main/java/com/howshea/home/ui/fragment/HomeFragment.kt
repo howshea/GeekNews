@@ -2,15 +2,11 @@ package com.howshea.home.ui.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.os.Build
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.LinearLayoutManager
 import com.howshea.basemodule.component.fragment.LazyFragment
-import com.howshea.basemodule.extentions.topPadding
-import com.howshea.basemodule.utils.getStatusBarHeight
+import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
+import com.howshea.home.ui.adapter.DailyAdapter
 import com.howshea.home.viewModel.DailyViewModel
 import kotlinx.android.synthetic.main.frg_home.*
 
@@ -19,16 +15,29 @@ import kotlinx.android.synthetic.main.frg_home.*
  * on 2018/6/15.
  */
 class HomeFragment : LazyFragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.frg_home, container, false)
+    private var adapter: DailyAdapter? = null
+
+    override fun getLayoutId(): Int {
+        return R.layout.frg_home
     }
 
-    override fun getData() {}
-
-    override fun initView() {
+    override fun getData() {
         val model = ViewModelProviders.of(this).get(DailyViewModel::class.java)
         model.getTodayData().observe(this, Observer {
-
+            println(it)
+            it?.let { results ->
+                adapter?.run {
+                    setData(results.android!!)
+                } ?: apply {
+                    adapter = DailyAdapter(results.android!!)
+                    ryc_main.adapter = adapter
+                }
+            }
         })
+    }
+
+    override fun initView() {
+        toolbar.setOnNavClick { toast("计划开发中...") }
+        ryc_main.layoutManager = LinearLayoutManager(activity)
     }
 }

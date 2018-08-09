@@ -27,6 +27,7 @@ class DailyViewModel : RxViewModel() {
             .dispatchDefault()
             .subscribeBy(
                 onNext = {
+                    println(it.results)
                     dailyData.value = it.results
                 },
                 onError = {}

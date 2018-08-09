@@ -1,8 +1,11 @@
 package com.howshea.basemodule.component.fragment
 
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.howshea.basemodule.extentions.yes
 
 /**
@@ -26,6 +29,12 @@ abstract class LazyFragment : Fragment() {
 
     abstract fun getData()
     abstract fun initView()
+    @LayoutRes
+    abstract fun getLayoutId(): Int
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(getLayoutId(), container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
