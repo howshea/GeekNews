@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.frg_home.*
  * on 2018/6/15.
  */
 class HomeFragment : LazyFragment() {
-    private var adapter: DailyAdapter? = null
+    private val adapter by lazy { DailyAdapter(arrayListOf()) }
 
     override fun getLayoutId(): Int {
         return R.layout.frg_home
@@ -24,20 +24,16 @@ class HomeFragment : LazyFragment() {
     override fun getData() {
         val model = ViewModelProviders.of(this).get(DailyViewModel::class.java)
         model.getTodayData().observe(this, Observer {
-            println(it)
-            it?.let { results ->
-                adapter?.run {
-                    setData(results.android!!)
-                } ?: apply {
-                    adapter = DailyAdapter(results.android!!)
-                    ryc_main.adapter = adapter
-                }
+            it?.let { data ->
+                adapter.setData(data)
             }
         })
+        model.refresh()
     }
 
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
+        ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)
     }
 }

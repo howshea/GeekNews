@@ -27,7 +27,9 @@ data class Results(
     @SerializedName("瞎推荐")
     val recommend: List<Common>?,
     @SerializedName("福利")
-    val girls: List<Common>?
+    val girls: List<Common>?,
+    @SerializedName("前端")
+    val frontEnd: List<Common>?
 )
 
 

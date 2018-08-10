@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/17.
  */
 inline val Activity.contentView: View?
