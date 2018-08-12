@@ -5,7 +5,6 @@ import android.arch.lifecycle.MutableLiveData
 import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.home.model.Common
-import com.howshea.home.model.Results
 import com.howshea.home.repository.HomeService
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -15,10 +14,15 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class DailyViewModel : RxViewModel() {
     private val dailyData: MutableLiveData<List<Common>> = MutableLiveData()
+    private val girls: MutableLiveData<List<Common>> = MutableLiveData()
 
 
     fun getTodayData(): LiveData<List<Common>> {
         return dailyData
+    }
+
+    fun getTodayGirls(): LiveData<List<Common>> {
+        return girls
     }
 
     fun refresh() = getToday()
@@ -36,6 +40,8 @@ class DailyViewModel : RxViewModel() {
                         app?.let { tempList += it }
                         sources?.let { tempList += it }
                         recommend?.let { tempList += it }
+                        video?.let { tempList += it }
+                        girls?.let { this@DailyViewModel.girls.value = it }
                     }
                     dailyData.value = tempList
                 },

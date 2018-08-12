@@ -13,6 +13,7 @@ versions.okhttp_logging_interceptor = "3.4.1"
 versions.rxkotlin2 = "2.2.0"
 versions.rx_android = "2.0.2"
 versions.BRVAH = "2.9.40"
+versions.glide = "4.7.1"
 def deps = [:]
 
 def support = [:]
@@ -48,6 +49,8 @@ deps.kotlin = kotlin
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.BRVAH = "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.BRVAH"
+deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
+
 ext.deps = deps
 
 def build_versions = [:]

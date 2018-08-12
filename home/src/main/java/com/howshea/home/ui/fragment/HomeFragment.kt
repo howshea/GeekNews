@@ -3,6 +3,7 @@ package com.howshea.home.ui.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
@@ -27,6 +28,11 @@ class HomeFragment : LazyFragment() {
             it?.let { data ->
                 adapter.setData(data)
             }
+        })
+        model.getTodayGirls().observe(this, Observer {
+            Glide.with(this)
+                .load(it!![0].url)
+                .into(iv_girl)
         })
         model.refresh()
     }
