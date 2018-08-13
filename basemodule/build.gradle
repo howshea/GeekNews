@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion build_versions.target_sdk
     defaultConfig {
@@ -35,7 +36,10 @@ dependencies {
     //support design
     api deps.support.design
     api deps.BRVAH
-    api deps.glide
+    //glide
+    api deps.glide.glide
+    kapt deps.glide.compiler
+
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner

@@ -3,6 +3,7 @@
     package="com.howshea.gankio">
     <!-- normal permission 不需要动态授权 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -44,5 +44,6 @@ abstract class LazyFragment : Fragment() {
             getData()
             isFirstVisible = false
         }
+
     }
 }
