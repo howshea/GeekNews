@@ -1,33 +1,32 @@
 package com.howshea.home.ui.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
+import com.howshea.home.R
 import com.howshea.home.databinding.ItemDailyAdapterBinding
 import com.howshea.home.model.Common
 
-class DailyAdapter(private var items: List<Common>) : RecyclerView.Adapter<DailyAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+class DailyAdapter(data: List<Common>) : BaseQuickAdapter<Common, DailyAdapter.ViewHolder>(data) {
+
+    override fun convert(helper: ViewHolder, item: Common) {
+        val binding = helper.getBinding()
+        binding.common = item
+        binding.executePendingBindings()
+    }
+
+    override fun getItemView(layoutResId: Int, parent: ViewGroup): View {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemDailyAdapterBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
-    }
-
-    override fun getItemCount() = items.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
-    fun setData(newItems: List<Common>) {
-        items = newItems
-        notifyDataSetChanged()
-    }
-
-    inner class ViewHolder(private val binding: ItemDailyAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Common) {
-            binding.common = item
-            binding.executePendingBindings()
+        return binding.root.apply {
+            setTag(R.id.BaseQuickAdapter_databinding_support, binding)
         }
+    }
+
+    inner class ViewHolder(view: View) : BaseViewHolder(view) {
+        fun getBinding() =
+            itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ItemDailyAdapterBinding
     }
 }

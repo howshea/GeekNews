@@ -13,4 +13,15 @@
         <attr name="titleSize" format="dimension" />
         <attr name="titleColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="SWImageView">
+        <attr name="borderRadius" format="dimension"/>
+        <attr name="type">
+            <enum name="normal" value="-1"/>
+            <enum name="circle" value="0"/>
+            <enum name="round" value="1"/>
+        </attr>
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderColor" format="integer" />
+    </declare-styleable>
 </resources>
