@@ -31,16 +31,3 @@ data class Results(
     @SerializedName("前端")
     val frontEnd: List<Common>?
 )
-
-
-data class Common(
-    val createdAt: String,
-    val desc: String,
-    val publishedAt: String,
-    val type: String,
-    val url: String,
-    val used: Boolean,
-    val who: String,
-    var images: List<String>
-)
-

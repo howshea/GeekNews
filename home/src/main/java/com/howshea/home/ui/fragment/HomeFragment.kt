@@ -1,5 +1,6 @@
 package com.howshea.home.ui.fragment
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
@@ -10,15 +11,16 @@ import com.howshea.home.R
 import com.howshea.home.ui.adapter.DailyAdapter
 import com.howshea.home.viewModel.DailyViewModel
 import kotlinx.android.synthetic.main.frg_home.*
-import kotlinx.android.synthetic.main.header_home.view.*
+import kotlinx.android.synthetic.main.footer_home.view.*
 
+@SuppressLint("InflateParams")
 /**
  * Created by Howshea
  * on 2018/6/15.
  */
 class HomeFragment : LazyFragment() {
     private val adapter by lazy(LazyThreadSafetyMode.NONE) { DailyAdapter(arrayListOf()) }
-    private val footerView by lazy(LazyThreadSafetyMode.NONE) { layoutInflater.inflate(R.layout.header_home, null, false) }
+    private val footerView by lazy(LazyThreadSafetyMode.NONE) { layoutInflater.inflate(R.layout.footer_home, null, false) }
 
     override fun getLayoutId(): Int {
         return R.layout.frg_home
