@@ -18,9 +18,8 @@ import android.widget.TextView
 import com.howshea.basemodule.R
 import com.howshea.basemodule.extentions.invoke
 import com.howshea.basemodule.extentions.yes
-import com.howshea.basemodule.utils.dip
+import com.howshea.basemodule.utils.dp
 import com.howshea.basemodule.utils.sp
-import android.graphics.drawable.ColorDrawable
 
 
 /**
@@ -51,8 +50,8 @@ class SimpleToolbar : FrameLayout {
     private var titleColor = Color.parseColor("#424242")
     private var titleSize = sp(20).toFloat()
     //默认高度48dp
-    private var contentHeight = dip(48)
-    private val iconSize = dip(24)
+    private var contentHeight = dp(48)
+    private val iconSize = dp(24)
     private val iconTopBottomMargin
         get() = (contentHeight - iconSize) / 2
 
@@ -154,7 +153,7 @@ class SimpleToolbar : FrameLayout {
             width = iconSize
             topMargin = iconTopBottomMargin
             bottomMargin = iconTopBottomMargin
-            marginStart = dip(12)
+            marginStart = dp(12)
             gravity = Gravity.START
         }
     }
@@ -165,14 +164,14 @@ class SimpleToolbar : FrameLayout {
             width = iconSize
             topMargin = iconTopBottomMargin
             bottomMargin = iconTopBottomMargin
-            marginEnd = dip(12)
+            marginEnd = dp(12)
             gravity = Gravity.END
         }
     }
 
     private fun getTitleLp(): FrameLayout.LayoutParams {
         return generateDefaultLayoutParams().apply {
-            width = this@SimpleToolbar.measuredWidth - (iconSize * 2 + dip(48))
+            width = this@SimpleToolbar.measuredWidth - (iconSize * 2 + dp(48))
             gravity = Gravity.CENTER
         }
     }
