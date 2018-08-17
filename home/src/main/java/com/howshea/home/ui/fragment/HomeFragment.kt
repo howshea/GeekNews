@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
+import com.howshea.home.ui.CategoryDecoration
 import com.howshea.home.ui.adapter.DailyAdapter
 import com.howshea.home.viewModel.DailyViewModel
 import kotlinx.android.synthetic.main.frg_home.*
@@ -31,6 +32,7 @@ class HomeFragment : LazyFragment() {
         model.getTodayData().observe(this, Observer {
             it?.let { data ->
                 adapter.setNewData(data)
+                ryc_main.addItemDecoration(CategoryDecoration(data,context!!))
             }
         })
         model.getTodayGirls().observe(this, Observer {
