@@ -37,9 +37,9 @@ class HomeFragment : LazyFragment() {
         })
         model.getTodayGirls().observe(this, Observer {
             it?.let { data ->
-                Glide.with(this)
-                    .load(data[0].url)
-                    .into(footerView.iv_girl)
+//                Glide.with(this)
+//                    .load(data[0].url)
+//                    .into(footerView.iv_girl)
             }
         })
         model.refresh()
@@ -47,7 +47,7 @@ class HomeFragment : LazyFragment() {
 
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
-        adapter.addFooterView(footerView)
+//        adapter.addFooterView(footerView)
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)
     }

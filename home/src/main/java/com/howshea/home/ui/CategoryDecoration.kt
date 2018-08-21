@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import com.howshea.basemodule.AppContext
+import com.howshea.basemodule.extentions.otherwise
+import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.dp
 import com.howshea.basemodule.utils.sp
 import com.howshea.home.model.Common
@@ -29,13 +31,17 @@ class CategoryDecoration(var data: List<Common>, context: Context) : RecyclerVie
     private val inflater = LayoutInflater.from(context)
     private var dividerHeight = 0
 
-    override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect?, view: View, parent: RecyclerView, state: RecyclerView.State?) {
         super.getItemOffsets(outRect, view, parent, state)
-        if (parent.getChildAdapterPosition(view) != 0) {
-            //这里直接硬编码为1px
-            dividerHeight = AppContext.dp(1)
-            outRect?.top = dividerHeight
+        val position = (view.layoutParams as RecyclerView.LayoutParams).viewLayoutPosition
+        if (position < 0) return
+        dividerHeight = if (position== 0 || data[position].type != data[position - 1].type) {
+            AppContext.dp(30)
+        } else {
+            //留出1dp的间隙
+            AppContext.dp(1)
         }
+        outRect?.top = dividerHeight
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -48,11 +54,10 @@ class CategoryDecoration(var data: List<Common>, context: Context) : RecyclerVie
                 return@forEach
             }
             val dividerTop = (child.top - dividerHeight).toFloat()
-            val dividerLeft =  AppContext.dp(16).toFloat()
+            val dividerLeft = if (dividerHeight == AppContext.dp(1)) AppContext.dp(16).toFloat() else 0f
             val dividerBottom = child.top.toFloat()
             val dividerRight = (parent.width - parent.paddingRight).toFloat()
-
-            c.drawRect(dividerLeft,dividerTop,dividerRight,dividerBottom,paint)
+            c.drawRect(dividerLeft, dividerTop, dividerRight, dividerBottom, paint)
         }
     }
 }
