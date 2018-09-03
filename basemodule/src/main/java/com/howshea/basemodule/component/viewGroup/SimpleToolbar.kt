@@ -44,7 +44,6 @@ class SimpleToolbar : FrameLayout {
     private var menuDrawable: Drawable? = null
     //title
     private var titleTextView: TextView? = null
-    private var titleText = ""
     private var titleStyle = 1
     @ColorInt
     private var titleColor = Color.parseColor("#707070")
@@ -54,6 +53,17 @@ class SimpleToolbar : FrameLayout {
     private val iconSize = dp(24)
     private val iconTopBottomMargin
         get() = (contentHeight - iconSize) / 2
+
+    var title:CharSequence = ""
+        set(value) {
+            field = value
+            titleTextView
+                ?.let {
+                    it.layoutParams = getTitleLp()
+                    it.text = title
+                }
+                ?: ensureTitleView()
+        }
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -73,7 +83,7 @@ class SimpleToolbar : FrameLayout {
                         throw IllegalArgumentException("contentHeight must be greater than iconSize")
                     }
                 }
-                titleText = getString(R.styleable.SimpleToolbar_title) ?: ""
+                title = getString(R.styleable.SimpleToolbar_title) ?: ""
                 titleStyle = getInt(R.styleable.SimpleToolbar_titleStyle, 1)
                 titleColor = getColor(R.styleable.SimpleToolbar_titleColor, titleColor)
                 titleSize = getDimension(R.styleable.SimpleToolbar_titleSize, titleSize)
@@ -87,7 +97,6 @@ class SimpleToolbar : FrameLayout {
     private fun initSubView() {
         ensureNavButtonView()
         ensureMenuButtonView()
-        ensureTitleView()
     }
 
     private fun View.addSystemView() {
@@ -135,7 +144,7 @@ class SimpleToolbar : FrameLayout {
     private fun ensureTitleView() {
         titleTextView ?: let {
             titleTextView = AppCompatTextView(context, null).apply {
-                text = titleText
+                text = title
                 setTextColor(titleColor)
                 setTypeface(Typeface.DEFAULT, titleStyle)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
@@ -192,14 +201,6 @@ class SimpleToolbar : FrameLayout {
 
     fun setOnMenuClick(click: (v: View) -> Unit) {
         menuButton?.setOnClickListener(click)
-    }
-
-    fun setTitle(text: CharSequence) {
-        titleTextView?.let {
-            titleText = text.toString()
-            it.layoutParams = getTitleLp()
-            it.text = titleText
-        }
     }
 
     override fun generateDefaultLayoutParams(): LayoutParams {

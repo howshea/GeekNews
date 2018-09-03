@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.howshea.basemodule.component.fragment.LazyFragment
+import com.howshea.basemodule.extentions.formatStringColor
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import com.howshea.home.ui.CategoryDecoration
@@ -31,12 +32,12 @@ class HomeFragment : LazyFragment() {
         model.getTodayData().observe(this, Observer {
             it?.let { data ->
                 adapter.setNewData(data)
-                ryc_main.addItemDecoration(CategoryDecoration(data,context!!))
+                ryc_main.addItemDecoration(CategoryDecoration(data, context!!))
             }
         })
         model.getTodayGirls().observe(this, Observer {
             it?.let { data ->
-//                Glide.with(this)
+                //                Glide.with(this)
 //                    .load(data[0].url)
 //                    .into(footerView.iv_girl)
             }
@@ -46,8 +47,12 @@ class HomeFragment : LazyFragment() {
 
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
-        toolbar.setOnMenuClick { toolbar.setTitle("十步杀一人") }
-        toolbar.setTitle("春风十里")
+        toolbar.setOnMenuClick { }
+        toolbar.title = "Gank News"
+            .formatStringColor(R.color.blue, 0, 1)
+            .formatStringColor(R.color.red, 1, 2)
+            .formatStringColor(R.color.yellow, 2, 3)
+            .formatStringColor(R.color.green, 3, 4)
 //        adapter.addFooterView(footerView)
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)

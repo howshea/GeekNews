@@ -4,10 +4,8 @@
     <color name="green">#34A853</color>
     <color name="yellow">#FBBC05</color>
     <color name="red">#EA4335</color>
-    <color name="colorPrimaryMain">#fff</color>
-    <color name="colorPrimaryDarkMain">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorPrimary">#2A90D7</color>
+    <color name="colorPrimary">#2fa0ef</color>
     <color name="white">#ffffff</color>
     <color name="textPrimary">#404040</color>
     <color name="textSecondary">#707070</color>
