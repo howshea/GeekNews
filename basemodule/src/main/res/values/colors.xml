@@ -7,8 +7,11 @@
     <color name="colorPrimaryMain">#fff</color>
     <color name="colorPrimaryDarkMain">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="turquoisBlue">#2461F0</color>
+    <color name="colorPrimary">#2A90D7</color>
     <color name="white">#ffffff</color>
-    <color name="textPrimaryDark">#424242</color>
-    <color name="textSecondaryDark">#757575</color>
+    <color name="textPrimary">#404040</color>
+    <color name="textSecondary">#707070</color>
+    <color name="textThird">#999999</color>
+    <color name="divider">#f4f4f4</color>
+    <color name="bg_tag">#F0F3F5</color>
 </resources>

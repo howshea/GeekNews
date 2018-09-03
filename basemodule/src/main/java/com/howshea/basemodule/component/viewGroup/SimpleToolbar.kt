@@ -47,7 +47,7 @@ class SimpleToolbar : FrameLayout {
     private var titleText = ""
     private var titleStyle = 1
     @ColorInt
-    private var titleColor = Color.parseColor("#424242")
+    private var titleColor = Color.parseColor("#707070")
     private var titleSize = sp(20).toFloat()
     //默认高度48dp
     private var contentHeight = dp(48)
@@ -87,6 +87,7 @@ class SimpleToolbar : FrameLayout {
     private fun initSubView() {
         ensureNavButtonView()
         ensureMenuButtonView()
+        ensureTitleView()
     }
 
     private fun View.addSystemView() {
@@ -153,7 +154,7 @@ class SimpleToolbar : FrameLayout {
             width = iconSize
             topMargin = iconTopBottomMargin
             bottomMargin = iconTopBottomMargin
-            marginStart = dp(12)
+            marginStart = dp(16)
             gravity = Gravity.START
         }
     }
@@ -164,7 +165,7 @@ class SimpleToolbar : FrameLayout {
             width = iconSize
             topMargin = iconTopBottomMargin
             bottomMargin = iconTopBottomMargin
-            marginEnd = dp(12)
+            marginEnd = dp(16)
             gravity = Gravity.END
         }
     }

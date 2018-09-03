@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.footer_home.view.*
  */
 class HomeFragment : LazyFragment() {
     private val adapter by lazy(LazyThreadSafetyMode.NONE) { DailyAdapter(arrayListOf()) }
-    private val footerView by lazy(LazyThreadSafetyMode.NONE) { layoutInflater.inflate(R.layout.footer_home, null, false) }
 
     override fun getLayoutId(): Int {
         return R.layout.frg_home
@@ -47,6 +46,8 @@ class HomeFragment : LazyFragment() {
 
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
+        toolbar.setOnMenuClick { toolbar.setTitle("十步杀一人") }
+        toolbar.setTitle("春风十里")
 //        adapter.addFooterView(footerView)
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)

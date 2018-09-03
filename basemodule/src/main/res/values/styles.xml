@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/turquoisBlue</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -14,12 +14,12 @@
     </style>
 
     <style name="item_desc" parent="AppTheme">
-        <item name="android:textColor">@color/textPrimaryDark</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">15sp</item>
     </style>
 
     <style name="item_author">
-        <item name="android:textColor">@color/textSecondaryDark</item>
+        <item name="android:textColor">@color/textSecondary</item>
         <item name="android:textSize">11sp</item>
     </style>
 </resources>

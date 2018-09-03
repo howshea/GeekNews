@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import com.howshea.basemodule.AppContext
-import com.howshea.basemodule.extentions.otherwise
-import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.dp
 import com.howshea.basemodule.utils.sp
 import com.howshea.home.model.Common
@@ -35,7 +33,7 @@ class CategoryDecoration(var data: List<Common>, context: Context) : RecyclerVie
         super.getItemOffsets(outRect, view, parent, state)
         val position = (view.layoutParams as RecyclerView.LayoutParams).viewLayoutPosition
         if (position < 0) return
-        dividerHeight = if (position== 0 || data[position].type != data[position - 1].type) {
+        dividerHeight = if (position == 0 || data[position].type != data[position - 1].type) {
             AppContext.dp(30)
         } else {
             //留出1dp的间隙

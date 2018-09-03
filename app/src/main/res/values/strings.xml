@@ -2,6 +2,6 @@
     <string name="app_name">GankIo</string>
     <string name="home">首页</string>
     <string name="personal">我的</string>
-    <string name="girl">任务</string>
-    <string name="geek">Geek</string>
+    <string name="data">资料库</string>
+    <string name="read">闲读</string>
 </resources>
