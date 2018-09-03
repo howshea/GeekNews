@@ -53,7 +53,6 @@ class HomeFragment : LazyFragment() {
             .formatStringColor(R.color.red, 1, 2)
             .formatStringColor(R.color.yellow, 2, 3)
             .formatStringColor(R.color.green, 3, 4)
-//        adapter.addFooterView(footerView)
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)
     }
