@@ -17,6 +17,7 @@ import android.os.Parcelable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+
 import com.howshea.basemodule.R;
 
 
@@ -51,6 +52,7 @@ public class SWImageView extends AppCompatImageView {
     private int radius;
     private BitmapShader bitmapShader;
     private RectF rectF;
+    private float radio;
 
     public SWImageView(Context context) {
         super(context);
@@ -69,17 +71,24 @@ public class SWImageView extends AppCompatImageView {
                 R.styleable.SWImageView);
         borderRadius = dp2px(array.getDimension(R.styleable.SWImageView_borderRadius, BORDER_RADIUS_DEFAULT));
         type = array.getInt(R.styleable.SWImageView_type, TYPE_NORMAL);
+        radio = array.getFloat(R.styleable.SWImageView_radio, 0f);
         border_width = dp2px(array.getDimension(R.styleable.SWImageView_borderWidth, BORDER_WIDTH));
         border_color = array.getInt(R.styleable.SWImageView_borderColor, BORDER_COLOR);
         array.recycle();
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (type == TYPE_CIRCLE) {
             width = Math.min(getMeasuredWidth(), getMeasuredHeight());
+            radio = 1f;
             radius = width / 2 - border_width / 2;
-            setMeasuredDimension(width, width);
+        }
+        if (radio != 0f) {
+            int width = MeasureSpec.getSize(widthMeasureSpec);
+            int height = (int) (width / radio);
+            setMeasuredDimension(width, height);
+        } else {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         }
     }
 
@@ -237,7 +246,7 @@ public class SWImageView extends AppCompatImageView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (type == TYPE_ROUND) {
-            rectF = new RectF(border_width/2,border_width/2, getWidth()- border_width / 2, getHeight()- border_width / 2);
+            rectF = new RectF(border_width / 2, border_width / 2, getWidth() - border_width / 2, getHeight() - border_width / 2);
         }
     }
 
@@ -263,5 +272,14 @@ public class SWImageView extends AppCompatImageView {
         } else {
             super.onRestoreInstanceState(state);
         }
+    }
+
+    public float getRadio() {
+        return radio;
+    }
+
+    public void setRadio(float radio) {
+        this.radio = radio;
+        requestLayout();
     }
 }

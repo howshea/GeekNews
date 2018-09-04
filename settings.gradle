@@ -1,1 +1,1 @@
-include ':app', ':basemodule', ':home', ':geek', ':girl', ':personalcenter'
+include ':app', ':basemodule', ':home', ':read', ':data', ':personalcenter'

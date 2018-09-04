@@ -23,5 +23,6 @@
         </attr>
         <attr name="borderWidth" format="dimension" />
         <attr name="borderColor" format="integer" />
+        <attr name="radio" format="float" />
     </declare-styleable>
 </resources>

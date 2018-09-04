@@ -10,7 +10,7 @@
 
     <style name="AppTheme.WhiteStatusBar">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@null</item>
     </style>
 
     <style name="item_desc" parent="AppTheme">
@@ -19,7 +19,7 @@
     </style>
 
     <style name="item_author">
-        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColor">@color/textThird</item>
         <item name="android:textSize">11sp</item>
     </style>
 </resources>

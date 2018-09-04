@@ -35,25 +35,24 @@ class HomeFragment : LazyFragment() {
                 ryc_main.addItemDecoration(CategoryDecoration(data, context!!))
             }
         })
-        model.getTodayGirls().observe(this, Observer {
-            it?.let { data ->
-                //                Glide.with(this)
-//                    .load(data[0].url)
-//                    .into(footerView.iv_girl)
-            }
-        })
         model.refresh()
     }
 
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
         toolbar.setOnMenuClick { }
-        toolbar.title = "Gank News"
-            .formatStringColor(R.color.blue, 0, 1)
+        toolbar.title = toolbar.title.setLogo()
+        ryc_main.adapter = adapter
+        ryc_main.layoutManager = LinearLayoutManager(activity)
+    }
+
+    /**
+     * 换色四连
+     */
+    private fun CharSequence.setLogo(): CharSequence {
+        return this.formatStringColor(R.color.blue, 0, 1)
             .formatStringColor(R.color.red, 1, 2)
             .formatStringColor(R.color.yellow, 2, 3)
             .formatStringColor(R.color.green, 3, 4)
-        ryc_main.adapter = adapter
-        ryc_main.layoutManager = LinearLayoutManager(activity)
     }
 }

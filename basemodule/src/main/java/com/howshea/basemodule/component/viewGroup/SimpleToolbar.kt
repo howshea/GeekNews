@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.ColorInt
 import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.AppCompatTextView
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -45,16 +46,19 @@ class SimpleToolbar : FrameLayout {
     //title
     private var titleTextView: TextView? = null
     private var titleStyle = 1
+    //默认字体颜色
     @ColorInt
     private var titleColor = Color.parseColor("#707070")
+    //默认字体大小
     private var titleSize = sp(20).toFloat()
     //默认高度48dp
     private var contentHeight = dp(48)
+    //默认icon宽高
     private val iconSize = dp(24)
     private val iconTopBottomMargin
         get() = (contentHeight - iconSize) / 2
-
-    var title:CharSequence = ""
+    //标题
+    var title: CharSequence = ""
         set(value) {
             field = value
             titleTextView
@@ -89,6 +93,7 @@ class SimpleToolbar : FrameLayout {
                 titleSize = getDimension(R.styleable.SimpleToolbar_titleSize, titleSize)
                 recycle()
             }
+        setBackgroundColor(Color.parseColor("#ffffff"))
         initSubView()
     }
 
@@ -97,6 +102,7 @@ class SimpleToolbar : FrameLayout {
     private fun initSubView() {
         ensureNavButtonView()
         ensureMenuButtonView()
+        ensureTitleView()
     }
 
     private fun View.addSystemView() {
@@ -149,6 +155,7 @@ class SimpleToolbar : FrameLayout {
                 setTypeface(Typeface.DEFAULT, titleStyle)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setSingleLine()
+                ellipsize  = TextUtils.TruncateAt.END
                 gravity = Gravity.CENTER
                 layoutParams = getTitleLp()
             }.apply {
@@ -181,19 +188,11 @@ class SimpleToolbar : FrameLayout {
 
     private fun getTitleLp(): FrameLayout.LayoutParams {
         return generateDefaultLayoutParams().apply {
-            width = this@SimpleToolbar.measuredWidth - (iconSize * 2 + dp(48))
+            marginStart = iconSize + dp(32)
+            marginEnd = iconSize + dp(32)
             gravity = Gravity.CENTER
         }
     }
-
-    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
-        super.onWindowFocusChanged(hasWindowFocus)
-        if (hasWindowFocus) {
-            //等viewGroup加载完再加载title，以获得正确的可用宽度
-            ensureTitleView()
-        }
-    }
-
 
     fun setOnNavClick(click: (v: View) -> Unit) {
         navButton?.setOnClickListener(click)

@@ -34,8 +34,8 @@ dependencies {
     //module
     implementation project(':basemodule')
     implementation project(':home')
-    implementation project(':girl')
-    implementation project(':geek')
+    implementation project(':data')
+    implementation project(':read')
     implementation project(':personalcenter')
 
     //test

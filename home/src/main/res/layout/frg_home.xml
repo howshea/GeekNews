@@ -9,14 +9,18 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         app:menuIcon="@drawable/ic_history"
-        app:navIcon="@drawable/ic_search" />
+        app:navIcon="@drawable/ic_search"
+        app:title="Geek News" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/divider" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ryc_main"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent" />
 </LinearLayout>
 

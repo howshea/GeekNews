@@ -14,17 +14,10 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class DailyViewModel : RxViewModel() {
     private val dailyData: MutableLiveData<List<Common>> = MutableLiveData()
-    private val girls: MutableLiveData<List<Common>> = MutableLiveData()
-
 
     fun getTodayData(): LiveData<List<Common>> {
         return dailyData
     }
-
-    fun getTodayGirls(): LiveData<List<Common>> {
-        return girls
-    }
-
     fun refresh() = getToday()
 
     private fun getToday() {
@@ -41,7 +34,7 @@ class DailyViewModel : RxViewModel() {
                         sources?.let { tempList += it }
                         recommend?.let { tempList += it }
                         video?.let { tempList += it }
-                        girls?.let { this@DailyViewModel.girls.value = it }
+                        girls?.let { tempList += it }
                     }
                     dailyData.value = tempList
                 },

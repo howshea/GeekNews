@@ -12,16 +12,17 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="10dp"
+        android:paddingLeft="@dimen/global_margin"
+        android:paddingRight="@dimen/global_margin"
+        android:paddingTop="9dp">
 
         <TextView
             android:id="@+id/tv_desc"
             style="@style/item_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:text="@{common.desc}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +35,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingBottom="8dp"
             android:text="@{`via. `+common.who}"
-            app:layout_constraintStart_toStartOf="@id/tv_desc"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_desc"
             tools:text="via. howshea" />
+
+
+        <TextView
+            android:id="@+id/tv_publish_time"
+            style="@style/item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{common.publishedAt.substring(0,10)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_author"
+            tools:text="2018-09-03" />
     </android.support.constraint.ConstraintLayout>
 </layout>
