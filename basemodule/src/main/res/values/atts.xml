@@ -15,14 +15,19 @@
     </declare-styleable>
 
     <declare-styleable name="SWImageView">
-        <attr name="borderRadius" format="dimension"/>
+        <attr name="borderRadius" format="dimension" />
         <attr name="type">
-            <enum name="normal" value="-1"/>
-            <enum name="circle" value="0"/>
-            <enum name="round" value="1"/>
+            <enum name="normal" value="-1" />
+            <enum name="circle" value="0" />
+            <enum name="round" value="1" />
         </attr>
         <attr name="borderWidth" format="dimension" />
         <attr name="borderColor" format="integer" />
         <attr name="radio" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="NineGridImageLayout">
+        <attr name="spacing" format="dimension" />
+        <attr name="singleSize" format="dimension" />
     </declare-styleable>
 </resources>

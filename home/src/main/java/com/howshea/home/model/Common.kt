@@ -8,5 +8,7 @@ data class Common(
     val url: String,
     val used: Boolean,
     val who: String,
-    val images: List<String>?
+    var images: List<String>?,
+    @Transient
+    val radios: List<Float>?
 )

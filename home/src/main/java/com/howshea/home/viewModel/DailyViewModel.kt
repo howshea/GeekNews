@@ -6,6 +6,9 @@ import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.home.model.Common
 import com.howshea.home.repository.HomeService
+import io.reactivex.Observable
+import io.reactivex.ObservableSource
+import io.reactivex.functions.Function
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
@@ -18,25 +21,41 @@ class DailyViewModel : RxViewModel() {
     fun getTodayData(): LiveData<List<Common>> {
         return dailyData
     }
+
     fun refresh() = getToday()
 
     private fun getToday() {
         HomeService.getToday()
+            .flatMap<List<Common>> { data ->
+                val tempList: MutableList<Common> = arrayListOf()
+                with(data.results) {
+                    android?.let { tempList += it }
+                    ios?.let { tempList += it }
+                    frontEnd?.let { tempList += it }
+                    app?.let { tempList += it }
+                    sources?.let { tempList += it }
+                    recommend?.let { tempList += it }
+                    video?.let { tempList += it }
+                    girls?.let {
+                        //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
+                        it.forEach { item ->
+                            item.images = arrayListOf(item.url)
+                        }
+                        tempList += it
+                    }
+                }
+                tempList.forEach { item ->
+                    item.images
+                        ?.apply {
+                        }
+                        ?: let { return@forEach }
+                }
+                Observable.fromArray(tempList)
+            }
             .dispatchDefault()
             .subscribeBy(
-                onNext = { data ->
-                    val tempList: MutableList<Common> = arrayListOf()
-                    with(data.results) {
-                        android?.let { tempList += it }
-                        ios?.let { tempList += it }
-                        frontEnd?.let { tempList += it }
-                        app?.let { tempList += it }
-                        sources?.let { tempList += it }
-                        recommend?.let { tempList += it }
-                        video?.let { tempList += it }
-                        girls?.let { tempList += it }
-                    }
-                    dailyData.value = tempList
+                onNext = {
+                    dailyData.value = it
                 },
                 onError = {}
             )
