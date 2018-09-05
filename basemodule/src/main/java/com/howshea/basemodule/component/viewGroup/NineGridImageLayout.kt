@@ -36,6 +36,7 @@ class NineGridImageLayout : ViewGroup {
     private var gridSize = 0
 
     var imageList = arrayListOf<String>()
+    var radio = 0f
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -56,7 +57,11 @@ class NineGridImageLayout : ViewGroup {
         val availableWidth = width - paddingLeft - paddingRight
         gridSize = (availableWidth - spacing * 2) / 3
         if (imageList.size == 1) {
-            height = singleImgSize
+            height =
+                if (radio > 1)
+                    (singleImgSize / radio).toInt() + paddingTop + paddingBottom
+                else
+                    singleImgSize + paddingTop + paddingBottom
         } else if (imageList.size > 1) {
             row = ceil(imageList.size / 3f).toInt()
             height = gridSize * row + spacing * (row - 1) + paddingTop + paddingBottom
@@ -69,9 +74,10 @@ class NineGridImageLayout : ViewGroup {
 
 }
 
-@BindingAdapter("app:imageList")
-fun setImageList(view: NineGridImageLayout, imageList: List<String>?) {
+@BindingAdapter("app:imageList", "app:radio")
+fun setImageList(view: NineGridImageLayout, imageList: List<String>?, radio: Float) {
     imageList?.let {
         view.imageList = ArrayList(it)
     }
+    view.radio = radio
 }

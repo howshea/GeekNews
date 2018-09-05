@@ -4,11 +4,12 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.basemodule.extentions.dispatchDefault
+import com.howshea.basemodule.extentions.otherwise
+import com.howshea.basemodule.extentions.yes
+import com.howshea.basemodule.getRadioAndCache
 import com.howshea.home.model.Common
 import com.howshea.home.repository.HomeService
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.functions.Function
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
@@ -36,19 +37,29 @@ class DailyViewModel : RxViewModel() {
                     sources?.let { tempList += it }
                     recommend?.let { tempList += it }
                     video?.let { tempList += it }
-                    girls?.let {
+                    girls?.let { it ->
                         //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
                         it.forEach { item ->
-                            item.images = arrayListOf(item.url)
+                            item.images = List(1) { item.url }
                         }
                         tempList += it
                     }
                 }
                 tempList.forEach { item ->
                     item.images
-                        ?.apply {
+                        ?.let {
+                            it.size == 1
                         }
-                        ?: let { return@forEach }
+                        ?.yes {
+                            item.radio = getRadioAndCache(item.images!![0])
+                        }
+                        ?.otherwise {
+                            return@forEach
+                        }
+                        ?: let {
+                            return@forEach
+                        }
+
                 }
                 Observable.fromArray(tempList)
             }
@@ -57,8 +68,11 @@ class DailyViewModel : RxViewModel() {
                 onNext = {
                     dailyData.value = it
                 },
-                onError = {}
+                onError = {
+                    it.printStackTrace()
+                }
             )
             .addDispose()
     }
 }
+

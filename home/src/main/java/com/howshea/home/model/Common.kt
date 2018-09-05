@@ -10,5 +10,5 @@ data class Common(
     val who: String,
     var images: List<String>?,
     @Transient
-    val radios: List<Float>?
+    var radio: Float
 )
