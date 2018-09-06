@@ -134,6 +134,7 @@ class NineGridImageLayout : ViewGroup {
     fun setData(imageList: List<String>, radio: Float) {
         this.imageList = ArrayList(imageList)
         this.radio = radio
+        removeAllViews()
         //行数
         row = ceil(imageList.size / 3f).toInt()
         if (imageList.size == 1) {
@@ -153,7 +154,7 @@ class NineGridImageLayout : ViewGroup {
             subView.addSystemView()
         } else {
             imageList.forEach {
-                val subView = ImageView(context)
+                val subView = ImageView(context).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
                 subView.addSystemView()
             }
         }

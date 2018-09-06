@@ -39,7 +39,7 @@ class DailyViewModel : RxViewModel() {
                     girls?.let { it ->
                         //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
                         it.forEach { item ->
-                            item.images = arrayListOf()
+                            item.images = mutableListOf(item.url)
                         }
                         tempList += it
                     }
