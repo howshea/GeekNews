@@ -36,14 +36,14 @@ class DailyViewModel : RxViewModel() {
                     app?.let { tempList += it }
                     sources?.let { tempList += it }
                     recommend?.let { tempList += it }
-                    video?.let { tempList += it }
                     girls?.let { it ->
                         //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
                         it.forEach { item ->
-                            item.images = List(1) { item.url }
+                            item.images = arrayListOf()
                         }
                         tempList += it
                     }
+                    video?.let { tempList += it }
                 }
                 tempList.forEach { item ->
                     item.images
