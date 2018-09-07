@@ -1,15 +1,24 @@
 package com.howshea.basemodule.component.viewGroup
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.databinding.BindingAdapter
+import android.graphics.Bitmap
+import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.R
+import com.howshea.basemodule.utils.RoundedCorners
 import com.howshea.basemodule.utils.dp
-import com.howshea.basemodule.view.roundedImageView.RoundedImageView
 import kotlin.math.ceil
 
 /**
@@ -69,6 +78,10 @@ class NineGridImageLayout : ViewGroup {
                 MeasureSpec.getSize(heightMeasureSpec)
             }
         setMeasuredDimension(width, height)
+
+        for (i in 0 until childCount) {
+            getChildAt(i).measure(widthMeasureSpec, heightMeasureSpec)
+        }
     }
 
     override fun onLayout(changed: Boolean, p0: Int, p1: Int, p2: Int, p3: Int) {
@@ -80,17 +93,19 @@ class NineGridImageLayout : ViewGroup {
         var bottom: Int
         when (imageList.size) {
             1 -> {
-                val view = getChildAt(0) as ImageView
-                right = paddingLeft + view.layoutParams.width
-                bottom = paddingTop + view.layoutParams.height
-                view.layout(paddingLeft, paddingTop, right, bottom)
-                view.loadImage(imageList[0])
+                val viewGroup = getChildAt(0) as FrameLayout
+                right = paddingLeft + viewGroup.layoutParams.width
+                bottom = paddingTop + viewGroup.layoutParams.height
+                viewGroup.layout(paddingLeft, paddingTop, right, bottom)
+                viewGroup.getChildAt(0).layout(0,0,right,bottom)
+                viewGroup.findViewById<AppCompatImageView>(R.id.iv_item).loadImage(imageList[0])
             }
             else -> {
                 var row: Int
                 var column: Int
                 imageList.forEachIndexed { index, s ->
-                    val view = getChildAt(index) as ImageView
+                    val viewGroup = getChildAt(index) as FrameLayout
+
                     //图片数量为4的时候第二张需要换行
                     row = index / (if (imageList.size == 4) 2 else 3)
 
@@ -99,8 +114,9 @@ class NineGridImageLayout : ViewGroup {
                     top = (gridSize + spacing) * row + paddingTop
                     right = left + gridSize
                     bottom = top + gridSize
-                    view.layout(left, top, right, bottom)
-                    view.loadImage(s)
+                    viewGroup.layout(left, top, right, bottom)
+                    viewGroup.getChildAt(0).layout(0,0,gridSize,gridSize)
+                    viewGroup.findViewById<AppCompatImageView>(R.id.iv_item).loadImage(s)
                 }
             }
         }
@@ -108,8 +124,8 @@ class NineGridImageLayout : ViewGroup {
 
     private fun ImageView.loadImage(s: String) {
         Glide.with(context)
-            .asBitmap()
             .load(s)
+            .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(dp(3),dp(0.7f))))
             .into(this)
     }
 
@@ -131,6 +147,7 @@ class NineGridImageLayout : ViewGroup {
         addView(this, lp)
     }
 
+    @SuppressLint("InflateParams")
     fun setData(imageList: List<String>, radio: Float) {
         this.imageList = ArrayList(imageList)
         this.radio = radio
@@ -141,7 +158,7 @@ class NineGridImageLayout : ViewGroup {
         //列数
         columnCount = if (imageList.size == 4) 2 else 3
         if (imageList.size == 1) {
-            generateImageView()
+            LayoutInflater.from(context).inflate(R.layout.round_image_layout, null)
                 .apply {
                     layoutParams = if (radio > 1) {
                         val height = (singleImgSize / radio).toInt()
@@ -156,20 +173,12 @@ class NineGridImageLayout : ViewGroup {
                 .addSystemView()
         } else {
             imageList.forEach {
-                generateImageView().addSystemView()
+                LayoutInflater.from(context).inflate(R.layout.round_image_layout, null)
+                    .addSystemView()
             }
         }
         requestLayout()
     }
-
-    private fun generateImageView() =
-        RoundedImageView(context).apply {
-            scaleType = ImageView.ScaleType.CENTER_CROP
-            cornerRadius = dp(3).toFloat()
-            borderWidth = dp(0.7f).toFloat()
-            @Suppress("DEPRECATION")
-            borderColor = resources.getColor(R.color.divider)
-        }
 }
 
 @BindingAdapter("app:imageList", "app:radio")
@@ -177,5 +186,22 @@ fun setImageList(view: NineGridImageLayout, imageList: List<String>?, radio: Flo
     //如果为空或者长度为0，就什么都不做
     imageList?.isNotEmpty()?.let {
         view.setData(imageList, radio)
+    }
+}
+
+@Synchronized
+fun getRadioAndCache(url: String): Float {
+    var bitmap: Bitmap? = null
+    return try {
+        bitmap = Glide.with(AppContext)
+            .asBitmap()
+            .load(url)
+            .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+            .get()
+        bitmap.width / bitmap.height.toFloat()
+    } catch (e: Exception) {
+        0f
+    } finally {
+        bitmap?.recycle()
     }
 }

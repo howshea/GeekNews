@@ -24,21 +24,3 @@ class App : Application() {
 }
 
 object AppContext : ContextWrapper(App.INSTANCE)
-
-
-@Synchronized
-fun getRadioAndCache(url: String): Float {
-    var bitmap: Bitmap? = null
-    return try {
-        bitmap = Glide.with(AppContext)
-            .asBitmap()
-            .load(url)
-            .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-            .get()
-        bitmap.width / bitmap.height.toFloat()
-    } catch (e: Exception) {
-        0f
-    } finally {
-        bitmap?.recycle()
-    }
-}

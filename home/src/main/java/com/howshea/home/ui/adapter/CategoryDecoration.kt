@@ -21,6 +21,7 @@ class CategoryDecoration(var data: List<Common>, context: Context) : RecyclerVie
     private val paint = Paint().apply {
         textSize = titleSize.toFloat()
         isAntiAlias = true
+        @Suppress("DEPRECATION")
         color = context.resources.getColor(R.color.divider)
     }
     private val bounds = Rect()
@@ -33,11 +34,10 @@ class CategoryDecoration(var data: List<Common>, context: Context) : RecyclerVie
         super.getItemOffsets(outRect, view, parent, state)
         val position = (view.layoutParams as RecyclerView.LayoutParams).viewLayoutPosition
         if (position < 0) return
-        dividerHeight = if (position == 0 || data[position].type != data[position - 1].type) {
-            AppContext.dp(46)
-        } else {
-            //留出1dp的间隙
-            AppContext.dp(1)
+        dividerHeight = when {
+            position == 0 -> AppContext.dp(38)
+            data[position].type != data[position - 1].type -> AppContext.dp(47)
+            else -> AppContext.dp(0.7f)
         }
         outRect?.top = dividerHeight
     }
