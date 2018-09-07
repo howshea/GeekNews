@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.View
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/17.
  */
 //returns dp(dp) dimension value in pixels

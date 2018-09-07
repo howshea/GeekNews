@@ -1,14 +1,10 @@
 package com.howshea.home.ui.adapter
 
-import android.databinding.BindingAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.howshea.basemodule.AppContext
 import com.howshea.home.R
 import com.howshea.home.databinding.ItemDailyAdapterBinding
 import com.howshea.home.model.Common

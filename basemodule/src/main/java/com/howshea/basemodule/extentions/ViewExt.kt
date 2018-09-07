@@ -3,7 +3,7 @@ package com.howshea.basemodule.extentions
 import android.view.View
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/7/17.
  */
 var View.topPadding: Int

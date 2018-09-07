@@ -4,16 +4,15 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.formatStringColor
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
-import com.howshea.home.ui.CategoryDecoration
+import com.howshea.home.ui.adapter.CategoryDecoration
 import com.howshea.home.ui.adapter.DailyAdapter
+import com.howshea.home.ui.adapter.HomeAdapter
 import com.howshea.home.viewModel.DailyViewModel
 import kotlinx.android.synthetic.main.frg_home.*
-import kotlinx.android.synthetic.main.footer_home.view.*
 
 @SuppressLint("InflateParams")
 /**
@@ -21,7 +20,7 @@ import kotlinx.android.synthetic.main.footer_home.view.*
  * on 2018/6/15.
  */
 class HomeFragment : LazyFragment() {
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) { DailyAdapter(arrayListOf()) }
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) { HomeAdapter(arrayListOf()) }
 
     override fun getLayoutId(): Int {
         return R.layout.frg_home

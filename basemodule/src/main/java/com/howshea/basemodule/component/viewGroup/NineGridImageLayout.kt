@@ -2,16 +2,14 @@ package com.howshea.basemodule.component.viewGroup
 
 import android.content.Context
 import android.databinding.BindingAdapter
-import android.media.Image
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.howshea.basemodule.R
 import com.howshea.basemodule.utils.dp
-import com.howshea.basemodule.view.SWImageView
+import com.howshea.basemodule.view.roundedImageView.RoundedImageView
 import kotlin.math.ceil
 
 /**
@@ -20,9 +18,9 @@ import kotlin.math.ceil
  */
 class NineGridImageLayout : ViewGroup {
     //行
-    private var row = 0
+    private var rowCount = 3
     //列
-    private var column = 0
+    private var columnCount = 3
     //间距
     var spacing = context.dp(6)
         set(value) {
@@ -30,7 +28,7 @@ class NineGridImageLayout : ViewGroup {
             requestLayout()
         }
     //单张图片最大宽高
-    var singleImgSize = context.dp(210)
+    private var singleImgSize = context.dp(210)
         set(value) {
             field = value
             requestLayout()
@@ -38,7 +36,8 @@ class NineGridImageLayout : ViewGroup {
     //单网格宽高
     private var gridSize = 0
     //url list
-    var imageList = arrayListOf<String>()
+    private var imageList = arrayListOf<String>()
+    //单图宽高比
     var radio = 0f
 
     constructor(context: Context?) : super(context)
@@ -65,7 +64,7 @@ class NineGridImageLayout : ViewGroup {
                 else
                     singleImgSize + paddingTop + paddingBottom
             } else if (imageList.size > 1) {
-                gridSize * row + spacing * (row - 1) + paddingTop + paddingBottom
+                gridSize * rowCount + spacing * (rowCount - 1) + paddingTop + paddingBottom
             } else {
                 MeasureSpec.getSize(heightMeasureSpec)
             }
@@ -85,32 +84,33 @@ class NineGridImageLayout : ViewGroup {
                 right = paddingLeft + view.layoutParams.width
                 bottom = paddingTop + view.layoutParams.height
                 view.layout(paddingLeft, paddingTop, right, bottom)
-                Log.i("你好", "${view.layoutParams.width} $height")
-                Glide.with(context)
-                    .load(imageList[0])
-                    .into(view)
-            }
-            4 -> {
-
+                view.loadImage(imageList[0])
             }
             else -> {
                 var row: Int
                 var column: Int
                 imageList.forEachIndexed { index, s ->
                     val view = getChildAt(index) as ImageView
-                    row = index / 3
-                    column = index % 3
+                    //图片数量为4的时候第二张需要换行
+                    row = index / (if (imageList.size == 4) 2 else 3)
+
+                    column = index % columnCount
                     left = (gridSize + spacing) * column + paddingLeft
                     top = (gridSize + spacing) * row + paddingTop
                     right = left + gridSize
                     bottom = top + gridSize
-                    view.layout(left,top,right,bottom)
-                    Glide.with(context)
-                        .load(s)
-                        .into(view)
+                    view.layout(left, top, right, bottom)
+                    view.loadImage(s)
                 }
             }
         }
+    }
+
+    private fun ImageView.loadImage(s: String) {
+        Glide.with(context)
+            .asBitmap()
+            .load(s)
+            .into(this)
     }
 
 
@@ -134,32 +134,42 @@ class NineGridImageLayout : ViewGroup {
     fun setData(imageList: List<String>, radio: Float) {
         this.imageList = ArrayList(imageList)
         this.radio = radio
+        //清除所有子view ，避免 recyclerView 复用导致错乱问题
         removeAllViews()
         //行数
-        row = ceil(imageList.size / 3f).toInt()
+        rowCount = ceil(imageList.size / 3f).toInt()
+        //列数
+        columnCount = if (imageList.size == 4) 2 else 3
         if (imageList.size == 1) {
-            val subView = ImageView(context).apply {
-                scaleType = ImageView.ScaleType.CENTER_CROP
-                layoutParams = if (radio > 1) {
-                    val height = (singleImgSize / radio).toInt()
-                    val width = singleImgSize
-                    LayoutParams(width, height)
-                } else {
-                    val height = singleImgSize
-                    val width = (singleImgSize * radio).toInt()
-                    LayoutParams(width, height)
+            generateImageView()
+                .apply {
+                    layoutParams = if (radio > 1) {
+                        val height = (singleImgSize / radio).toInt()
+                        val width = singleImgSize
+                        LayoutParams(width, height)
+                    } else {
+                        val height = singleImgSize
+                        val width = (singleImgSize * radio).toInt()
+                        LayoutParams(width, height)
+                    }
                 }
-
-            }
-            subView.addSystemView()
+                .addSystemView()
         } else {
             imageList.forEach {
-                val subView = ImageView(context).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
-                subView.addSystemView()
+                generateImageView().addSystemView()
             }
         }
         requestLayout()
     }
+
+    private fun generateImageView() =
+        RoundedImageView(context).apply {
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            cornerRadius = dp(3).toFloat()
+            borderWidth = dp(0.7f).toFloat()
+            @Suppress("DEPRECATION")
+            borderColor = resources.getColor(R.color.divider)
+        }
 }
 
 @BindingAdapter("app:imageList", "app:radio")

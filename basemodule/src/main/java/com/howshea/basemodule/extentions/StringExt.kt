@@ -7,7 +7,7 @@ import android.text.style.ForegroundColorSpan
 import com.howshea.basemodule.AppContext
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/9/4.
  */
 /**

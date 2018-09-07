@@ -1,8 +1,7 @@
-package com.howshea.home.ui
+package com.howshea.home.ui.adapter
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
