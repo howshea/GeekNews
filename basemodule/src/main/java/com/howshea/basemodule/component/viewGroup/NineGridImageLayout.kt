@@ -3,7 +3,7 @@ package com.howshea.basemodule.component.viewGroup
 import android.annotation.SuppressLint
 import android.content.Context
 import android.databinding.BindingAdapter
-import android.graphics.Bitmap
+import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +11,6 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
-import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.R
 import com.howshea.basemodule.utils.RoundedCorners
 import com.howshea.basemodule.utils.dp
@@ -34,7 +32,7 @@ class NineGridImageLayout : ViewGroup {
             requestLayout()
         }
     //单张图片最大宽高
-    private var singleImgSize = context.dp(210)
+    var singleImgSize = context.dp(210)
         set(value) {
             field = value
             requestLayout()
@@ -116,7 +114,7 @@ class NineGridImageLayout : ViewGroup {
     private fun ImageView.loadImage(s: String) {
         Glide.with(context)
             .load(s)
-            .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(dp(3),dp(0.7f))))
+            .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.7f))))
             .into(this)
     }
 
@@ -149,7 +147,7 @@ class NineGridImageLayout : ViewGroup {
         //列数
         columnCount = if (imageList.size == 4) 2 else 3
         if (imageList.size == 1) {
-            ImageView(context)
+            AppCompatImageView(context)
                 .apply {
                     layoutParams = if (radio > 1) {
                         val height = (singleImgSize / radio).toInt()
@@ -164,7 +162,7 @@ class NineGridImageLayout : ViewGroup {
                 .addSystemView()
         } else {
             imageList.forEach {
-                ImageView(context).addSystemView()
+                AppCompatImageView(context).addSystemView()
             }
         }
         requestLayout()
@@ -175,6 +173,10 @@ class NineGridImageLayout : ViewGroup {
 fun setImageList(view: NineGridImageLayout, imageList: List<String>?, radio: Float) {
     //如果为空或者长度为0，就什么都不做
     imageList?.isNotEmpty()?.let {
-        view.setData(imageList, radio)
+        if (imageList.size > 9)
+        //最多九张
+            view.setData(imageList.subList(0, 8), radio)
+        else
+            view.setData(imageList, radio)
     }
 }
