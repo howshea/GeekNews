@@ -3,12 +3,12 @@ package com.howshea.home.viewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.howshea.basemodule.component.lifecycle.RxViewModel
-import com.howshea.basemodule.component.viewGroup.getRadioAndCache
 import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.basemodule.extentions.otherwise
 import com.howshea.basemodule.extentions.yes
 import com.howshea.home.model.Common
 import com.howshea.home.repository.HomeService
+import com.howshea.home.util.getRadioAndCache
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 

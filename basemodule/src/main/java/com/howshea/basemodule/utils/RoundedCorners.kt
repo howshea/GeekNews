@@ -82,14 +82,14 @@ fun roundedCorners(
         color = Color.parseColor("#f4f4f4")
         isAntiAlias = true
     }
-    val borderRect = RectF(0f, 0f, result.width.toFloat(), result.height.toFloat())
-    val rect = RectF(borderWidth.toFloat(), borderWidth.toFloat(), result.width - borderWidth.toFloat()*2, result.height - borderWidth.toFloat()*2)
+    val rect = RectF(borderWidth.toFloat(), borderWidth.toFloat(), result.width - borderWidth.toFloat(), result.height - borderWidth.toFloat())
+    val borderRect = RectF(borderWidth / 2f, borderWidth / 2f, result.width - borderWidth / 2f, result.height - borderWidth / 2f)
     BITMAP_DRAWABLE_LOCK.lock()
     try {
         val canvas = Canvas(result)
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
+        canvas.drawRoundRect(rect, roundingRadius.toFloat()*0.9f, roundingRadius.toFloat()*0.9f, paint)
         canvas.drawRoundRect(borderRect, roundingRadius.toFloat(), roundingRadius.toFloat(), borderPaint)
-        canvas.drawRoundRect(rect, roundingRadius.toFloat(), roundingRadius.toFloat(), paint)
         canvas.setBitmap(null)
     } finally {
         BITMAP_DRAWABLE_LOCK.unlock()
