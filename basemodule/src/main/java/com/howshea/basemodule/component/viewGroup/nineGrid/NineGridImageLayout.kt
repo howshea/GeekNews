@@ -1,4 +1,4 @@
-package com.howshea.basemodule.component.viewGroup
+package com.howshea.basemodule.component.viewGroup.nineGrid
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.R
-import com.howshea.basemodule.utils.RoundedCorners
 import com.howshea.basemodule.utils.dp
 import kotlin.math.ceil
 

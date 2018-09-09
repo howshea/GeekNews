@@ -32,12 +32,11 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView" />
 
-        <com.howshea.basemodule.component.viewGroup.NineGridImageLayout
+        <com.howshea.basemodule.component.viewGroup.nineGrid.NineGridImageLayout
             android:id="@+id/layout_nine_grid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:spacing="3dp"
             android:visibility="@{common.images==null?View.GONE:View.VISIBLE}"
             app:imageList="@{common.images}"
             app:radio="@{common.radio}"
