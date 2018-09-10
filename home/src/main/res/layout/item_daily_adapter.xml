@@ -16,10 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingBottom="10dp"
+        android:paddingBottom="12dp"
         android:paddingLeft="@dimen/global_margin"
         android:paddingRight="@dimen/global_margin"
-        android:paddingTop="9dp">
+        android:paddingTop="14dp">
 
         <TextView
             android:id="@+id/tv_desc"
@@ -27,10 +27,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{common.desc}"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:lineSpacingExtra="4dp"
+            android:letterSpacing="0.02"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView" />
+            tools:text="一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView"
+            tools:targetApi="lollipop" />
 
         <com.howshea.basemodule.component.viewGroup.nineGrid.NineGridImageLayout
             android:id="@+id/layout_nine_grid"
