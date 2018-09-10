@@ -28,6 +28,8 @@ import com.howshea.basemodule.utils.sp
  * on 2018/7/16.
  */
 /**
+ * SToolbar means simplified toolbar
+ *
  * @attr R.styleable.SimpleToolbar_navIcon
  * @attr R.styleable.SimpleToolbar_menuIcon
  * @attr R.styleable.SimpleToolbar_contentHeight
@@ -37,7 +39,7 @@ import com.howshea.basemodule.utils.sp
  * @attr R.styleable.SimpleToolbar_titleColor
  */
 
-class SimpleToolbar : FrameLayout {
+class SToolbar : FrameLayout {
     //icon
     private var navButton: ImageButton? = null
     private var navigationDrawable: Drawable? = null

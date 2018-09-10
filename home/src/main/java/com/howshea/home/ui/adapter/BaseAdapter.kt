@@ -12,6 +12,8 @@ import android.view.ViewGroup
  * on 2018/9/10
  */
 abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: List<T>, private var layoutRes: Int) : RecyclerView.Adapter<BaseAdapter<T, B>.ViewHolder>() {
+    private var itemClickListener: ((item: T) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<B>(inflater, layoutRes, parent, false)
@@ -34,9 +36,16 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: List<T>, p
 
         fun bind(item: T) {
             bindItem(binding, item)
+            binding.root.setOnClickListener {
+                itemClickListener?.invoke(item)
+            }
             binding.executePendingBindings()
         }
     }
 
     abstract fun bindItem(binding: B, item: T)
+
+    fun setItemClick(click: (item: T) -> Unit) {
+        itemClickListener = click
+    }
 }

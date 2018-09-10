@@ -18,6 +18,7 @@
         android:background="@color/white"
         android:paddingBottom="12dp"
         android:paddingLeft="@dimen/global_margin"
+        android:foreground="?attr/selectableItemBackground"
         android:paddingRight="@dimen/global_margin"
         android:paddingTop="14dp">
 

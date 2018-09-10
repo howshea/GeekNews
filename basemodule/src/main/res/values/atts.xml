@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="SimpleToolbar">
+    <declare-styleable name="SToolbar">
         <attr name="navIcon" format="reference" />
         <attr name="menuIcon" format="reference" />
         <attr name="contentHeight" format="dimension" />

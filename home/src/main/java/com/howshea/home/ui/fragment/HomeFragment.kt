@@ -35,8 +35,8 @@ class HomeFragment : LazyFragment() {
             }
         })
         model.refresh()
-        adapter.setItemClick{
-            toast(it)
+        adapter.setItemClick {
+            toast(it.url)
         }
     }
 

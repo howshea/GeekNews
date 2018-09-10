@@ -71,6 +71,7 @@ class NineGridImageLayout : ViewGroup {
             } else {
                 MeasureSpec.getSize(heightMeasureSpec)
             }
+
         setMeasuredDimension(width, height)
     }
 
