@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.formatStringColor
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import com.howshea.home.ui.adapter.CategoryDecoration
-import com.howshea.home.ui.adapter.DailyAdapter
 import com.howshea.home.ui.adapter.HomeAdapter
 import com.howshea.home.viewModel.DailyViewModel
 import kotlinx.android.synthetic.main.frg_home.*
@@ -35,6 +35,9 @@ class HomeFragment : LazyFragment() {
             }
         })
         model.refresh()
+        adapter.setItemClick{
+            toast(it)
+        }
     }
 
     override fun initView() {
