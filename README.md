@@ -3,18 +3,7 @@
 #### 项目介绍
 时隔两年，Gank.io客户端的 reDesign && reCode
 
-#### 软件架构
-软件架构说明
+## TODO
 
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
+- [ ] WebView界面，以及cookie处理（保存登录状态）
+- [ ]  历史页面

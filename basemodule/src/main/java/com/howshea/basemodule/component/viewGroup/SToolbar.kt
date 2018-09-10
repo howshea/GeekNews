@@ -74,25 +74,25 @@ class SToolbar : FrameLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         context
-            ?.obtainStyledAttributes(attrs, R.styleable.SimpleToolbar)
+            ?.obtainStyledAttributes(attrs, R.styleable.SToolbar)
             ?.apply {
-                if (hasValue(R.styleable.SimpleToolbar_navIcon))
-                    navigationDrawable = getDrawable(R.styleable.SimpleToolbar_navIcon)
+                if (hasValue(R.styleable.SToolbar_navIcon))
+                    navigationDrawable = getDrawable(R.styleable.SToolbar_navIcon)
 
-                if (hasValue(R.styleable.SimpleToolbar_menuIcon))
-                    menuDrawable = getDrawable(R.styleable.SimpleToolbar_menuIcon)
+                if (hasValue(R.styleable.SToolbar_menuIcon))
+                    menuDrawable = getDrawable(R.styleable.SToolbar_menuIcon)
 
-                if (hasValue(R.styleable.SimpleToolbar_contentHeight)) {
-                    contentHeight = getDimension(R.styleable.SimpleToolbar_contentHeight, 0f).toInt()
+                if (hasValue(R.styleable.SToolbar_contentHeight)) {
+                    contentHeight = getDimension(R.styleable.SToolbar_contentHeight, 0f).toInt()
                     (contentHeight < iconSize) {
                         //contentHeight如果被设置小于icon的高度，就抛出异常
                         throw IllegalArgumentException("contentHeight must be greater than iconSize")
                     }
                 }
-                title = getString(R.styleable.SimpleToolbar_title) ?: ""
-                titleStyle = getInt(R.styleable.SimpleToolbar_titleStyle, 1)
-                titleColor = getColor(R.styleable.SimpleToolbar_titleColor, titleColor)
-                titleSize = getDimension(R.styleable.SimpleToolbar_titleSize, titleSize)
+                title = getString(R.styleable.SToolbar_title) ?: ""
+                titleStyle = getInt(R.styleable.SToolbar_titleStyle, 1)
+                titleColor = getColor(R.styleable.SToolbar_titleColor, titleColor)
+                titleSize = getDimension(R.styleable.SToolbar_titleSize, titleSize)
                 recycle()
             }
         setBackgroundColor(Color.parseColor("#ffffff"))
