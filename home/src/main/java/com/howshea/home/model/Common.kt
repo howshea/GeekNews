@@ -5,7 +5,7 @@ data class Common(
     val desc: String,
     val publishedAt: String,
     val type: String,
-    val url: String,
+    var url: String,
     val used: Boolean,
     val who: String,
     var images: List<String>?,

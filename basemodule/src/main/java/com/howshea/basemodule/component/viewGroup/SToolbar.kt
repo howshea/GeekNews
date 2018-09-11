@@ -16,11 +16,13 @@ import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.R
 import com.howshea.basemodule.extentions.invoke
 import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.dp
 import com.howshea.basemodule.utils.sp
+import com.howshea.basemodule.utils.toast
 
 
 /**
@@ -45,7 +47,7 @@ class SToolbar : FrameLayout {
     private var navigationDrawable: Drawable? = null
     private var menuButton: ImageButton? = null
     private var menuDrawable: Drawable? = null
-    //title
+    //titleText
     private var titleTextView: TextView? = null
     private var titleStyle = 1
     //默认字体颜色
@@ -60,16 +62,8 @@ class SToolbar : FrameLayout {
     private val iconTopBottomMargin
         get() = (contentHeight - iconSize) / 2
     //标题
-    var title: CharSequence = ""
-        set(value) {
-            field = value
-            titleTextView
-                ?.let {
-                    it.layoutParams = getTitleLp()
-                    it.text = title
-                }
-                ?: ensureTitleView()
-        }
+    var titleText: CharSequence = ""
+        private set
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -89,13 +83,13 @@ class SToolbar : FrameLayout {
                         throw IllegalArgumentException("contentHeight must be greater than iconSize")
                     }
                 }
-                title = getString(R.styleable.SToolbar_title) ?: ""
+                titleText = getString(R.styleable.SToolbar_title) ?: ""
+                titleColor = getColor(R.styleable.SToolbar_titleColor, Color.parseColor("#707070"))
+                titleSize = getDimension(R.styleable.SToolbar_titleSize, sp(20).toFloat())
                 titleStyle = getInt(R.styleable.SToolbar_titleStyle, 1)
-                titleColor = getColor(R.styleable.SToolbar_titleColor, titleColor)
-                titleSize = getDimension(R.styleable.SToolbar_titleSize, titleSize)
                 recycle()
             }
-        setBackgroundColor(Color.parseColor("#ffffff"))
+        setBackgroundColor(Color.WHITE)
         initSubView()
     }
 
@@ -152,18 +146,20 @@ class SToolbar : FrameLayout {
     private fun ensureTitleView() {
         titleTextView ?: let {
             titleTextView = AppCompatTextView(context, null).apply {
-                text = title
+                text = titleText
                 setTextColor(titleColor)
                 setTypeface(Typeface.DEFAULT, titleStyle)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setSingleLine()
-                ellipsize  = TextUtils.TruncateAt.END
+                ellipsize = TextUtils.TruncateAt.MARQUEE
+                marqueeRepeatLimit = -1
                 gravity = Gravity.CENTER
                 layoutParams = getTitleLp()
             }.apply {
                 addSystemView()
             }
         }
+        titleTextView?.isSelected = true
     }
 
     private val navButtonLp: FrameLayout.LayoutParams by lazy {
@@ -208,4 +204,13 @@ class SToolbar : FrameLayout {
         return LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
 
+    fun setTitle(title: CharSequence) {
+        titleTextView
+            ?.let {
+                it.layoutParams = getTitleLp()
+                it.text = title
+            }
+            ?: ensureTitleView()
+    }
 }
+

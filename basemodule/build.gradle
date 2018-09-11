@@ -21,9 +21,6 @@ android {
     dataBinding {
         enabled = true
     }
-    kapt {
-        generateStubs = true
-    }
 }
 
 dependencies {
@@ -45,7 +42,6 @@ dependencies {
     //glide
     api deps.glide.glide
     kapt deps.glide.compiler
-
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner

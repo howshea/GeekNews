@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.formatStringColor
+import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
+import com.howshea.home.ui.activity.WebViewActivity
 import com.howshea.home.ui.adapter.CategoryDecoration
 import com.howshea.home.ui.adapter.HomeAdapter
 import com.howshea.home.viewModel.DailyViewModel
@@ -36,14 +37,16 @@ class HomeFragment : LazyFragment() {
         })
         model.refresh()
         adapter.setItemClick {
-            toast(it.url)
+            it.url.isNotEmpty().yes {
+                startActivity(WebViewActivity.newIntent(activity!!, it.url))
+            }
         }
     }
 
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
         toolbar.setOnMenuClick { }
-        toolbar.title = toolbar.title.setLogo()
+        toolbar.setTitle(toolbar.titleText.setLogo())
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)
     }
