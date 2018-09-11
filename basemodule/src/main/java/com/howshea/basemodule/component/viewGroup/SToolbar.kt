@@ -32,13 +32,13 @@ import com.howshea.basemodule.utils.toast
 /**
  * SToolbar means simplified toolbar
  *
- * @attr R.styleable.SimpleToolbar_navIcon
- * @attr R.styleable.SimpleToolbar_menuIcon
- * @attr R.styleable.SimpleToolbar_contentHeight
- * @attr R.styleable.SimpleToolbar_title
- * @attr R.styleable.SimpleToolbar_titleStyle
- * @attr R.styleable.SimpleToolbar_titleSize
- * @attr R.styleable.SimpleToolbar_titleColor
+ * @attr R.styleable.SToolbar_navIcon
+ * @attr R.styleable.SToolbar_menuIcon
+ * @attr R.styleable.SToolbar_contentHeight
+ * @attr R.styleable.SToolbar_title
+ * @attr R.styleable.SToolbar_titleStyle
+ * @attr R.styleable.SToolbar_titleSize
+ * @attr R.styleable.SToolbar_titleColor
  */
 
 class SToolbar : FrameLayout {
