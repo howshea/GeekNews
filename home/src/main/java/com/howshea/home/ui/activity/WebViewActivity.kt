@@ -1,6 +1,5 @@
 package com.howshea.home.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -22,6 +21,7 @@ class WebViewActivity : AppCompatActivity() {
             return intent
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
@@ -47,13 +47,14 @@ class WebViewActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return super.shouldOverrideUrlLoading(view, request)
             }
+
             override fun onPageFinished(view: WebView?, url: String?) {
             }
 
         }
         web_view.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView?, title: String) {
-                toolbar.setTitle(title)
+                toolbar.title = title
             }
         }
     }

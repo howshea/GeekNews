@@ -46,7 +46,7 @@ class HomeFragment : LazyFragment() {
     override fun initView() {
         toolbar.setOnNavClick { toast("计划开发中...") }
         toolbar.setOnMenuClick { }
-        toolbar.setTitle(toolbar.titleText.setLogo())
+        toolbar.title = toolbar.title.setLogo()
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)
     }
