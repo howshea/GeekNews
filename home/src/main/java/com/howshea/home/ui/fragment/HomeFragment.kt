@@ -1,6 +1,5 @@
 package com.howshea.home.ui.fragment
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
@@ -15,7 +14,6 @@ import com.howshea.home.ui.adapter.HomeAdapter
 import com.howshea.home.viewModel.DailyViewModel
 import kotlinx.android.synthetic.main.frg_home.*
 
-@SuppressLint("InflateParams")
 /**
  * Created by Howshea
  * on 2018/6/15.
