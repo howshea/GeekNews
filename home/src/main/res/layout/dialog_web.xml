@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_collect"
+            style="@style/item_share_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_collect"
+            android:gravity="center"
+            android:text="@string/collection" />
+
+        <TextView
+            android:id="@+id/tv_share"
+            style="@style/item_share_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_share"
+            android:gravity="center"
+            android:text="@string/share" />
+
+        <TextView
+            android:id="@+id/tv_copy_link"
+            style="@style/item_share_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_copy"
+            android:gravity="center"
+            android:text="@string/copy" />
+
+        <TextView
+            android:id="@+id/tv_refresh"
+            style="@style/item_share_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_refresh"
+            android:gravity="center"
+            android:text="@string/refresh" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/grey_f0"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/textPrimary"
+        android:textSize="18sp" />
+</LinearLayout>
