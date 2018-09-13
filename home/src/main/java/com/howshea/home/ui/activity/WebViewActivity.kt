@@ -6,14 +6,17 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
+import android.support.v4.app.ShareCompat
 import android.view.View
 import android.webkit.*
+import com.howshea.basemodule.extentions.copyToClipBoard
 import com.howshea.basemodule.utils.setDarkStatusIcon
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_web.view.*
 
 class WebViewActivity : AppCompatActivity() {
+    private lateinit var url: String
     private lateinit var webSetting: WebSettings
     private val menuDialog: BottomSheetDialog by lazy { initDialog() }
 
@@ -29,6 +32,7 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
+        url = intent.getStringExtra(EXTRA_URL)
         setDarkStatusIcon(true)
         setWebView()
         toolbar.apply {
@@ -45,6 +49,19 @@ class WebViewActivity : AppCompatActivity() {
         view.tv_refresh.setOnClickListener {
             web_view.reload()
             menuDialog.cancel()
+        }
+        view.tv_copy_link.setOnClickListener {
+            menuDialog.cancel()
+            copyToClipBoard(url)
+        }
+        view.tv_share.setOnClickListener {
+            menuDialog.cancel()
+            ShareCompat.IntentBuilder
+                .from(this)
+                .setType("text/plain")
+                .setText("${toolbar.title} $url")
+                .setChooserTitle(R.string.share)
+                .startChooser()
         }
         return BottomSheetDialog(this).apply {
             setContentView(view)
@@ -84,6 +101,15 @@ class WebViewActivity : AppCompatActivity() {
         web_view.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView?, title: String) {
                 toolbar.title = title
+            }
+
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                if (newProgress == 100) {
+                    progress_bar.visibility = View.GONE
+                } else {
+                    progress_bar.visibility = View.VISIBLE
+                    progress_bar.progress = newProgress
+                }
             }
         }
     }

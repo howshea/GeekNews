@@ -32,4 +32,13 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
+    <style name="NumberProgressBar_Blue">
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+        <item name="progress_unreached_color">@color/grey_f0</item>
+        <item name="progress_reached_color">@color/colorPrimary</item>
+        <item name="progress_text_size">0sp</item>
+        <item name="progress_reached_bar_height">1.7dp</item>
+        <item name="progress_unreached_bar_height">1.7dp</item>
+    </style>
 </resources>
