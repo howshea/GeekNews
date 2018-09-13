@@ -28,6 +28,8 @@
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">12sp</item>
         <item name="android:drawablePadding">17dp</item>
+        <item name="android:paddingTop">19dp</item>
+        <item name="android:paddingBottom">14dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>

@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.R
 import com.howshea.basemodule.utils.dp
@@ -114,7 +116,9 @@ class NineGridImageLayout : ViewGroup {
     private fun ImageView.loadImage(s: String) {
         Glide.with(context)
             .load(s)
-            .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.7f))))
+            .apply(RequestOptions()
+                .placeholder(R.color.divider)
+                .transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.7f))))
             .into(this)
     }
 
