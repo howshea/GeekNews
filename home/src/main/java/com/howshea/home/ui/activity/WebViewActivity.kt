@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.dialog_web.view.*
 class WebViewActivity : AppCompatActivity() {
     private lateinit var url: String
     private lateinit var webSetting: WebSettings
-    private val menuDialog: BottomSheetDialog by lazy { initDialog() }
+    private val menuDialog: BottomSheetDialog by lazy(LazyThreadSafetyMode.NONE) { initDialog() }
 
     companion object {
         private const val EXTRA_URL = "web_url"

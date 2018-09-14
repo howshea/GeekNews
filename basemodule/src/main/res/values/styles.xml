@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/divider</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -29,7 +29,7 @@
         <item name="android:paddingTop">19dp</item>
         <item name="android:paddingBottom">14dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/press_effect_white_bg</item>
     </style>
 
     <style name="NumberProgressBar_Blue">

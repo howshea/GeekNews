@@ -15,10 +15,9 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/press_effect_white_bg"
         android:paddingBottom="12dp"
         android:paddingLeft="@dimen/global_margin"
-        android:foreground="?attr/selectableItemBackground"
         android:paddingRight="@dimen/global_margin"
         android:paddingTop="14dp">
 

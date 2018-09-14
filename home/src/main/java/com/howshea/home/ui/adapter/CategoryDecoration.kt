@@ -17,7 +17,7 @@ class CategoryDecoration(val data: List<Common>, context: Context) : RecyclerVie
         color = Color.WHITE
         isAntiAlias = true
     }
-    private val textPaint by lazy {
+    private val textPaint by lazy(LazyThreadSafetyMode.NONE) {
         Paint().apply {
             isAntiAlias = true
             color = context.resources.getColor(R.color.colorPrimary)
@@ -25,7 +25,7 @@ class CategoryDecoration(val data: List<Common>, context: Context) : RecyclerVie
             textAlign = Paint.Align.LEFT
         }
     }
-    private val tagPaint by lazy {
+    private val tagPaint by lazy(LazyThreadSafetyMode.NONE) {
         Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = context.resources.getColor(R.color.bg_tag)
         }

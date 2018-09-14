@@ -13,4 +13,5 @@
     <color name="grey_f0">#f0f0f0</color>
     <color name="divider">#f4f4f4</color>
     <color name="bg_tag">#F0F3F5</color>
+    <color name="press">#20000000</color>
 </resources>
