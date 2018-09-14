@@ -31,7 +31,10 @@ class HomeFragment : LazyFragment() {
         model.getTodayData().observe(this, Observer {
             it?.let { data ->
                 adapter.setNewData(data)
-                ryc_main.addItemDecoration(CategoryDecoration(data, context!!))
+                //防止重复添加
+                if (ryc_main.itemDecorationCount == 0) {
+                    ryc_main.addItemDecoration(CategoryDecoration(data, context!!))
+                }
             }
         })
         model.refresh()

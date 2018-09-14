@@ -20,7 +20,7 @@
             app:menuIcon="@drawable/ic_menu"
             app:navIcon="@drawable/ic_back"
             app:titleColor="@color/textSecondary"
-            app:titleSize="16dp" />
+            app:titleSize="16sp" />
 
         <com.howshea.basemodule.view.numberProgressBar.NumberProgressBar
             android:id="@+id/progress_bar"

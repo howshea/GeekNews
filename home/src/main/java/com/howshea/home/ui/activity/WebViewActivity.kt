@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.ShareCompat
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.*
 import com.howshea.basemodule.extentions.copyToClipBoard
 import com.howshea.basemodule.utils.setUnderApi23StatusBarShade
@@ -122,5 +123,12 @@ class WebViewActivity : AppCompatActivity() {
         else {
             super.onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        (web_view.parent as ViewGroup?)?.removeView(web_view)
+        web_view?.removeAllViews()
+        web_view?.destroy()
+        super.onDestroy()
     }
 }
