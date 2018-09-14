@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     inner class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return when(position){
+            return when (position) {
                 1 -> HomeFragment()
                 else -> HomeFragment()
             }

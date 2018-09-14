@@ -43,6 +43,9 @@ class HomeFragment : LazyFragment() {
                 startActivity(WebViewActivity.newIntent(activity!!, it.url))
             }
         }
+        adapter.setOnImageClick { v, position, imageList ->
+            toast(imageList[position])
+        }
     }
 
     override fun initView() {

@@ -45,6 +45,8 @@ class NineGridImageLayout : ViewGroup {
     //单图宽高比
     var radio = 0f
 
+    private var itemClickListener: ((v: View, position: Int) -> Unit)? = null
+
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         context
@@ -91,6 +93,9 @@ class NineGridImageLayout : ViewGroup {
                 bottom = paddingTop + view.layoutParams.height
                 view.layout(paddingLeft, paddingTop, right, bottom)
                 view.loadImage(imageList[0])
+                view.setOnClickListener {
+                    itemClickListener?.invoke(it, 0)
+                }
             }
             else -> {
                 var row: Int
@@ -108,6 +113,9 @@ class NineGridImageLayout : ViewGroup {
                     bottom = top + gridSize
                     view.layout(left, top, right, bottom)
                     view.loadImage(s)
+                    view.setOnClickListener {
+                        itemClickListener?.invoke(it, index)
+                    }
                 }
             }
         }
@@ -170,6 +178,10 @@ class NineGridImageLayout : ViewGroup {
             }
         }
         requestLayout()
+    }
+
+    fun onItemClick(click: (v: View, position: Int) -> Unit) {
+        itemClickListener = click
     }
 }
 

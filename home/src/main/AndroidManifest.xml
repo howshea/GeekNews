@@ -6,6 +6,7 @@
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:theme="@style/WhiteStatusBar" />
+        <activity android:name=".ui.activity.ImageActivity"></activity>
     </application>
 
 </manifest>
