@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BaseModule</string>
+    <string name="collection">收藏</string>
+    <string name="cancel">取消</string>
+    <string name="share">分享</string>
+    <string name="copy">复制链接</string>
+    <string name="refresh">刷新</string>
 </resources>

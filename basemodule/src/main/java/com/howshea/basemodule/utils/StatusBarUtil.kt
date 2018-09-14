@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
+import com.howshea.basemodule.extentions.topPadding
 
 /**
  * Created by Howshea
@@ -48,14 +49,6 @@ fun <T : Activity> T.setStatusTransparent() {
 }
 
 /**
- * 设置状态栏透明且反色
- */
-fun <T : Activity> T.setStatusBarTransAndDark() {
-    setStatusTransparent()
-    setDarkStatusIcon(true)
-}
-
-/**
  * 获取状态栏高度
  * @return px
  */
@@ -67,4 +60,10 @@ fun <T : Context> T.getStatusBarHeight(): Int {
         statusBarHeight = res.getDimensionPixelSize(resourceId)
     }
     return statusBarHeight
+}
+
+fun <T : Context> T.setUnderApi23StatusBarShade(view: View) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        view.topPadding = this.getStatusBarHeight()
+    }
 }

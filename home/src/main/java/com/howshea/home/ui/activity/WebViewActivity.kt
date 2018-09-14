@@ -10,6 +10,7 @@ import android.support.v4.app.ShareCompat
 import android.view.View
 import android.webkit.*
 import com.howshea.basemodule.extentions.copyToClipBoard
+import com.howshea.basemodule.utils.setUnderApi23StatusBarShade
 import com.howshea.basemodule.utils.setDarkStatusIcon
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.activity_web_view.*
@@ -34,6 +35,7 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_web_view)
         url = intent.getStringExtra(EXTRA_URL)
         setDarkStatusIcon(true)
+        setUnderApi23StatusBarShade(toolbar)
         setWebView()
         toolbar.apply {
             setOnNavClick { onBackPressed() }

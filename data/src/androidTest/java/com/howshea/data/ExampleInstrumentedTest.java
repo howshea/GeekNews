@@ -1,4 +1,4 @@
-package com.howshea.geek;
+package com.howshea.data;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.howshea.geek.test", appContext.getPackageName());
+        assertEquals("com.howshea.girl.test", appContext.getPackageName());
     }
 }

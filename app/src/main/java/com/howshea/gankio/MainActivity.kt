@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.howshea.basemodule.utils.setDarkStatusIcon
-import com.howshea.basemodule.utils.setStatusBarTransAndDark
 import com.howshea.gankio.utils.disableShiftMode
 import com.howshea.gankio.utils.setupWithViewPager
 import com.howshea.home.ui.fragment.HomeFragment

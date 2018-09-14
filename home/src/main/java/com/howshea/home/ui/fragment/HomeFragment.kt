@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.formatStringColor
 import com.howshea.basemodule.extentions.yes
+import com.howshea.basemodule.utils.setUnderApi23StatusBarShade
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import com.howshea.home.ui.activity.WebViewActivity
@@ -42,6 +43,7 @@ class HomeFragment : LazyFragment() {
     }
 
     override fun initView() {
+        activity?.setUnderApi23StatusBarShade(toolbar)
         toolbar.setOnNavClick { toast("计划开发中...") }
         toolbar.setOnMenuClick { }
         toolbar.title = toolbar.title.setLogo()

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="collection">Collect</string>
+    <string name="cancel">Cancel</string>
+    <string name="share">Share</string>
+    <string name="copy">Copy link</string>
+    <string name="refresh">Refresh</string>
+</resources>

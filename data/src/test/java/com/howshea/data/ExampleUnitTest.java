@@ -1,4 +1,4 @@
-package com.howshea.girl;
+package com.howshea.data;
 
 import org.junit.Test;
 
