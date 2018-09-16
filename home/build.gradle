@@ -31,4 +31,5 @@ dependencies {
     androidTestImplementation deps.test.espresso
     //module
     implementation project(':basemodule')
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
 }

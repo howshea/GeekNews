@@ -2,6 +2,9 @@ package com.howshea.home.ui.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Build
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.formatStringColor
@@ -9,6 +12,7 @@ import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.setUnderApi23StatusBarShade
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
+import com.howshea.home.ui.activity.ImageActivity
 import com.howshea.home.ui.activity.WebViewActivity
 import com.howshea.home.ui.adapter.CategoryDecoration
 import com.howshea.home.ui.adapter.HomeAdapter
@@ -44,7 +48,9 @@ class HomeFragment : LazyFragment() {
             }
         }
         adapter.setOnImageClick { v, position, imageList ->
-            toast(imageList[position])
+            val intent = ImageActivity.newIntent(activity!!, imageList, position)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity!!, v, ViewCompat.getTransitionName(v))
+            startActivity(intent, options.toBundle())
         }
     }
 

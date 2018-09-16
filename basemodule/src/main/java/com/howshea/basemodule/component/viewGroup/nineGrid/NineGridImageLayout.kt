@@ -3,6 +3,7 @@ package com.howshea.basemodule.component.viewGroup.nineGrid
 import android.annotation.SuppressLint
 import android.content.Context
 import android.databinding.BindingAdapter
+import android.os.Build
 import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.view.View
@@ -94,6 +95,9 @@ class NineGridImageLayout : ViewGroup {
                 view.setOnClickListener {
                     itemClickListener?.invoke(it, 0)
                 }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.transitionName = "Image 0"
+                }
             }
             else -> {
                 var row: Int
@@ -113,6 +117,9 @@ class NineGridImageLayout : ViewGroup {
                     view.loadImage(s)
                     view.setOnClickListener {
                         itemClickListener?.invoke(it, index)
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        view.transitionName = "Image $index"
                     }
                 }
             }

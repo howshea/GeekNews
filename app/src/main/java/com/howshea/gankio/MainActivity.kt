@@ -1,10 +1,12 @@
 package com.howshea.gankio
 
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
+import android.view.Window
 import com.howshea.basemodule.utils.setDarkStatusIcon
 import com.howshea.gankio.utils.disableShiftMode
 import com.howshea.gankio.utils.setupWithViewPager
@@ -14,6 +16,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //共享元素
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        }
         setContentView(R.layout.activity_main)
         setDarkStatusIcon(true)
         bottom_nav.disableShiftMode()
