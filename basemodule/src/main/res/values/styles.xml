@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/divider</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="WhiteStatusBar" parent="AppTheme">
+        <item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/colorPrimary</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 

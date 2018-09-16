@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="WhiteStatusBar" parent="AppTheme">
+        <item name="android:colorEdgeEffect">@color/colorPrimary</item>
     </style>
 </resources>
