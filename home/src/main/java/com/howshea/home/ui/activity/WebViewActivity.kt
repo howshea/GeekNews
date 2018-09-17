@@ -2,6 +2,7 @@ package com.howshea.home.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,8 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import com.howshea.basemodule.extentions.copyToClipBoard
-import com.howshea.basemodule.utils.setUnderApi23StatusBarShade
-import com.howshea.basemodule.utils.setDarkStatusIcon
+import com.howshea.basemodule.extentions.topPadding
+import com.howshea.basemodule.utils.getStatusBarHeight
+import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_web.view.*
@@ -35,8 +37,8 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         url = intent.getStringExtra(EXTRA_URL)
-        setDarkStatusIcon(true)
-        setUnderApi23StatusBarShade(toolbar)
+        setStatusTransAndDarkIcon(Color.WHITE)
+        toolbar.topPadding = getStatusBarHeight()
         setWebView()
         toolbar.apply {
             setOnNavClick { onBackPressed() }

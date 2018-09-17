@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:id="@+id/layout_refresh"
+    android:layout_height="match_parent">
 
-    <com.howshea.basemodule.component.viewGroup.SToolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menuIcon="@drawable/ic_history"
-        app:navIcon="@drawable/ic_search"
-        app:title="Geek News" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.7dp"
-        android:background="@color/divider" />
+        <com.howshea.basemodule.component.viewGroup.SToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menuIcon="@drawable/ic_history"
+            app:navIcon="@drawable/ic_search"
+            app:title="Geek News" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/ryc_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="@color/divider" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ryc_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</android.support.v4.widget.SwipeRefreshLayout>
 

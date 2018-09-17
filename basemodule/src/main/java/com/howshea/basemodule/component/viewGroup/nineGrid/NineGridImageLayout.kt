@@ -131,7 +131,8 @@ class NineGridImageLayout : ViewGroup {
             .load(s)
             .apply(RequestOptions()
                 .placeholder(R.color.divider)
-                .transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.7f))))
+                .transforms(CenterCrop(),RoundedCorners(dp(3), dp(0.5f)))
+            )
             .into(this)
     }
 
@@ -175,11 +176,14 @@ class NineGridImageLayout : ViewGroup {
                         val width = (singleImgSize * radio).toInt()
                         LayoutParams(width, height)
                     }
+                    scaleType = ImageView.ScaleType.CENTER_CROP
                 }
                 .addSystemView()
         } else {
             imageList.forEach {
-                AppCompatImageView(context).addSystemView()
+                AppCompatImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+                }.addSystemView()
             }
         }
         requestLayout()

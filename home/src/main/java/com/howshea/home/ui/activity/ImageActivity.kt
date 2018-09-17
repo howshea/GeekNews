@@ -38,12 +38,8 @@ class ImageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //共享元素
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-        }
         setContentView(R.layout.activity_image)
-        setStatusTransparent()
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         view_pager.adapter = ImagePagerAdapter(imageList)
         view_pager.currentItem = position
     }

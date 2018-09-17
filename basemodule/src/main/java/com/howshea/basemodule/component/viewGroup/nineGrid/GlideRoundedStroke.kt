@@ -79,7 +79,7 @@ fun roundedCorners(
     val borderPaint = Paint().apply {
         style = Paint.Style.STROKE
         strokeWidth = borderWidth.toFloat()
-        color = Color.parseColor("#f4f4f4")
+        color = Color.parseColor("#DBDBDB")
         isAntiAlias = true
     }
     val rect = RectF(borderWidth.toFloat(), borderWidth.toFloat(), result.width - borderWidth.toFloat(), result.height - borderWidth.toFloat())

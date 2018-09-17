@@ -3,10 +3,8 @@
     package="com.howshea.home">
 
     <application>
-        <activity
-            android:name=".ui.activity.WebViewActivity"
-            android:theme="@style/WhiteStatusBar" />
-        <activity android:name=".ui.activity.ImageActivity"></activity>
+        <activity android:name=".ui.activity.WebViewActivity" />
+        <activity android:name=".ui.activity.ImageActivity" />
     </application>
 
 </manifest>
