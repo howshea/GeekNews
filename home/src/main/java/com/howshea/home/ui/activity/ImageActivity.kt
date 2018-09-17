@@ -8,10 +8,8 @@ import android.support.v4.view.PagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
 import com.bumptech.glide.Glide
-import com.howshea.basemodule.utils.setStatusTransparent
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.activity_image.*
 import kotlinx.android.synthetic.main.item_image_adapter.view.*

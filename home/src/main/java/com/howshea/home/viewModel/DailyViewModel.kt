@@ -18,10 +18,11 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class DailyViewModel : RxViewModel() {
     private val dailyData: MutableLiveData<List<Common>> = MutableLiveData()
+    private val rxError: MutableLiveData<Throwable> = MutableLiveData()
 
-    fun getTodayData(): LiveData<List<Common>> {
-        return dailyData
-    }
+    fun getTodayData(): LiveData<List<Common>> = dailyData
+
+    fun getError(): LiveData<Throwable> = rxError
 
     fun refresh() = getToday()
 
@@ -40,7 +41,7 @@ class DailyViewModel : RxViewModel() {
                         //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
                         it.forEach { item ->
                             item.images = mutableListOf(item.url)
-                            item.url =""
+                            item.url = ""
                         }
                         tempList += it
                     }
@@ -70,6 +71,7 @@ class DailyViewModel : RxViewModel() {
                     dailyData.value = it
                 },
                 onError = {
+                    rxError.value =it
                     it.printStackTrace()
                 }
             )

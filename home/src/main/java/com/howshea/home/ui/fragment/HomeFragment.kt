@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.frg_home.*
  */
 class HomeFragment : LazyFragment() {
     private val adapter by lazy(LazyThreadSafetyMode.NONE) { HomeAdapter(arrayListOf()) }
-    private val model by lazy(LazyThreadSafetyMode.NONE){
+    private val model by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProviders.of(this).get(DailyViewModel::class.java)
     }
 
@@ -44,6 +44,13 @@ class HomeFragment : LazyFragment() {
                 }
             }
         })
+
+        model.getError().observe(this, Observer { it ->
+            it?.let {
+                layout_refresh.isRefreshing = false
+            }
+        })
+
         model.refresh()
         layout_refresh.isRefreshing = true
         adapter.setItemClick {
