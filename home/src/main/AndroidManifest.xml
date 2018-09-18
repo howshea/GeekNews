@@ -5,6 +5,7 @@
     <application>
         <activity android:name=".ui.activity.WebViewActivity" />
         <activity android:name=".ui.activity.ImageActivity" />
+        <activity android:name=".ui.activity.PastNewsActivity"></activity>
     </application>
 
 </manifest>

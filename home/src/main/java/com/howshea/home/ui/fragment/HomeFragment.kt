@@ -2,6 +2,7 @@ package com.howshea.home.ui.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import com.howshea.home.ui.activity.ImageActivity
+import com.howshea.home.ui.activity.PastNewsActivity
 import com.howshea.home.ui.activity.WebViewActivity
 import com.howshea.home.ui.adapter.CategoryDecoration
 import com.howshea.home.ui.adapter.HomeAdapter
@@ -67,8 +69,12 @@ class HomeFragment : LazyFragment() {
 
     override fun initView() {
         toolbar.topPadding = activity!!.getStatusBarHeight()
-        toolbar.setOnNavClick { toast("计划开发中...") }
-        toolbar.setOnMenuClick { }
+        toolbar.setOnNavClick {
+            toast("计划开发中...")
+        }
+        toolbar.setOnMenuClick {
+            startActivity(Intent(activity!!,PastNewsActivity::class.java))
+        }
         toolbar.title = toolbar.title.setLogo()
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(activity)

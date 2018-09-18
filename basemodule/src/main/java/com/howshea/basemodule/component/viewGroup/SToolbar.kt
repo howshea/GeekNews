@@ -59,6 +59,7 @@ class SToolbar : FrameLayout {
     private val iconSize = dp(24)
     private val iconTopBottomMargin
         get() = (contentHeight - iconSize) / 2
+    //title默认居中
     private var titleGravity = 1
     //标题
     var title: CharSequence = ""
@@ -154,6 +155,7 @@ class SToolbar : FrameLayout {
         titleTextView ?: let {
             titleTextView = AppCompatTextView(context, null).apply {
                 text = title
+                includeFontPadding = false
                 setTextColor(titleColor)
                 setTypeface(Typeface.DEFAULT, titleStyle)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
@@ -193,8 +195,12 @@ class SToolbar : FrameLayout {
 
     private fun getTitleLp(): FrameLayout.LayoutParams {
         return generateDefaultLayoutParams().apply {
-            marginStart = navButton?.let { iconSize + dp(32) } ?: dp(16)
-            marginEnd = menuButton?.let { iconSize + dp(32) } ?: dp(16)
+            val margin = when {
+                navButton == null && menuButton == null -> dp(16)
+                else -> iconSize + dp(32)
+            }
+            marginStart = margin
+            marginEnd = margin
             gravity = if (titleGravity == 1) Gravity.CENTER else Gravity.START or Gravity.CENTER_VERTICAL
         }
     }

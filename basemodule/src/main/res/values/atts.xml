@@ -43,6 +43,16 @@
             <enum name="invisible" value="1" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CoverImageView">
+        <attr name="radio" format="float" />
+        <attr name="cover" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowImageView">
+        <attr name="shadowAlpha" format="integer" />
+    </declare-styleable>
+
     <declare-styleable name="Themes">
         <attr name="numberProgressBarStyle" format="reference" />
     </declare-styleable>
