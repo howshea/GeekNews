@@ -12,6 +12,10 @@
         </attr>
         <attr name="titleSize" format="dimension" />
         <attr name="titleColor" format="color" />
+        <attr name="titleGravity">
+            <enum name="LEFT" value="0" />
+            <enum name="CENTER" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="NineGridImageLayout">
