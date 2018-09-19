@@ -30,8 +30,6 @@ class CoverImageView : AppCompatImageView {
                 paint.color = it.getColor(R.styleable.CoverImageView_cover, resources.getColor(android.R.color.transparent))
             }
         }
-
-
         attributes?.recycle()
     }
 

@@ -16,6 +16,8 @@
             <enum name="LEFT" value="0" />
             <enum name="CENTER" value="1" />
         </attr>
+        <attr name="titleMarginStart" format="dimension" />
+        <attr name="titleMarginEnd" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="NineGridImageLayout">

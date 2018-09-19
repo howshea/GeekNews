@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.activity.WebViewActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -37,10 +37,10 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <WebView
-            android:background="@color/white"
             android:id="@+id/web_view"
             android:layout_width="match_parent"
-            android:layout_height="640dp" />
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
 
     </android.support.v4.widget.NestedScrollView>
 

@@ -61,6 +61,9 @@ class SToolbar : FrameLayout {
         get() = (contentHeight - iconSize) / 2
     //title默认居中
     private var titleGravity = 1
+    //title margin
+    private var titleMarginStart: Int? = null
+    private var titleMarginEnd: Int? = null
     //标题
     var title: CharSequence = ""
         set(value) {
@@ -90,6 +93,12 @@ class SToolbar : FrameLayout {
                         throw IllegalArgumentException("contentHeight must be greater than iconSize")
                     }
                 }
+                if (hasValue(R.styleable.SToolbar_titleMarginStart))
+                    titleMarginStart = getDimension(R.styleable.SToolbar_titleMarginStart, 0f).toInt()
+
+                if (hasValue(R.styleable.SToolbar_titleMarginEnd))
+                    titleMarginEnd = getDimension(R.styleable.SToolbar_titleMarginEnd, 0f).toInt()
+
                 title = getString(R.styleable.SToolbar_title) ?: ""
                 titleColor = getColor(R.styleable.SToolbar_titleColor, Color.parseColor("#707070"))
                 titleSize = getDimension(R.styleable.SToolbar_titleSize, sp(20).toFloat())
@@ -195,12 +204,15 @@ class SToolbar : FrameLayout {
 
     private fun getTitleLp(): FrameLayout.LayoutParams {
         return generateDefaultLayoutParams().apply {
-            val margin = when {
-                navButton == null && menuButton == null -> dp(16)
-                else -> iconSize + dp(32)
+            marginStart = navButton?.let { iconSize + dp(32) } ?: dp(16)
+            marginEnd = menuButton?.let { iconSize + dp(32) } ?: dp(16)
+            titleMarginStart?.let {
+                marginStart = it
             }
-            marginStart = margin
-            marginEnd = margin
+            titleMarginEnd?.let {
+                marginEnd = it
+            }
+            minimumHeight = contentHeight
             gravity = if (titleGravity == 1) Gravity.CENTER else Gravity.START or Gravity.CENTER_VERTICAL
         }
     }

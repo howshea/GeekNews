@@ -2,6 +2,7 @@ package com.howshea.home.repository
 
 import com.howshea.basemodule.web.retrofit
 import com.howshea.home.model.Daily
+import com.howshea.home.model.History
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -21,6 +22,12 @@ interface HomeApi {
 
     @GET("today")
     fun getToday(): Observable<Daily>
+
+    @GET("history/content/{count}/{page}")
+    fun getHistory(
+        @Path("count") count: Int,
+        @Path("page") page: Int
+    ): Observable<History>
 }
 
 object HomeService : HomeApi by retrofit.create(HomeApi::class.java)

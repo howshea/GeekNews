@@ -5,53 +5,69 @@
 
     <data>
 
+        <variable
+            name="history"
+            type="com.howshea.home.model.HistoryResult" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.howshea.basemodule.component.view.CoverImageView
             android:id="@+id/img_cover"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cover="#7c000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:cover="#66000000"
             app:radio="2" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="56dp"
-            android:layout_marginStart="56dp"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/img_cover"
-            app:layout_constraintEnd_toEndOf="@id/img_cover"
-            app:layout_constraintStart_toStartOf="@id/img_cover"
-            app:layout_constraintTop_toTopOf="@id/img_cover"
-            tools:text="今日力推：国人出品2KB时间日期库Day.js" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_icon_quotation_left"
-            app:layout_constraintStart_toStartOf="@id/tv_title"
-            app:layout_constraintTop_toTopOf="@id/tv_title" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:maxWidth="230dp"
+                android:text="@{history.title}"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:maxLines="4"
+                tools:text="今日力推：国人出品2KB时间日期库Day.js" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/global_margin"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/img_cover"
-            app:layout_constraintTop_toTopOf="@id/img_cover"
-            tools:text="2018.01.01" />
-    </android.support.constraint.ConstraintLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_title"
+                android:layout_toStartOf="@id/tv_title"
+                android:src="@drawable/ic_icon_quotation_left"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_title"
+                android:layout_marginTop="-13dp"
+                android:layout_toEndOf="@id/tv_title"
+                android:src="@drawable/ic_icon_quotation_right"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/global_margin"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="@{history.publishedAt.substring(0,10).replace('-','.')}"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:ignore="RelativeOverlap"
+                tools:text="2018.01.01" />
+        </RelativeLayout>
+    </FrameLayout>
 </layout>

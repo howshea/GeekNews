@@ -8,12 +8,11 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class Daily(
-    val category: List<String>,
     val error: Boolean,
-    val results: Results
+    val results: DailyResults
 )
 
-data class Results(
+data class DailyResults(
     @SerializedName("Android")
     val android: List<Common>?,
     @SerializedName("iOS")

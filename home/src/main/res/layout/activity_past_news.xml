@@ -15,11 +15,13 @@
         app:title="往期干货"
         app:titleColor="@color/textPrimary"
         app:titleGravity="LEFT"
+        app:titleSize="19sp"
         app:titleStyle="normal" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.howshea.basemodule.component.view.ShadowImageView
             android:layout_width="match_parent"
             android:layout_height="6dp" />

@@ -110,9 +110,9 @@ class WebViewActivity : AppCompatActivity() {
 
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 if (newProgress == 100) {
-                    progress_bar.visibility = View.GONE
+                    progress_bar.alpha = 0f
                 } else {
-                    progress_bar.visibility = View.VISIBLE
+                    progress_bar.alpha = 1f
                     progress_bar.progress = newProgress
                 }
             }
