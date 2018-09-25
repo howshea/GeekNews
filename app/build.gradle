@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion build_versions.target_sdk
-    buildToolsVersion build_versions.build_tools
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.howshea.gankio"
         minSdkVersion build_versions.min_sdk

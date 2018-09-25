@@ -6,8 +6,8 @@ versions.lifecycle = "1.1.1"
 versions.junit = "4.12"
 versions.runner = "1.0.2"
 versions.espresso = "3.0.2"
-versions.android_gradle_plugin = "3.1.4"
-versions.kotlin = '1.2.70'
+versions.android_gradle_plugin = '3.2.0'
+versions.kotlin = '1.2.71'
 versions.retrofit = "2.3.0"
 versions.okhttp_logging_interceptor = "3.4.1"
 versions.rxkotlin2 = "2.2.0"
@@ -59,7 +59,7 @@ ext.deps = deps
 def build_versions = [:]
 build_versions.min_sdk = 19
 build_versions.target_sdk = 27
-build_versions.build_tools = "27.0.3"
+build_versions.build_tools = "28.0.3"
 build_versions.version_code = 1
 build_versions.version_name = "1.0"
 ext.build_versions = build_versions
@@ -67,12 +67,12 @@ ext.build_versions = build_versions
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
     handler.maven {
         url "https://jitpack.io"
     }
     handler.mavenCentral()
-    handler.jcenter()
-    handler.google()
 }
 
 ext.addRepos = this.&addRepos
