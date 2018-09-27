@@ -3,7 +3,7 @@ package com.howshea.home.ui.adapter
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.howshea.basemodule.BaseAdapter
+import com.howshea.basemodule.component.viewGroup.BaseAdapter.BaseAdapter
 import com.howshea.home.R
 import com.howshea.home.databinding.ItemPastNewsBinding
 import com.howshea.home.model.HistoryResult

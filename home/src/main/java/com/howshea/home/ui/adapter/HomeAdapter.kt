@@ -1,7 +1,7 @@
 package com.howshea.home.ui.adapter
 
 import android.view.View
-import com.howshea.basemodule.BaseAdapter
+import com.howshea.basemodule.component.viewGroup.BaseAdapter.BaseAdapter
 import com.howshea.home.R
 import com.howshea.home.databinding.ItemDailyAdapterBinding
 import com.howshea.home.model.Common

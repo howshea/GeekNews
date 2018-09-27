@@ -1,4 +1,4 @@
-package com.howshea.basemodule
+package com.howshea.basemodule.component.viewGroup.BaseAdapter
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
