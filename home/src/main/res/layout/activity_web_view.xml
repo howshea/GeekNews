@@ -22,7 +22,7 @@
             app:titleColor="@color/textSecondary"
             app:titleSize="16sp" />
 
-        <com.howshea.basemodule.view.numberProgressBar.NumberProgressBar
+        <com.howshea.basemodule.component.view.numberProgressBar.NumberProgressBar
             android:id="@+id/progress_bar"
             style="@style/NumberProgressBar_Blue"
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.howshea.basemodule.view.numberProgressBar;
+package com.howshea.basemodule.component.view.numberProgressBar;
 
 import android.content.Context;
 import android.content.res.TypedArray;

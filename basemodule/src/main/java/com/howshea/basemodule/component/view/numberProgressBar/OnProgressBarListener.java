@@ -1,4 +1,4 @@
-package com.howshea.basemodule.view.numberProgressBar;
+package com.howshea.basemodule.component.view.numberProgressBar;
 
 /**
  * Created by lelexxx on 15-4-23.
