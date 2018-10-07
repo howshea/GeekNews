@@ -1,5 +1,6 @@
 package com.howshea.basemodule.component.viewGroup
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
@@ -160,6 +161,7 @@ class SToolbar : FrameLayout {
     }
 
 
+    @SuppressLint("WrongConstant")
     private fun ensureTitleView() {
         titleTextView ?: let {
             titleTextView = AppCompatTextView(context, null).apply {

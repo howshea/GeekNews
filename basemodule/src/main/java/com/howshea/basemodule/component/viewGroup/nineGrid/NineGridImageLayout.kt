@@ -131,7 +131,7 @@ class NineGridImageLayout : ViewGroup {
             .load(s)
             .apply(RequestOptions()
                 .placeholder(R.color.divider)
-                .transforms(CenterCrop(),RoundedCorners(dp(3), dp(0.5f)))
+                .transforms(CenterCrop(),RoundedCorners(dp(3), dp(0.4f)))
             )
             .into(this)
     }
