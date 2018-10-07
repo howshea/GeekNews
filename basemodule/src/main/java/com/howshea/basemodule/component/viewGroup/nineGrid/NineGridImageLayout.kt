@@ -48,12 +48,13 @@ class NineGridImageLayout : ViewGroup {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        context
-            ?.obtainStyledAttributes(attrs, R.styleable.NineGridImageLayout)
-            ?.apply {
-                spacing = getDimension(R.styleable.NineGridImageLayout_spacing, spacing.toFloat()).toInt()
-                singleImgSize = getDimension(R.styleable.NineGridImageLayout_singleSize, singleImgSize.toFloat()).toInt()
-            }
+        val attributes = context?.obtainStyledAttributes(attrs, R.styleable.NineGridImageLayout)
+        attributes?.apply {
+            spacing = getDimension(R.styleable.NineGridImageLayout_spacing, spacing.toFloat()).toInt()
+            singleImgSize = getDimension(R.styleable.NineGridImageLayout_singleSize, singleImgSize.toFloat()).toInt()
+        }
+        attributes?.recycle()
+
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -131,7 +132,7 @@ class NineGridImageLayout : ViewGroup {
             .load(s)
             .apply(RequestOptions()
                 .placeholder(R.color.divider)
-                .transforms(CenterCrop(),RoundedCorners(dp(3), dp(0.4f)))
+                .transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.4f)))
             )
             .into(this)
     }
