@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             app:cover="#66000000"
-            app:radio="2" />
+            app:ratio="2" />
 
         <RelativeLayout
             android:layout_width="match_parent"

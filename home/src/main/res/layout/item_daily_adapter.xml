@@ -16,37 +16,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/press_effect_white_bg"
-        android:paddingBottom="12dp"
         android:paddingLeft="@dimen/global_margin"
+        android:paddingTop="14dp"
         android:paddingRight="@dimen/global_margin"
-        android:paddingTop="14dp">
+        android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/tv_desc"
             style="@style/item_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{common.desc}"
             android:includeFontPadding="false"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="4dp"
+            android:text="@{common.desc}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:lineSpacingExtra="4dp"
-            android:letterSpacing="0.02"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"
+            tools:text="一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView" />
 
-        <com.howshea.basemodule.component.viewGroup.nineGrid.NineGridImageLayout
+        <com.howshea.basemodule.component.viewGroup.NineGridImageLayout
             android:id="@+id/layout_nine_grid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:visibility="@{common.images==null?View.GONE:View.VISIBLE}"
             app:imageList="@{common.images}"
-            app:radio="@{common.radio}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc" />
+            app:layout_constraintTop_toBottomOf="@id/tv_desc"
+            app:ratio="@{common.ratio}" />
 
         <TextView
             android:id="@+id/tv_author"

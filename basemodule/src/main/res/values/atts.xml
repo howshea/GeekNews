@@ -46,13 +46,22 @@
         </attr>
     </declare-styleable>
 
+    <attr name="ratio" format="float" />
+
     <declare-styleable name="CoverImageView">
-        <attr name="radio" format="float" />
+        <attr name="ratio" />
         <attr name="cover" format="color" />
     </declare-styleable>
 
     <declare-styleable name="ShadowImageView">
         <attr name="shadowAlpha" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornerImageView">
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="ratio" />
     </declare-styleable>
 
     <declare-styleable name="Themes">

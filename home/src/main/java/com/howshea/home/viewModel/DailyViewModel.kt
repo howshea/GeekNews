@@ -53,7 +53,7 @@ class DailyViewModel : RxViewModel() {
                             it.size == 1
                         }
                         ?.yes {
-                            item.radio = getRadioAndCache(item.images!![0])
+                            item.ratio = getRadioAndCache(item.images!![0])
                         }
                         ?.otherwise {
                             return@forEach

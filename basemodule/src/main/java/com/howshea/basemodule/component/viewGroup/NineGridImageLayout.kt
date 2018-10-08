@@ -1,18 +1,18 @@
-package com.howshea.basemodule.component.viewGroup.nineGrid
+package com.howshea.basemodule.component.viewGroup
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.databinding.BindingAdapter
+import android.graphics.Color
 import android.os.Build
-import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.R
+import com.howshea.basemodule.component.view.RoundCornerImageView
 import com.howshea.basemodule.utils.dp
 import kotlin.math.ceil
 
@@ -132,7 +132,7 @@ class NineGridImageLayout : ViewGroup {
             .load(s)
             .apply(RequestOptions()
                 .placeholder(R.color.divider)
-                .transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.4f)))
+//                .transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.4f)))
             )
             .into(this)
     }
@@ -156,9 +156,9 @@ class NineGridImageLayout : ViewGroup {
     }
 
     @SuppressLint("InflateParams")
-    fun setData(imageList: List<String>, radio: Float) {
+    fun setData(imageList: List<String>, ratio: Float) {
         this.imageList = ArrayList(imageList)
-        this.radio = radio
+        this.radio = ratio
         //清除所有子view ，避免 recyclerView 复用导致错乱问题
         removeAllViews()
         //行数
@@ -166,24 +166,28 @@ class NineGridImageLayout : ViewGroup {
         //列数
         columnCount = if (imageList.size == 4) 2 else 3
         if (imageList.size == 1) {
-            AppCompatImageView(context)
+            RoundCornerImageView(context)
                 .apply {
-                    layoutParams = if (radio > 1) {
-                        val height = (singleImgSize / radio).toInt()
+                    layoutParams = if (ratio > 1) {
+                        val height = (singleImgSize / ratio).toInt()
                         val width = singleImgSize
                         LayoutParams(width, height)
                     } else {
                         val height = singleImgSize
-                        val width = (singleImgSize * radio).toInt()
+                        val width = (singleImgSize * ratio).toInt()
                         LayoutParams(width, height)
                     }
-                    scaleType = ImageView.ScaleType.CENTER_CROP
+                    borderColor = Color.parseColor("#DBDBDB")
+                    borderWidth = dp(0.4f).toFloat()
+                    radius = dp(3).toFloat()
                 }
                 .addSystemView()
         } else {
-            imageList.forEach {
-                AppCompatImageView(context).apply {
-                    scaleType = ImageView.ScaleType.CENTER_CROP
+            imageList.forEach { _ ->
+                RoundCornerImageView(context).apply {
+                    borderColor = Color.parseColor("#DBDBDB")
+                    borderWidth = dp(0.4f).toFloat()
+                    radius = dp(3).toFloat()
                 }.addSystemView()
             }
         }
@@ -195,14 +199,14 @@ class NineGridImageLayout : ViewGroup {
     }
 }
 
-@BindingAdapter("app:imageList", "app:radio")
-fun setImageList(view: NineGridImageLayout, imageList: List<String>?, radio: Float) {
+@BindingAdapter("app:imageList", "app:ratio")
+fun setImageList(view: NineGridImageLayout, imageList: List<String>?, ratio: Float) {
     //如果为空或者长度为0，就什么都不做
     imageList?.isNotEmpty()?.let {
         if (imageList.size > 9)
         //最多九张
-            view.setData(imageList.subList(0, 8), radio)
+            view.setData(imageList.subList(0, 8), ratio)
         else
-            view.setData(imageList, radio)
+            view.setData(imageList, ratio)
     }
 }
