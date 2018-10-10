@@ -19,6 +19,7 @@ class RoundCornerImageView : ImageView {
     private var _borderColor = 0
     //radius of corner
     private var _radius = 0f
+    private var innerRadius = 0f
     //aspect ratio
     private var _ratio = 0f
     private var imagePaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -27,7 +28,10 @@ class RoundCornerImageView : ImageView {
         style = Paint.Style.STROKE
     }
     private lateinit var rectF: RectF
+    //去掉边框的内矩阵
+    private lateinit var innerRectF: RectF
     private var _matrix: Matrix? = Matrix()
+
     var borderWidth: Float
         get() = _borderWidth
         set(value) {
@@ -44,6 +48,8 @@ class RoundCornerImageView : ImageView {
         get() = _radius
         set(value) {
             _radius = value
+            //计算边框内圆角半径
+            innerRadius = _radius - _borderWidth / 2f
             invalidate()
         }
     var ratio: Float
@@ -60,6 +66,8 @@ class RoundCornerImageView : ImageView {
             _borderWidth = getDimension(R.styleable.RoundCornerImageView_borderWidth, 0f)
             _borderColor = getColor(R.styleable.RoundCornerImageView_borderColor, Color.TRANSPARENT)
             _radius = getDimension(R.styleable.RoundCornerImageView_radius, 0f)
+            //计算边框内圆角半径
+            innerRadius = _radius - _borderWidth / 2f
             _ratio = getFloat(R.styleable.RoundCornerImageView_ratio, 0f)
         }
         attributes?.recycle()
@@ -85,8 +93,8 @@ class RoundCornerImageView : ImageView {
             borderPaint.color = _borderColor
             borderPaint.strokeWidth = _borderWidth
             imagePaint.shader = generateBitmapShader(drawable)
-            canvas.drawRoundRect(rectF, _radius, _radius, imagePaint)
-            if (_borderWidth > 0) {
+            canvas.drawRoundRect(innerRectF, innerRadius, innerRadius, imagePaint)
+            if (_borderWidth > 0f) {
                 canvas.drawRoundRect(rectF, _radius, _radius, borderPaint)
             }
         }
@@ -95,6 +103,7 @@ class RoundCornerImageView : ImageView {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         rectF = RectF(_borderWidth / 2f, _borderWidth / 2f, width - _borderWidth / 2f, height - _borderWidth / 2f)
+        innerRectF = RectF(_borderWidth, _borderWidth, width - _borderWidth, height - _borderWidth)
     }
 
     private fun Float.round(): Int {
@@ -127,30 +136,33 @@ class RoundCornerImageView : ImageView {
         val bitmapShader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         val drawableWidth = bitmap.width
         val drawableHeight = bitmap.height
+        val viewWidth = (width - borderWidth * 2f).round()
+        val viewHeight = (height - borderWidth * 2f).round()
         var dx = 0f
         var dy = 0f
-        val fits = (drawableWidth < 0 || width == drawableWidth) && (drawableHeight < 0 || height == drawableHeight)
-        val scale = Math.max(width * 1.0f / drawableWidth, height * 1.0f / drawableHeight)
+        val fits = (drawableWidth < 0 || viewWidth == drawableWidth) && (drawableHeight < 0 || viewHeight == drawableHeight)
+        val scale = Math.max(viewWidth / drawableWidth.toFloat(), viewHeight / drawableHeight.toFloat())
         if (drawableWidth <= 0 || drawableHeight <= 0) {
-            drawable.setBounds(0, 0, width, height)
+            drawable.setBounds(0, 0, viewWidth, viewHeight)
             _matrix = null
         } else {
             drawable.setBounds(0, 0, drawableWidth, drawableHeight)
             when {
                 fits -> _matrix = null
                 ImageView.ScaleType.FIT_XY == scaleType -> {
-                    val scaleX = width * 1.0f / drawableWidth
-                    val scaleY = height * 1.0f / drawableHeight
+                    val scaleX = viewWidth / drawableWidth.toFloat()
+                    val scaleY = viewHeight / drawableHeight.toFloat()
                     _matrix?.setScale(scaleX, scaleY)
+                    _matrix?.postTranslate(borderWidth,borderWidth)
                 }
                 else -> {
-                    if (drawableWidth * height > width * drawableHeight) {
-                        dx = (width - drawableWidth * scale) * 0.5f
+                    if (drawableWidth * viewHeight > viewWidth * drawableHeight) {
+                        dx = (viewWidth - drawableWidth * scale) * 0.5f
                     } else {
-                        dy = (height - drawableHeight * scale) * 0.5f
+                        dy = (viewHeight - drawableHeight * scale) * 0.5f
                     }
                     _matrix?.setScale(scale, scale)
-                    _matrix?.postTranslate(dx, dy)
+                    _matrix?.postTranslate(borderWidth+dx, borderWidth+dy)
                 }
             }
         }
