@@ -11,24 +11,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:contentHeight="55dp"
         app:navIcon="@drawable/ic_back"
         app:title="往期干货"
-        app:titleColor="@color/textPrimary"
+        app:titleColor="@color/textSecondary"
         app:titleGravity="LEFT"
-        app:titleSize="19sp"
+        app:titleSize="20sp"
         app:titleStyle="normal" />
 
-    <FrameLayout
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ryc_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.howshea.basemodule.component.view.ShadowImageView
-            android:layout_width="match_parent"
-            android:layout_height="6dp" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/ryc_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        android:layout_height="match_parent" />
 </LinearLayout>

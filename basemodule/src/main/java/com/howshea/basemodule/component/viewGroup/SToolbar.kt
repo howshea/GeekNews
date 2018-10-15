@@ -14,7 +14,6 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.howshea.basemodule.R
@@ -42,9 +41,9 @@ import com.howshea.basemodule.utils.sp
 
 class SToolbar : FrameLayout {
     //icon
-    private var navButton: ImageButton? = null
+    private var navButton: AppCompatImageButton? = null
     private var navigationDrawable: Drawable? = null
-    private var menuButton: ImageButton? = null
+    private var menuButton: AppCompatImageButton? = null
     private var menuDrawable: Drawable? = null
     //title
     private var titleTextView: TextView? = null
