@@ -9,8 +9,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.R
 import com.howshea.basemodule.component.view.RoundCornerImageView
 import com.howshea.basemodule.utils.dp
@@ -45,6 +43,7 @@ class NineGridImageLayout : ViewGroup {
     var radio = 0f
 
     private var itemClickListener: ((v: View, position: Int) -> Unit)? = null
+    var loadImageListener: ((v: ImageView, url: String) -> Unit)? = null
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -88,14 +87,14 @@ class NineGridImageLayout : ViewGroup {
         var bottom: Int
         when (imageList.size) {
             1 -> {
-                val view = getChildAt(0) as ImageView
+                val view = getChildAt(0) as RoundCornerImageView
                 right = paddingLeft + view.layoutParams.width
                 bottom = paddingTop + view.layoutParams.height
                 view.layout(paddingLeft, paddingTop, right, bottom)
-                view.loadImage(imageList[0])
                 view.setOnClickListener {
                     itemClickListener?.invoke(it, 0)
                 }
+                loadImageListener?.invoke(view, imageList[0])
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     view.transitionName = "Image 0"
                 }
@@ -104,7 +103,7 @@ class NineGridImageLayout : ViewGroup {
                 var row: Int
                 var column: Int
                 imageList.forEachIndexed { index, s ->
-                    val view = getChildAt(index) as ImageView
+                    val view = getChildAt(index) as RoundCornerImageView
 
                     //图片数量为4的时候第二张需要换行
                     row = index / (if (imageList.size == 4) 2 else 3)
@@ -115,26 +114,16 @@ class NineGridImageLayout : ViewGroup {
                     right = left + gridSize
                     bottom = top + gridSize
                     view.layout(left, top, right, bottom)
-                    view.loadImage(s)
                     view.setOnClickListener {
                         itemClickListener?.invoke(it, index)
                     }
+                    loadImageListener?.invoke(view, s)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         view.transitionName = "Image $index"
                     }
                 }
             }
         }
-    }
-
-    private fun ImageView.loadImage(s: String) {
-        Glide.with(context)
-            .load(s)
-            .apply(RequestOptions()
-                .placeholder(R.color.divider)
-//                .transforms(CenterCrop(), RoundedCorners(dp(3), dp(0.4f)))
-            )
-            .into(this)
     }
 
 

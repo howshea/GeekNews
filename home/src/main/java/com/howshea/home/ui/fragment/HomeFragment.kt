@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.frg_home.*
  * on 2018/6/15.
  */
 class HomeFragment : LazyFragment() {
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) { HomeAdapter(arrayListOf()) }
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) { HomeAdapter(arrayListOf(), this) }
     private val model by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProviders.of(this).get(DailyViewModel::class.java)
     }
@@ -73,7 +73,7 @@ class HomeFragment : LazyFragment() {
             toast("计划开发中...")
         }
         toolbar.setOnMenuClick {
-            startActivity(Intent(activity!!,PastNewsActivity::class.java))
+            startActivity(Intent(activity!!, PastNewsActivity::class.java))
         }
         toolbar.title = toolbar.title.setLogo()
         ryc_main.adapter = adapter

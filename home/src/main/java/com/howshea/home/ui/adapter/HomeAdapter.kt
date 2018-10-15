@@ -1,6 +1,10 @@
 package com.howshea.home.ui.adapter
 
+import android.support.v4.app.Fragment
 import android.view.View
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.component.viewGroup.BaseAdapter.BaseAdapter
 import com.howshea.home.R
 import com.howshea.home.databinding.ItemDailyAdapterBinding
@@ -11,7 +15,7 @@ import com.howshea.home.model.Common
  * on 2018/9/7
  */
 
-class HomeAdapter(items: List<Common>) : BaseAdapter<Common, ItemDailyAdapterBinding>(items, R.layout.item_daily_adapter) {
+class HomeAdapter(items: List<Common>, private val fragment: Fragment) : BaseAdapter<Common, ItemDailyAdapterBinding>(items, R.layout.item_daily_adapter) {
     private var imageClickListener: ((v: View, position: Int, imageList: List<String>) -> Unit)? = null
 
 
@@ -19,6 +23,13 @@ class HomeAdapter(items: List<Common>) : BaseAdapter<Common, ItemDailyAdapterBin
         binding.common = item
         binding.layoutNineGrid.onItemClick { v, position ->
             imageClickListener?.invoke(v, position, item.images!!)
+        }
+        binding.layoutNineGrid.loadImageListener = { view, url ->
+            Glide.with(fragment)
+                .load(url)
+                .transition(withCrossFade())
+                .apply(RequestOptions().placeholder(R.color.divider))
+                .into(view)
         }
     }
 
