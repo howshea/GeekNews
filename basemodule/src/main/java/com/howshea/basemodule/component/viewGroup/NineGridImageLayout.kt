@@ -162,6 +162,7 @@ class NineGridImageLayout : ViewGroup {
                         val width = (singleImgSize * ratio).toInt()
                         LayoutParams(width, height)
                     }
+                    scaleType = ImageView.ScaleType.CENTER_CROP
                     borderColor = Color.parseColor("#DBDBDB")
                     borderWidth = dp(0.4f).toFloat()
                     radius = dp(3).toFloat()
@@ -170,6 +171,7 @@ class NineGridImageLayout : ViewGroup {
         } else {
             imageList.forEach { _ ->
                 RoundCornerImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER_CROP
                     borderColor = Color.parseColor("#DBDBDB")
                     borderWidth = dp(0.4f).toFloat()
                     radius = dp(3).toFloat()
