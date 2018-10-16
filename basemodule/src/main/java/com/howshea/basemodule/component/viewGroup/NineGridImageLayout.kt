@@ -41,9 +41,9 @@ class NineGridImageLayout : ViewGroup {
     private var imageList = arrayListOf<String>()
     //单图宽高比
     var radio = 0f
+    private var subViews: ArrayList<ImageView> = ArrayList()
 
     private var itemClickListener: ((v: View, position: Int) -> Unit)? = null
-    var loadImageListener: ((v: ImageView, url: String) -> Unit)? = null
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -94,7 +94,6 @@ class NineGridImageLayout : ViewGroup {
                 view.setOnClickListener {
                     itemClickListener?.invoke(it, 0)
                 }
-                loadImageListener?.invoke(view, imageList[0])
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     view.transitionName = "Image 0"
                 }
@@ -102,7 +101,7 @@ class NineGridImageLayout : ViewGroup {
             else -> {
                 var row: Int
                 var column: Int
-                imageList.forEachIndexed { index, s ->
+                imageList.forEachIndexed { index, _ ->
                     val view = getChildAt(index) as RoundCornerImageView
 
                     //图片数量为4的时候第二张需要换行
@@ -117,7 +116,6 @@ class NineGridImageLayout : ViewGroup {
                     view.setOnClickListener {
                         itemClickListener?.invoke(it, index)
                     }
-                    loadImageListener?.invoke(view, s)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         view.transitionName = "Image $index"
                     }
@@ -126,30 +124,28 @@ class NineGridImageLayout : ViewGroup {
         }
     }
 
+    fun loadImages(loader: (v: ImageView, url: String) -> Unit) {
+        subViews.forEachIndexed { index, view ->
+            loader(view, imageList[index])
+        }
+    }
+
 
     override fun generateDefaultLayoutParams(): LayoutParams {
         return LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
 
-    private fun View.addSystemView() {
-        val vlp = this.layoutParams
-        val lp: LayoutParams
-        lp = if (vlp == null) {
-            generateDefaultLayoutParams()
-        } else if (!checkLayoutParams(vlp)) {
-            generateLayoutParams(vlp) as LayoutParams
-        } else {
-            vlp as LayoutParams
-        }
-        addView(this, lp)
+    private fun ImageView.addViewIn() {
+        addView(this)
+        subViews.add(this)
     }
 
-    @SuppressLint("InflateParams")
     fun setData(imageList: List<String>, ratio: Float) {
         this.imageList = ArrayList(imageList)
         this.radio = ratio
         //清除所有子view ，避免 recyclerView 复用导致错乱问题
         removeAllViews()
+        subViews.clear()
         //行数
         rowCount = ceil(imageList.size / 3f).toInt()
         //列数
@@ -170,14 +166,14 @@ class NineGridImageLayout : ViewGroup {
                     borderWidth = dp(0.4f).toFloat()
                     radius = dp(3).toFloat()
                 }
-                .addSystemView()
+                .addViewIn()
         } else {
             imageList.forEach { _ ->
                 RoundCornerImageView(context).apply {
                     borderColor = Color.parseColor("#DBDBDB")
                     borderWidth = dp(0.4f).toFloat()
                     radius = dp(3).toFloat()
-                }.addSystemView()
+                }.addViewIn()
             }
         }
         requestLayout()
@@ -185,17 +181,5 @@ class NineGridImageLayout : ViewGroup {
 
     fun onItemClick(click: (v: View, position: Int) -> Unit) {
         itemClickListener = click
-    }
-}
-
-@BindingAdapter("app:imageList", "app:ratio")
-fun setImageList(view: NineGridImageLayout, imageList: List<String>?, ratio: Float) {
-    //如果为空或者长度为0，就什么都不做
-    imageList?.isNotEmpty()?.let {
-        if (imageList.size > 9)
-        //最多九张
-            view.setData(imageList.subList(0, 8), ratio)
-        else
-            view.setData(imageList, ratio)
     }
 }

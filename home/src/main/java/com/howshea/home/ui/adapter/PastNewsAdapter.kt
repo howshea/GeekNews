@@ -2,6 +2,7 @@ package com.howshea.home.ui.adapter
 
 import android.content.Context
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.component.viewGroup.BaseAdapter.BaseAdapter
 import com.howshea.home.R
@@ -17,9 +18,8 @@ class PastNewsAdapter(items: List<HistoryResult>, private val context: Context) 
         binding.history = item
         Glide.with(context)
             .load(item.cover)
-            .apply(RequestOptions()
-                .placeholder(R.color.divider)
-                .error(R.color.divider))
+            .transition(withCrossFade())
+            .apply(RequestOptions().placeholder(R.color.divider))
             .into(binding.imgCover)
     }
 }

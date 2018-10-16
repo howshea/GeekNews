@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.graphics.drawable.Drawable
+import android.support.v7.widget.AppCompatImageView
 import com.howshea.basemodule.R
 
 
@@ -14,7 +15,7 @@ import com.howshea.basemodule.R
  * Created by Howshea
  * on 2018/10/8
  */
-class RoundCornerImageView : ImageView {
+class RoundCornerImageView : AppCompatImageView {
     private var _borderWidth = 0f
     private var _borderColor = 0
     //radius of corner
@@ -153,7 +154,7 @@ class RoundCornerImageView : ImageView {
                     val scaleX = viewWidth / drawableWidth.toFloat()
                     val scaleY = viewHeight / drawableHeight.toFloat()
                     _matrix?.setScale(scaleX, scaleY)
-                    _matrix?.postTranslate(borderWidth,borderWidth)
+                    _matrix?.postTranslate(borderWidth, borderWidth)
                 }
                 else -> {
                     if (drawableWidth * viewHeight > viewWidth * drawableHeight) {
@@ -162,7 +163,7 @@ class RoundCornerImageView : ImageView {
                         dy = (viewHeight - drawableHeight * scale) * 0.5f
                     }
                     _matrix?.setScale(scale, scale)
-                    _matrix?.postTranslate(borderWidth+dx, borderWidth+dy)
+                    _matrix?.postTranslate(borderWidth + dx, borderWidth + dy)
                 }
             }
         }
