@@ -148,7 +148,7 @@ class NineGridImageLayout : ViewGroup {
 
     private fun setGone() {
         (0 until childCount).forEach {
-            getChildAt(it).visibility = View.GONE
+            getChildAt(it).visibility = View.INVISIBLE
         }
     }
 
