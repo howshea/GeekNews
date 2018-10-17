@@ -1,8 +1,6 @@
 package com.howshea.basemodule.component.viewGroup
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.databinding.BindingAdapter
 import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
@@ -40,8 +38,7 @@ class NineGridImageLayout : ViewGroup {
     //url list
     private var imageList = arrayListOf<String>()
     //单图宽高比
-    var radio = 0f
-    private var subViews: ArrayList<ImageView> = ArrayList()
+    var ratio = 0f
 
     private var itemClickListener: ((v: View, position: Int) -> Unit)? = null
 
@@ -65,8 +62,8 @@ class NineGridImageLayout : ViewGroup {
         gridSize = (availableWidth - spacing * 2) / 3
         val height =
             if (imageList.size == 1) {
-                if (radio > 1)
-                    (singleImgSize / radio).toInt() + paddingTop + paddingBottom
+                if (ratio > 1)
+                    (singleImgSize / ratio).toInt() + paddingTop + paddingBottom
                 else
                     singleImgSize + paddingTop + paddingBottom
             } else if (imageList.size > 1) {
@@ -85,11 +82,22 @@ class NineGridImageLayout : ViewGroup {
         var top: Int
         var right: Int
         var bottom: Int
+        setGone()
         when (imageList.size) {
             1 -> {
-                val view = getChildAt(0) as RoundCornerImageView
-                right = paddingLeft + view.layoutParams.width
-                bottom = paddingTop + view.layoutParams.height
+                val view = getChildAt(0) as ImageView
+                view.visibility = View.VISIBLE
+                val viewHeight: Int
+                val viewWidth: Int
+                if (ratio > 1) {
+                    viewHeight = (singleImgSize / ratio).toInt()
+                    viewWidth = singleImgSize
+                } else {
+                    viewHeight = singleImgSize
+                    viewWidth = (singleImgSize * ratio).toInt()
+                }
+                right = paddingLeft + viewWidth
+                bottom = paddingTop + viewHeight
                 view.layout(paddingLeft, paddingTop, right, bottom)
                 view.setOnClickListener {
                     itemClickListener?.invoke(it, 0)
@@ -102,11 +110,10 @@ class NineGridImageLayout : ViewGroup {
                 var row: Int
                 var column: Int
                 imageList.forEachIndexed { index, _ ->
-                    val view = getChildAt(index) as RoundCornerImageView
-
+                    val view = getChildAt(index) as ImageView
+                    view.visibility = View.VISIBLE
                     //图片数量为4的时候第二张需要换行
                     row = index / (if (imageList.size == 4) 2 else 3)
-
                     column = index % columnCount
                     left = (gridSize + spacing) * column + paddingLeft
                     top = (gridSize + spacing) * row + paddingTop
@@ -125,8 +132,8 @@ class NineGridImageLayout : ViewGroup {
     }
 
     fun loadImages(loader: (v: ImageView, url: String) -> Unit) {
-        subViews.forEachIndexed { index, view ->
-            loader(view, imageList[index])
+        (0 until imageList.size).forEach {
+            loader(getChildAt(it) as ImageView, imageList[it])
         }
     }
 
@@ -137,49 +144,46 @@ class NineGridImageLayout : ViewGroup {
 
     private fun ImageView.addViewIn() {
         addView(this)
-        subViews.add(this)
+    }
+
+    private fun setGone() {
+        (0 until childCount).forEach {
+            getChildAt(it).visibility = View.GONE
+        }
     }
 
     fun setData(imageList: List<String>, ratio: Float) {
-        this.imageList = ArrayList(imageList)
-        this.radio = ratio
-        //清除所有子view ，避免 recyclerView 复用导致错乱问题
-        removeAllViews()
-        subViews.clear()
+        //最多九张
+        this.imageList =
+            if (imageList.size > 9)
+                ArrayList(imageList.subList(0, 8))
+            else
+                ArrayList(imageList)
+        this.ratio = ratio
         //行数
         rowCount = ceil(imageList.size / 3f).toInt()
         //列数
         columnCount = if (imageList.size == 4) 2 else 3
+        //不要重复addView以免造成过多的性能损耗
         if (imageList.size == 1) {
-            RoundCornerImageView(context)
-                .apply {
-                    layoutParams = if (ratio > 1) {
-                        val height = (singleImgSize / ratio).toInt()
-                        val width = singleImgSize
-                        LayoutParams(width, height)
-                    } else {
-                        val height = singleImgSize
-                        val width = (singleImgSize * ratio).toInt()
-                        LayoutParams(width, height)
-                    }
-                    scaleType = ImageView.ScaleType.CENTER_CROP
-                    borderColor = Color.parseColor("#DBDBDB")
-                    borderWidth = dp(0.4f).toFloat()
-                    radius = dp(3).toFloat()
-                }
-                .addViewIn()
+            if (getChildAt(0) == null)
+                generateImageView().addViewIn()
         } else {
-            imageList.forEach { _ ->
-                RoundCornerImageView(context).apply {
-                    scaleType = ImageView.ScaleType.CENTER_CROP
-                    borderColor = Color.parseColor("#DBDBDB")
-                    borderWidth = dp(0.4f).toFloat()
-                    radius = dp(3).toFloat()
-                }.addViewIn()
+            imageList.forEachIndexed { index, _ ->
+                if (getChildAt(index) == null)
+                    generateImageView().addViewIn()
             }
         }
-        requestLayout()
     }
+
+    private fun generateImageView() =
+        RoundCornerImageView(context).apply {
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            borderColor = Color.parseColor("#DBDBDB")
+            borderWidth = dp(0.4f).toFloat()
+            radius = dp(3).toFloat()
+        }
+
 
     fun onItemClick(click: (v: View, position: Int) -> Unit) {
         itemClickListener = click

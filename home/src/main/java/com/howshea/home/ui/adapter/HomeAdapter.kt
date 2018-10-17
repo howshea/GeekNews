@@ -44,11 +44,7 @@ class HomeAdapter(items: List<Common>, private val fragment: Fragment) : BaseAda
     private fun NineGridImageLayout.setImageList(imageList: List<String>?, ratio: Float) {
         //如果为空或者长度为0，就什么都不做
         imageList?.isNotEmpty()?.let {
-            if (imageList.size > 9)
-            //最多九张
-                this.setData(imageList.subList(0, 8), ratio)
-            else
-                this.setData(imageList, ratio)
+            this.setData(imageList, ratio)
         }
     }
 }
