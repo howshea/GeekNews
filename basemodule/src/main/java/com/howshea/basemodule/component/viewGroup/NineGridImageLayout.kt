@@ -71,7 +71,6 @@ class NineGridImageLayout : ViewGroup {
             } else {
                 MeasureSpec.getSize(heightMeasureSpec)
             }
-
         setMeasuredDimension(width, height)
     }
 
@@ -87,17 +86,8 @@ class NineGridImageLayout : ViewGroup {
             1 -> {
                 val view = getChildAt(0) as ImageView
                 view.visibility = View.VISIBLE
-                val viewHeight: Int
-                val viewWidth: Int
-                if (ratio > 1) {
-                    viewHeight = (singleImgSize / ratio).toInt()
-                    viewWidth = singleImgSize
-                } else {
-                    viewHeight = singleImgSize
-                    viewWidth = (singleImgSize * ratio).toInt()
-                }
-                right = paddingLeft + viewWidth
-                bottom = paddingTop + viewHeight
+                right = paddingLeft + view.layoutParams.width
+                bottom = paddingTop + view.layoutParams.height
                 view.layout(paddingLeft, paddingTop, right, bottom)
                 view.setOnClickListener {
                     itemClickListener?.invoke(it, 0)
@@ -168,20 +158,30 @@ class NineGridImageLayout : ViewGroup {
         if (imageList.size == 1) {
             if (getChildAt(0) == null)
                 generateImageView().addViewIn()
+            getChildAt(0).layoutParams = if (ratio > 1) {
+                val height = (singleImgSize / ratio).toInt()
+                val width = singleImgSize
+                LayoutParams(width, height)
+            } else {
+                val height = singleImgSize
+                val width = (singleImgSize * ratio).toInt()
+                LayoutParams(width, height)
+            }
         } else {
             imageList.forEachIndexed { index, _ ->
                 if (getChildAt(index) == null)
                     generateImageView().addViewIn()
+                getChildAt(0).layoutParams = LayoutParams(gridSize, gridSize)
             }
         }
     }
 
     private fun generateImageView() =
         RoundCornerImageView(context).apply {
-            scaleType = ImageView.ScaleType.CENTER_CROP
             borderColor = Color.parseColor("#DBDBDB")
             borderWidth = dp(0.4f).toFloat()
             radius = dp(3).toFloat()
+            scaleType = ImageView.ScaleType.CENTER_CROP
         }
 
 

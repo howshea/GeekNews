@@ -19,8 +19,9 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:menuIcon="@drawable/ic_menu"
             app:navIcon="@drawable/ic_back"
+            app:titleStyle="normal"
             app:titleColor="@color/textSecondary"
-            app:titleSize="16sp" />
+            app:titleSize="18dp" />
 
         <com.howshea.basemodule.component.view.numberProgressBar.NumberProgressBar
             android:id="@+id/progress_bar"
