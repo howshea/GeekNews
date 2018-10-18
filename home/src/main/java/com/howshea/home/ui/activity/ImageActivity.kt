@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v7.app.AppCompatActivity
+import android.transition.*
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -54,6 +55,8 @@ class ImageActivity : AppCompatActivity() {
                 .into(view.pv)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 view.pv.transitionName = "Image $position"
+                window.enterTransition = Fade()
+                window.exitTransition = Fade()
             }
             view.pv.setOnClickListener { onBackPressed() }
             container.addView(view)
