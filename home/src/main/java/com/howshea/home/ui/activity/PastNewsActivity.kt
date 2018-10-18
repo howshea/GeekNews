@@ -32,12 +32,21 @@ class PastNewsActivity : AppCompatActivity() {
         ryc_main.layoutManager = LinearLayoutManager(this)
         model.getHistory().observe(this, Observer {
             it?.let { data ->
-                adapter.setNewData(data)
+                if (adapter.itemCount == 0) {
+                    adapter.setNewData(data)
+                } else {
+                    adapter.addData(data)
+                    adapter.setLoadComplete()
+                }
             }
         })
         model.requestData(page)
         adapter.setItemClick {
             toast("${it.cover}")
+        }
+        adapter.setLoadMoreListener(ryc_main) {
+            page++
+            model.requestData(page)
         }
     }
 }

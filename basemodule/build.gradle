@@ -38,7 +38,6 @@ dependencies {
     api deps.lifecycle.extensions
     //support design
     api deps.support.design
-    api deps.BRVAH
     //glide
     api deps.glide.glide
     kapt deps.glide.compiler

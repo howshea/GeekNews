@@ -34,9 +34,11 @@ class PastNewsViewModel : RxViewModel() {
 
                 }
             )
+            .addDispose()
     }
 
     private fun parseSrc(content: String): String? {
+        //把封面地址提取出来
         val pattern = """src="([^"]+)"""
         val src = Regex(pattern).find(content)?.value
         return src?.split('\"')?.get(1)
