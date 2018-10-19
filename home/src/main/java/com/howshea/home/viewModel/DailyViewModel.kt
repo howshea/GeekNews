@@ -7,6 +7,7 @@ import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.basemodule.extentions.otherwise
 import com.howshea.basemodule.extentions.yes
 import com.howshea.home.model.Common
+import com.howshea.home.model.Daily
 import com.howshea.home.repository.HomeService
 import com.howshea.home.util.getRadioAndCache
 import io.reactivex.Observable
@@ -24,46 +25,43 @@ class DailyViewModel : RxViewModel() {
 
     fun getError(): LiveData<Throwable> = rxError
 
-    fun refresh() = getToday()
+    fun refresh(isComponent: Boolean, date: String) {
+        if (isComponent) {
+            getDaily(date)
+        } else {
+            getToday()
+        }
+    }
+
+    private fun getDaily(date: String) {
+        if (date.length != 8) {
+            rxError.value = IllegalArgumentException("日期格式不正确")
+            return
+        }
+        val year: Int
+        val month: Int
+        val day: Int
+        try {
+            year = date.substring(0..3).toInt()
+            month = date.substring(4..5).toInt()
+            day = date.substring(6..7).toInt()
+        } catch (e: NumberFormatException) {
+            rxError.value = NumberFormatException("日期格式不正确")
+            return
+        }
+        HomeService.getDaily(year, month, day)
+            .uniformDispose()
+
+    }
 
     private fun getToday() {
-        HomeService.getToday()
-            .flatMap<List<Common>> { data ->
-                val tempList: MutableList<Common> = arrayListOf()
-                with(data.results) {
-                    android?.let { tempList += it }
-                    ios?.let { tempList += it }
-                    frontEnd?.let { tempList += it }
-                    app?.let { tempList += it }
-                    sources?.let { tempList += it }
-                    recommend?.let { tempList += it }
-                    girls?.let { it ->
-                        //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
-                        it.forEach { item ->
-                            item.images = mutableListOf(item.url)
-                            item.url = ""
-                        }
-                        tempList += it
-                    }
-                    video?.let { tempList += it }
-                }
-                tempList.forEach { item ->
-                    item.images
-                        ?.let {
-                            it.size == 1
-                        }
-                        ?.yes {
-                            item.ratio = getRadioAndCache(item.images!![0])
-                        }
-                        ?.otherwise {
-                            return@forEach
-                        }
-                        ?: let {
-                            return@forEach
-                        }
+        HomeService.getToday().uniformDispose()
+    }
 
-                }
-                Observable.fromArray(tempList)
+    private fun Observable<Daily>.uniformDispose() {
+        this
+            .flatMap<List<Common>> { data ->
+                dealWithData(data)
             }
             .dispatchDefault()
             .subscribeBy(
@@ -71,11 +69,50 @@ class DailyViewModel : RxViewModel() {
                     dailyData.value = it
                 },
                 onError = {
-                    rxError.value =it
+                    rxError.value = it
                     it.printStackTrace()
                 }
             )
             .addDispose()
+    }
+
+
+    private fun dealWithData(data: Daily): Observable<MutableList<Common>>? {
+        val tempList: MutableList<Common> = arrayListOf()
+        with(data.results) {
+            android?.let { tempList += it }
+            ios?.let { tempList += it }
+            frontEnd?.let { tempList += it }
+            app?.let { tempList += it }
+            sources?.let { tempList += it }
+            recommend?.let { tempList += it }
+            girls?.let { it ->
+                //因为接口里把妹子的图片地址放在了url field里，为了统一处理，这里把图片地址换个位置
+                it.forEach { item ->
+                    item.images = mutableListOf(item.url)
+                    item.url = ""
+                }
+                tempList += it
+            }
+            video?.let { tempList += it }
+        }
+        tempList.forEach { item ->
+            item.images
+                ?.let {
+                    it.size == 1
+                }
+                ?.yes {
+                    item.ratio = getRadioAndCache(item.images!![0])
+                }
+                ?.otherwise {
+                    return@forEach
+                }
+                ?: let {
+                    return@forEach
+                }
+
+        }
+        return Observable.fromArray(tempList)
     }
 }
 

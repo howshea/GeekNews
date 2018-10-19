@@ -43,6 +43,7 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
             }
             binding.executePendingBindings()
         }
+        fun getBinding() = binding
     }
 
     abstract fun bindItem(binding: B, item: T)

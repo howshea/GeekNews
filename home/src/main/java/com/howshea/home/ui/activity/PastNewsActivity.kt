@@ -41,8 +41,10 @@ class PastNewsActivity : AppCompatActivity() {
             }
         })
         model.requestData(page)
-        adapter.setItemClick {
-            toast("${it.cover}")
+        adapter.setItemClick { item ->
+            item.cover?.let {
+                startActivity(PastNewsDetailActivity.newIntent(this@PastNewsActivity, it, item.title, item.publishedAt))
+            }
         }
         adapter.setLoadMoreListener(ryc_main) {
             page++

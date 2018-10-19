@@ -12,7 +12,7 @@ versions.retrofit = "2.3.0"
 versions.okhttp_logging_interceptor = "3.4.1"
 versions.rxkotlin2 = "2.2.0"
 versions.rx_android = "2.0.2"
-versions.glide = "4.5.0"
+versions.glide = "4.8.0"
 def deps = [:]
 
 def support = [:]

@@ -34,7 +34,7 @@ class NineGridImageLayout : ViewGroup {
             requestLayout()
         }
     //单网格宽高
-    private var gridSize = 0
+    private var gridSize = dp(100)
     //url list
     private var imageList = arrayListOf<String>()
     //单图宽高比
@@ -124,6 +124,12 @@ class NineGridImageLayout : ViewGroup {
     fun loadImages(loader: (v: ImageView, url: String) -> Unit) {
         (0 until imageList.size).forEach {
             loader(getChildAt(it) as ImageView, imageList[it])
+        }
+    }
+
+    fun clearImages(cleaner: (v: ImageView)->Unit) {
+        (0 until childCount).forEach {
+            cleaner(getChildAt(it) as ImageView)
         }
     }
 

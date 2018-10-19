@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             app:cover="#66000000"
-            app:ratio="2" />
+            app:ratio="2"
+            tools:src="@drawable/test" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,10 +33,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:maxWidth="230dp"
+                android:maxLines="4"
                 android:text="@{history.title}"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:maxLines="4"
                 tools:text="今日力推：国人出品2KB时间日期库Day.js" />
 
             <ImageView
@@ -58,10 +59,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="@dimen/global_margin"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/global_margin"
                 android:includeFontPadding="false"
                 android:text="@{history.publishedAt.substring(0,10).replace('-','.')}"
                 android:textColor="@color/white"

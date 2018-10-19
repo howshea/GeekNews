@@ -4,10 +4,12 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.TransitionDrawable
+import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.widget.ImageView
-import android.graphics.drawable.Drawable
-import android.support.v7.widget.AppCompatImageView
+import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.howshea.basemodule.R
 
 
@@ -112,24 +114,26 @@ class RoundCornerImageView : AppCompatImageView {
     }
 
     private fun Drawable.toBitmap(): Bitmap {
-        if (this is BitmapDrawable) {
-            return this.bitmap
-        }
-        // 取 drawable 的颜色格式
-        val config = if (this.opacity != PixelFormat.OPAQUE)
-            Bitmap.Config.ARGB_8888
-        else
-            Bitmap.Config.RGB_565
-        val bitmap = if (this is ColorDrawable) {
-            Bitmap.createBitmap(2, 2, config)
+        if (this is GifDrawable || this is ColorDrawable || this is TransitionDrawable) {
+            // 取 drawable 的颜色格式
+            val config = if (this.opacity != PixelFormat.OPAQUE)
+                Bitmap.Config.ARGB_8888
+            else
+                Bitmap.Config.RGB_565
+            val bitmap = if (this is ColorDrawable) {
+                Bitmap.createBitmap(2, 2, config)
+            } else {
+                Bitmap.createBitmap((intrinsicWidth * 0.7).toInt(), (intrinsicHeight * 0.7).toInt(), config)
+            }
+            val canvas = Canvas(bitmap)
+            this.setBounds(0, 0, canvas.width, canvas.height)
+            // 把 drawable 内容画到画布中
+            this.draw(canvas)
+            return bitmap
         } else {
-            Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, config)
+            return (this as BitmapDrawable).bitmap
         }
-        val canvas = Canvas(bitmap)
-        this.setBounds(0, 0, canvas.width, canvas.height)
-        // 把 drawable 内容画到画布中
-        this.draw(canvas)
-        return bitmap
+
     }
 
     private fun generateBitmapShader(drawable: Drawable): BitmapShader {

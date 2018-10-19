@@ -6,7 +6,7 @@ import com.bumptech.glide.request.target.Target
 import com.howshea.basemodule.AppContext
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/9/8.
  */
 @Synchronized
