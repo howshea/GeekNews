@@ -2,8 +2,13 @@ package com.howshea.home.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.ChangeTransform
+import android.transition.Fade
+import android.transition.TransitionSet
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.extentions.addFragment
@@ -45,7 +50,7 @@ class PastNewsDetailActivity : AppCompatActivity() {
         setStatusTransparent()
         initToolbar()
         initHeader()
-        addFragment(R.id.fragment_container, HomeFragment.newInstance(true,time.replace(".","")))
+        addFragment(R.id.fragment_container, HomeFragment.newInstance(true, time.replace(".", "")))
     }
 
     private fun initHeader() {
@@ -60,6 +65,21 @@ class PastNewsDetailActivity : AppCompatActivity() {
         tv_title.translationY = dp(56).toFloat()
         tv_info_title.text = title
         tv_info_time.text = time
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tv_info_title.transitionName = "title"
+            img_cover.transitionName = "cover"
+            tv_info_time.transitionName = "time"
+            window.enterTransition = Fade()
+            window.exitTransition = Fade()
+            val transitionSet = TransitionSet()
+            transitionSet.addTransition(ChangeBounds())
+            transitionSet.addTransition(ChangeTransform())
+            transitionSet.addTarget(img_cover)
+            transitionSet.addTarget(tv_info_time)
+            transitionSet.addTarget(tv_info_title)
+            window.sharedElementEnterTransition = transitionSet
+            window.sharedElementExitTransition = transitionSet
+        }
         var headerIsShow = false
         app_bar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             val scale = verticalOffset.absoluteValue.toFloat() / appBarLayout.totalScrollRange

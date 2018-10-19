@@ -2,17 +2,21 @@ package com.howshea.home.ui.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.view.ViewCompat
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
-import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import com.howshea.home.ui.adapter.PastNewsAdapter
 import com.howshea.home.viewModel.PastNewsViewModel
 import kotlinx.android.synthetic.main.activity_past_news.*
+
 
 class PastNewsActivity : AppCompatActivity() {
 
@@ -43,7 +47,13 @@ class PastNewsActivity : AppCompatActivity() {
         model.requestData(page)
         adapter.setItemClick { item ->
             item.cover?.let {
-                startActivity(PastNewsDetailActivity.newIntent(this@PastNewsActivity, it, item.title, item.publishedAt))
+                val intent = PastNewsDetailActivity.newIntent(this@PastNewsActivity, it, item.title, item.publishedAt)
+//                val pair1 = Pair(tv_info_time as View, ViewCompat.getTransitionName(tv_info_time))
+//                val pair2 = Pair(tv_info_title as View, ViewCompat.getTransitionName(tv_info_title))
+//                val pair3 = Pair(img_cover as View, ViewCompat.getTransitionName(img_cover))
+//                val activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this@PastNewsActivity, pair1, pair2,pair3)
+//                ActivityCompat.startActivity(this@PastNewsActivity, intent, activityOptionsCompat.toBundle())
+                startActivity(intent)
             }
         }
         adapter.setLoadMoreListener(ryc_main) {

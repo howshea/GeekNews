@@ -1,6 +1,7 @@
 package com.howshea.home.ui.adapter
 
 import android.content.Context
+import android.os.Build
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
@@ -22,6 +23,11 @@ class PastNewsAdapter(items: MutableList<HistoryResult>, private val context: Co
             .transition(withCrossFade())
             .apply(RequestOptions().placeholder(R.color.divider).error(R.color.divider))
             .into(binding.imgCover)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            binding.tvTitle.transitionName = "title"
+            binding.imgCover.transitionName = "cover"
+            binding.tvData.transitionName = "time"
+        }
     }
 
     override fun onViewRecycled(holder: ViewHolder) {
