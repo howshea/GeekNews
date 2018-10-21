@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.activity.WebViewActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.howshea.basemodule.component.viewGroup.SToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp">
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:menuIcon="@drawable/ic_menu"
+        app:navIcon="@drawable/ic_back"
+        app:titleColor="@color/textSecondary"
+        app:titleSize="18sp"
+        app:titleStyle="normal" />
 
-        <com.howshea.basemodule.component.viewGroup.SToolbar
-            android:id="@+id/toolbar"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <WebView
+            android:id="@+id/web_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:menuIcon="@drawable/ic_menu"
-            app:navIcon="@drawable/ic_back"
-            app:titleStyle="normal"
-            app:titleColor="@color/textSecondary"
-            app:titleSize="18dp" />
+            android:layout_height="match_parent" />
 
         <com.howshea.basemodule.component.view.numberProgressBar.NumberProgressBar
             android:id="@+id/progress_bar"
             style="@style/NumberProgressBar_Blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="top"
             app:progress_text_visibility="invisible" />
-    </android.support.design.widget.AppBarLayout>
+    </FrameLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <WebView
-            android:id="@+id/web_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" />
-
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

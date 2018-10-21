@@ -33,9 +33,7 @@ class HomeAdapter(items: MutableList<Common>, private val fragment: Fragment) : 
                     .load(url)
                     .transition(withCrossFade())
                     .apply(RequestOptions().placeholder(R.color.divider)
-                        .error(R.color.divider)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                     .into(view)
             }
         }

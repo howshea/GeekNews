@@ -3,6 +3,7 @@ package com.howshea.home.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.webkit.*
 import com.howshea.basemodule.extentions.copyToClipBoard
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
+import com.howshea.basemodule.utils.isOpenApp
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.activity_web_view.*
@@ -78,6 +80,11 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun setWebView() {
+        web_view.run {
+            removeJavascriptInterface("searchBoxJavaBridge_")
+            removeJavascriptInterface("accessibilityTraversal")
+            removeJavascriptInterface("accessibility")
+        }
         webSetting = web_view.settings
         webSetting.apply {
             javaScriptEnabled = true
@@ -85,18 +92,28 @@ class WebViewActivity : AppCompatActivity() {
             loadWithOverviewMode = true
             loadsImagesAutomatically = true
             defaultTextEncodingName = "utf-8"
+            cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
             domStorageEnabled = true
             databaseEnabled = true
             setAppCacheEnabled(true)
-            pluginState = WebSettings.PluginState.ON
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT >= 21) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
         }
         web_view.loadUrl(intent.getStringExtra(EXTRA_URL))
         web_view.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                return super.shouldOverrideUrlLoading(view, request)
+            @Suppress("DEPRECATION", "OverridingDeprecatedMember")
+            override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
+                url ?: return true
+                return if (url.isOpenApp()) {
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (e: Exception) {
+                    }
+                    true
+                } else {
+                    super.shouldOverrideUrlLoading(view, url)
+                }
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {

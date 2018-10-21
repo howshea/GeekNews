@@ -114,6 +114,7 @@ class RoundCornerImageView : AppCompatImageView {
     }
 
     private fun Drawable.toBitmap(): Bitmap {
+        //能省点内存是一点，createBitmap太吃内存了
         if (this is GifDrawable || this is ColorDrawable || this is TransitionDrawable) {
             // 取 drawable 的颜色格式
             val config = if (this.opacity != PixelFormat.OPAQUE)
