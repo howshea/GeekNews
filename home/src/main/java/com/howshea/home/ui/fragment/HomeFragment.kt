@@ -75,9 +75,9 @@ class HomeFragment : LazyFragment() {
 
         model.refresh(isComponent, date)
         layout_refresh.isRefreshing = true
-        adapter.setItemClick {
-            it.url.isNotEmpty().yes {
-                startActivity(WebViewActivity.newIntent(activity!!, it.url))
+        adapter.setItemClick { item, _ ->
+            item.url.isNotEmpty().yes {
+                startActivity(WebViewActivity.newIntent(activity!!, item.url))
             }
         }
         adapter.setOnImageClick { v, position, imageList ->

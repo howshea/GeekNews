@@ -23,12 +23,8 @@ class PastNewsAdapter(items: MutableList<HistoryResult>, private val context: Co
             .transition(withCrossFade())
             .apply(RequestOptions().placeholder(R.color.divider).error(R.color.divider))
             .into(binding.imgCover)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            binding.tvTitle.transitionName = "title"
-            binding.imgCover.transitionName = "cover"
-            binding.tvData.transitionName = "time"
-        }
     }
+
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)

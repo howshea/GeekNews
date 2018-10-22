@@ -17,11 +17,13 @@
         <com.howshea.basemodule.component.view.CoverImageView
             android:id="@+id/img_cover"
             android:layout_width="match_parent"
+            android:transitionName="cover"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             app:cover="#66000000"
             app:ratio="2"
-            tools:src="@drawable/test" />
+            tools:src="@drawable/test"
+            tools:targetApi="lollipop" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -37,7 +39,9 @@
                 android:text="@{history.title}"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                tools:text="今日力推：国人出品2KB时间日期库Day.js" />
+                android:transitionName="title"
+                tools:text="今日力推：国人出品2KB时间日期库Day.js"
+                tools:targetApi="lollipop" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -62,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
+                android:transitionName="time"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="@dimen/global_margin"
                 android:includeFontPadding="false"
@@ -69,7 +74,8 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 tools:ignore="RelativeOverlap"
-                tools:text="2018.01.01" />
+                tools:text="2018.01.01"
+                tools:targetApi="lollipop" />
         </RelativeLayout>
     </FrameLayout>
 </layout>

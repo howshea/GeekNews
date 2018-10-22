@@ -12,7 +12,7 @@ import android.view.ViewGroup
  * on 2018/9/10
  */
 abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableList<T>, private var layoutRes: Int) : RecyclerView.Adapter<BaseAdapter<T, B>.ViewHolder>() {
-    private var itemClickListener: ((item: T) -> Unit)? = null
+    private var itemClickListener: ((item: T, binding: B) -> Unit)? = null
     private var isLoading = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,16 +39,17 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
         fun bind(item: T) {
             bindItem(binding, item)
             binding.root.setOnClickListener {
-                itemClickListener?.invoke(item)
+                itemClickListener?.invoke(item,binding)
             }
             binding.executePendingBindings()
         }
+
         fun getBinding() = binding
     }
 
     abstract fun bindItem(binding: B, item: T)
 
-    fun setItemClick(click: (item: T) -> Unit) {
+    fun setItemClick(click: (item: T, binding: B) -> Unit) {
         itemClickListener = click
     }
 

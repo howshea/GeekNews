@@ -8,6 +8,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -21,11 +22,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:transitionName="cover"
                 app:cover="#66000000"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5"
                 app:ratio="1.286"
-                tools:src="@drawable/test" />
+                tools:src="@drawable/test"
+                tools:targetApi="lollipop" />
 
             <com.howshea.basemodule.component.view.CoverImageView
                 android:id="@+id/img_cover_blur"
@@ -56,7 +59,9 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/white"
                     android:textSize="22sp"
-                    tools:text="今日力推：全部干货" />
+                    android:transitionName="title"
+                    tools:text="今日力推：全部干货"
+                    tools:targetApi="lollipop" />
 
                 <TextView
                     android:id="@+id/tv_info_time"
@@ -65,16 +70,18 @@
                     android:layout_marginTop="7dp"
                     android:includeFontPadding="false"
                     android:textColor="@color/white"
+                    android:transitionName="time"
                     android:textSize="12sp"
-                    tools:text="2018.05.24" />
+                    tools:text="2018.05.24"
+                    tools:targetApi="lollipop" />
             </LinearLayout>
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
+                android:layout_gravity="top"
                 app:navigationIcon="@drawable/ic_back_white"
                 app:title="">
 

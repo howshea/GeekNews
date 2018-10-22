@@ -6,6 +6,11 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="Transparent" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="item_desc" parent="AppTheme">

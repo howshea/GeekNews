@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -45,15 +46,14 @@ class PastNewsActivity : AppCompatActivity() {
             }
         })
         model.requestData(page)
-        adapter.setItemClick { item ->
+        adapter.setItemClick { item, binding ->
             item.cover?.let {
                 val intent = PastNewsDetailActivity.newIntent(this@PastNewsActivity, it, item.title, item.publishedAt)
-//                val pair1 = Pair(tv_info_time as View, ViewCompat.getTransitionName(tv_info_time))
-//                val pair2 = Pair(tv_info_title as View, ViewCompat.getTransitionName(tv_info_title))
-//                val pair3 = Pair(img_cover as View, ViewCompat.getTransitionName(img_cover))
-//                val activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this@PastNewsActivity, pair1, pair2,pair3)
-//                ActivityCompat.startActivity(this@PastNewsActivity, intent, activityOptionsCompat.toBundle())
-                startActivity(intent)
+                val pair1 = Pair(binding.tvTitle as View, ViewCompat.getTransitionName(binding.tvTitle))
+                val pair2 = Pair(binding.tvData as View, ViewCompat.getTransitionName(binding.tvData))
+                val pair3 = Pair(binding.imgCover as View, ViewCompat.getTransitionName(binding.imgCover))
+                val activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this@PastNewsActivity, pair1, pair2, pair3)
+                ActivityCompat.startActivity(this@PastNewsActivity, intent, activityOptionsCompat.toBundle())
             }
         }
         adapter.setLoadMoreListener(ryc_main) {
