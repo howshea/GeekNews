@@ -76,17 +76,6 @@ class PastNewsDetailActivity : AppCompatActivity() {
                 tv_title.animate().translationY(dp(56).toFloat()).alpha(0f)
             }
         }
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            window.enterTransition = Fade()
-//            window.exitTransition = Fade()
-//            val transitionSet = TransitionSet()
-//            transitionSet.addTransition(ChangeBounds())
-//            transitionSet.addTransition(ChangeImageTransform())
-//            transitionSet.addTarget(tv_info_title)
-//            transitionSet.addTarget(tv_info_time)
-//            transitionSet.addTarget(img_cover)
-//            window.sharedElementEnterTransition = transitionSet
-//        }
 
     }
 

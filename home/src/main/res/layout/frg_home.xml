@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:menuIcon="@drawable/ic_history"
         app:navIcon="@drawable/ic_search"
+        app:titleColor="@color/darkBlue"
         app:title="Geek News" />
 
     <View

@@ -9,6 +9,7 @@ import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.gankio.utils.disableShiftMode
 import com.howshea.gankio.utils.setupWithViewPager
 import com.howshea.home.ui.fragment.HomeFragment
+import com.howshea.read.ui.ReadFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
     inner class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return when (position) {
-                1 -> HomeFragment()
+                0 -> HomeFragment()
+                1 -> ReadFragment()
                 else -> HomeFragment()
             }
         }

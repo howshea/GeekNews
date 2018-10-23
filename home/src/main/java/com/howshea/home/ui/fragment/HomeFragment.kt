@@ -9,7 +9,7 @@ import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.howshea.basemodule.component.fragment.LazyFragment
-import com.howshea.basemodule.extentions.formatStringColor
+import com.howshea.basemodule.extentions.setLogo
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.extentions.yes
 import com.howshea.basemodule.utils.getStatusBarHeight
@@ -116,13 +116,5 @@ class HomeFragment : LazyFragment() {
         }
     }
 
-    /**
-     * 换色四连
-     */
-    private fun CharSequence.setLogo(): CharSequence {
-        return this.formatStringColor(R.color.blue, 0, 1)
-            .formatStringColor(R.color.red, 1, 2)
-            .formatStringColor(R.color.yellow, 2, 3)
-            .formatStringColor(R.color.green, 3, 4)
-    }
+
 }

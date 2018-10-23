@@ -213,7 +213,7 @@ class SToolbar : FrameLayout {
             titleMarginEnd?.let {
                 marginEnd = it
             }
-            minimumHeight = contentHeight
+            height = contentHeight
             gravity = if (titleGravity == 1) Gravity.CENTER else Gravity.START or Gravity.CENTER_VERTICAL
         }
     }

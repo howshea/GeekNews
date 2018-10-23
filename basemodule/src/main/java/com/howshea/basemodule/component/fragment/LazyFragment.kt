@@ -36,14 +36,13 @@ abstract class LazyFragment : Fragment() {
         return inflater.inflate(getLayoutId(), container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initView()
         isInit = true
         userVisibleHint.yes {
             getData()
             isFirstVisible = false
         }
-
     }
 }

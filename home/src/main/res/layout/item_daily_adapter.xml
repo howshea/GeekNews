@@ -29,7 +29,7 @@
             android:includeFontPadding="false"
             android:letterSpacing="0.02"
             android:lineSpacingExtra="4dp"
-            android:text="@{common.desc}"
+            android:text="@{common.desc.replace('\n',' ').trim()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
