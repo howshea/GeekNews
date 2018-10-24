@@ -1,4 +1,4 @@
-package com.howshea.gankio
+package com.howshea.geekNews
 
 import org.junit.Test
 
