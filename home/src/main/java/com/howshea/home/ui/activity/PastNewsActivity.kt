@@ -13,6 +13,7 @@ import android.view.View
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
+import com.howshea.basemodule.utils.toast
 import com.howshea.home.R
 import com.howshea.home.ui.adapter.PastNewsAdapter
 import com.howshea.home.viewModel.PastNewsViewModel
@@ -43,6 +44,11 @@ class PastNewsActivity : AppCompatActivity() {
                     adapter.addData(data)
                     adapter.setLoadComplete()
                 }
+            }
+        })
+        model.getError().observe(this, Observer {
+            it?.let { _ ->
+                toast("${it.message}")
             }
         })
         model.requestData(page)

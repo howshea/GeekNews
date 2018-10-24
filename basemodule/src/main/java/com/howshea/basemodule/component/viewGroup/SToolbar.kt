@@ -169,10 +169,10 @@ class SToolbar : FrameLayout {
                 setTextColor(titleColor)
                 setTypeface(Typeface.DEFAULT, titleStyle)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
-                setSingleLine()
                 ellipsize = TextUtils.TruncateAt.MARQUEE
                 marqueeRepeatLimit = -1
                 gravity = Gravity.CENTER
+                setSingleLine()
                 layoutParams = getTitleLp()
             }.apply {
                 addSystemView()
@@ -204,7 +204,7 @@ class SToolbar : FrameLayout {
     }
 
     private fun getTitleLp(): FrameLayout.LayoutParams {
-        return generateDefaultLayoutParams().apply {
+        return LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
             marginStart = navButton?.let { iconSize + dp(32) } ?: dp(16)
             marginEnd = menuButton?.let { iconSize + dp(32) } ?: dp(16)
             titleMarginStart?.let {

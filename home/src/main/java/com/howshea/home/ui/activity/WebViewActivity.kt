@@ -40,12 +40,12 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_web_view)
         url = intent.getStringExtra(EXTRA_URL)
         setStatusTransAndDarkIcon(Color.WHITE)
-        toolbar.topPadding = getStatusBarHeight()
-        setWebView()
         toolbar.apply {
+            topPadding = getStatusBarHeight()
             setOnNavClick { onBackPressed() }
             setOnMenuClick { menuDialog.show() }
         }
+        setWebView()
     }
 
     private fun initDialog(): BottomSheetDialog {

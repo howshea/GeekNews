@@ -15,7 +15,10 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class PastNewsViewModel : RxViewModel() {
     private val history: MutableLiveData<List<HistoryResult>> = MutableLiveData()
+    private val rxError: MutableLiveData<Throwable> = MutableLiveData()
+
     fun getHistory(): LiveData<List<HistoryResult>> = history
+    fun getError(): LiveData<Throwable> = rxError
 
     fun requestData(page: Int) {
         HomeService.getHistory(10, page)
@@ -31,7 +34,8 @@ class PastNewsViewModel : RxViewModel() {
                     history.value = it
                 },
                 onError = {
-
+                    rxError.value = it
+                    it.printStackTrace()
                 }
             )
             .addDispose()

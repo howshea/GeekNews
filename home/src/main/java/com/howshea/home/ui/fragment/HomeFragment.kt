@@ -67,9 +67,7 @@ class HomeFragment : LazyFragment() {
         model.getError().observe(this, Observer { it ->
             it?.let {
                 layout_refresh.isRefreshing = false
-                it.message?.let { msg ->
-                    toast(msg)
-                }
+                toast("${it.message}")
             }
         })
 
