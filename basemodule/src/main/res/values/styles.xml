@@ -42,4 +42,9 @@
         <item name="progress_reached_bar_height">1.7dp</item>
         <item name="progress_unreached_bar_height">1.7dp</item>
     </style>
+    
+    <style name="TabTextAppearance">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/greyBlue1</item>
+    </style>
 </resources>

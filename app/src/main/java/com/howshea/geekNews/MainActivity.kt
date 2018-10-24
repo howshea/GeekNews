@@ -1,5 +1,6 @@
 package com.howshea.geekNews
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setStatusTransAndDarkIcon()
+        setStatusTransAndDarkIcon(Color.WHITE)
         bottom_nav.disableShiftMode()
         view_pager.adapter = MainPagerAdapter(supportFragmentManager)
         view_pager.offscreenPageLimit = 3
