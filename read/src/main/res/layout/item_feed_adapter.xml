@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.howshea.read.model.Feed.Results" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp">
+
+        <com.howshea.basemodule.component.view.RoundCornerImageView
+            android:id="@+id/img_cover"
+            android:layout_width="100dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="@dimen/global_margin"
+            android:scaleType="centerCrop"
+            app:borderColor="@color/border"
+            app:borderWidth="0.5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:radius="8dp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/title_feed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="@dimen/global_margin"
+            android:maxLines="3"
+            android:text="@{item.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_cover"
+            app:layout_constraintTop_toTopOf="@id/img_cover"
+            tools:text="特斯拉上海工厂能让新车便宜近 20 万，但它可能来晚了" />
+
+        <com.howshea.basemodule.component.view.RoundCornerImageView
+            android:id="@+id/img_icon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            app:borderColor="@color/border"
+            app:borderWidth="0.4dp"
+            app:layout_constraintBottom_toBottomOf="@id/img_cover"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:radius="6dp" />
+
+        <TextView
+            android:id="@+id/tv_publisher_time"
+            style="@style/item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@{item.site.name+` · `+item.published_at.substring(0,10).replace('-','.')}"
+            android:textColor="@color/textThird"
+            app:layout_constraintBottom_toBottomOf="@id/img_icon"
+            app:layout_constraintStart_toEndOf="@id/img_icon"
+            app:layout_constraintTop_toTopOf="@id/img_icon"
+            tools:text="好奇心日报 · 2018.10.22" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
+
+

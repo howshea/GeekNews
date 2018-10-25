@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -16,6 +16,13 @@
     <style name="item_desc" parent="AppTheme">
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="title_feed" parent="AppTheme">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0.02</item>
     </style>
 
     <style name="item_author">
@@ -42,7 +49,7 @@
         <item name="progress_reached_bar_height">1.7dp</item>
         <item name="progress_unreached_bar_height">1.7dp</item>
     </style>
-    
+
     <style name="TabTextAppearance">
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/greyBlue1</item>

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ReadFragment">
+    tools:context=".ui.fragment.ReadFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         app:elevation="0dp">
 
         <com.howshea.basemodule.component.viewGroup.SToolbar
@@ -25,6 +25,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            app:tabContentStart="@dimen/global_margin"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="2.5dp"
             app:tabMode="scrollable"

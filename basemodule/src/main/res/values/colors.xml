@@ -13,6 +13,7 @@
     <color name="textPrimary">#404450</color>
     <color name="textSecondary">#707070</color>
     <color name="textThird">#C3C4D1</color>
+    <color name="border">#DBDBDB</color>
     <color name="grey_f0">#f0f0f0</color>
     <color name="divider">#f4f4f4</color>
     <color name="bg_tag">#F0F3F5</color>
