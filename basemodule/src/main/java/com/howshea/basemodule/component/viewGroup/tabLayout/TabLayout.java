@@ -1928,19 +1928,24 @@ public class TabLayout extends HorizontalScrollView {
         }
 
         private void updateIndicatorPosition() {
-            final View selectedTitle = getChildAt(mSelectedPosition);
+            final TabView selectedTitle = (TabView) getChildAt(mSelectedPosition);
             int left, right;
 
             if (selectedTitle != null && selectedTitle.getWidth() > 0) {
-                left = selectedTitle.getLeft();
-                right = selectedTitle.getRight();
+                int spacing = (selectedTitle.getWidth() - selectedTitle.mTextView.getMeasuredWidth()) / 2;
+                left = selectedTitle.getLeft() + spacing;
+                right = selectedTitle.getRight() - spacing;
 
                 if (mSelectionOffset > 0f && mSelectedPosition < getChildCount() - 1) {
                     // Draw the selection partway between the tabs
-                    View nextTitle = getChildAt(mSelectedPosition + 1);
-                    left = (int) (mSelectionOffset * nextTitle.getLeft() +
+                    TabView nextTitle = (TabView) getChildAt(mSelectedPosition + 1);
+                    int nextSpacing = (nextTitle.getWidth() - nextTitle.mTextView.getMeasuredWidth()) / 2;
+                    int nextLeft = nextTitle.getLeft() + nextSpacing;
+                    int nextRight = nextTitle.getRight() - nextSpacing;
+
+                    left = (int) (mSelectionOffset * nextLeft +
                             (1.0f - mSelectionOffset) * left);
-                    right = (int) (mSelectionOffset * nextTitle.getRight() +
+                    right = (int) (mSelectionOffset * nextRight +
                             (1.0f - mSelectionOffset) * right);
                 }
             } else {
@@ -1973,11 +1978,10 @@ public class TabLayout extends HorizontalScrollView {
                 updateIndicatorPosition();
                 return;
             }
-//            int targetPaddingLeft = targetView.getPaddingLeft();
-//            int targetPaddingRight = targetView.getPaddingRight();
-//            int targetSpacing = (targetView.getRight() - targetView.getLeft() - targetPaddingLeft - targetPaddingRight - targetView.mTextView.getMeasuredWidth()) / 2;
-            final int targetLeft = targetView.getLeft();
-            final int targetRight = targetView.getRight();
+
+            int targetSpacing = (targetView.getWidth() - targetView.mTextView.getMeasuredWidth()) / 2;
+            final int targetLeft = targetView.getLeft() + targetSpacing;
+            final int targetRight = targetView.getRight() - targetSpacing;
             final int startLeft;
             final int startRight;
             if (Math.abs(position - mSelectedPosition) <= 1) {
@@ -2034,12 +2038,11 @@ public class TabLayout extends HorizontalScrollView {
             super.draw(canvas);
 
             // Thick colored underline below the current selection
-            TabView tab = (TabView) getChildAt(mSelectedPosition);
-            int paddingLeft = tab.getPaddingLeft();
-            int paddingRight = tab.getPaddingRight();
-            int spacing = (mIndicatorRight - mIndicatorLeft - paddingLeft - paddingRight - tab.mTextView.getMeasuredWidth()) / 2;
+//            TabView tab = (TabView) getChildAt(mSelectedPosition);
+//            int paddingLeft = tab.getPaddingLeft();
+//            int paddingRight = tab.getPaddingRight();
             if (mIndicatorLeft >= 0 && mIndicatorRight > mIndicatorLeft) {
-                RectF rectF = new RectF(mIndicatorLeft + paddingLeft + spacing, getHeight() - mSelectedIndicatorHeight, mIndicatorRight - spacing - paddingRight, getHeight() + mSelectedIndicatorHeight);
+                RectF rectF = new RectF(mIndicatorLeft, getHeight() - mSelectedIndicatorHeight, mIndicatorRight, getHeight() + mSelectedIndicatorHeight);
                 mSelectedIndicatorPaint.setAntiAlias(true);
                 canvas.drawRoundRect(rectF, mSelectedIndicatorHeight, mSelectedIndicatorHeight, mSelectedIndicatorPaint);
             }
