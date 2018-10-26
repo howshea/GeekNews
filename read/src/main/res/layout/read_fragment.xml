@@ -10,8 +10,8 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        android:background="@color/white">
 
         <com.howshea.basemodule.component.viewGroup.SToolbar
             android:id="@+id/toolbar"
@@ -31,6 +31,10 @@
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/colorPrimary"
             app:tabTextAppearance="@style/TabTextAppearance" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"/>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  * Created by Howshea
  * on 2018/7/13.
  */
-private const val BASE_URL = "https://gank.io/api/"
+private const val GANK_URL = "https://gank.io/api/"
 
 private val cacheFile by lazy {
     File(AppContext.cacheDir, "WebServiceCache").apply {
@@ -35,6 +35,6 @@ val retrofit: Retrofit by lazy {
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
         )
-        .baseUrl(BASE_URL)
+        .baseUrl(GANK_URL)
         .build()
 }

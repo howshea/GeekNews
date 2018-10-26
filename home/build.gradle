@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion build_versions.target_sdk
     defaultConfig {
@@ -21,6 +23,11 @@ android {
     dataBinding {
         enabled = true
     }
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
 }
 
 dependencies {
@@ -32,4 +39,5 @@ dependencies {
     //module
     implementation project(':basemodule')
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    kapt deps.arouter.compiler
 }

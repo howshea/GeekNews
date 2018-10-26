@@ -204,7 +204,7 @@ class SToolbar : FrameLayout {
     }
 
     private fun getTitleLp(): FrameLayout.LayoutParams {
-        return LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
+        return generateDefaultLayoutParams().apply {
             marginStart = navButton?.let { iconSize + dp(32) } ?: dp(16)
             marginEnd = menuButton?.let { iconSize + dp(32) } ?: dp(16)
             titleMarginStart?.let {

@@ -39,7 +39,7 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
         fun bind(item: T) {
             bindItem(binding, item)
             binding.root.setOnClickListener {
-                itemClickListener?.invoke(item,binding)
+                itemClickListener?.invoke(item, binding)
             }
             binding.executePendingBindings()
         }
@@ -82,6 +82,10 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
     }
 
     fun setLoadComplete() {
+        isLoading = false
+    }
+
+    fun setLoadFail() {
         isLoading = false
     }
 

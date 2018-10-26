@@ -13,6 +13,8 @@ versions.okhttp_logging_interceptor = "3.4.1"
 versions.rxkotlin2 = "2.2.0"
 versions.rx_android = "2.0.2"
 versions.glide = "4.8.0"
+versions.arouter_api = "1.4.1"
+versions.arounter_compiler = "1.2.2"
 def deps = [:]
 
 def support = [:]
@@ -28,12 +30,12 @@ deps.lifecycle = lifecycle
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
 retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
-retrofit.rxjava2= "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 deps.retrofit = retrofit
 
 deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging_interceptor"
 deps.rxkotlin2 = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin2"
-deps.rx_android ="io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 
 def test = [:]
 test.junit = "junit:junit:$versions.junit"
@@ -49,6 +51,11 @@ def glide = [:]
 glide.glide = "com.github.bumptech.glide:glide:$versions.glide"
 glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
 deps.glide = glide
+
+def arouter = [:]
+arouter.api = "com.alibaba:arouter-api:$versions.arouter_api"
+arouter.compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+deps.arouter = arouter
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 

@@ -1,11 +1,14 @@
 package com.howshea.read.ui.fragment
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.howshea.basemodule.component.fragment.LazyFragment
+import com.howshea.basemodule.utils.toast
 import com.howshea.read.R
 import com.howshea.read.ui.adapter.FeedAdapter
+import com.howshea.read.ui.adapter.SimpleDecoration
 import com.howshea.read.viewModel.FeedViewModel
 import kotlinx.android.synthetic.main.feed_fragment.*
 
@@ -17,16 +20,18 @@ class FeedFragment : LazyFragment() {
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProviders.of(this).get(FeedViewModel::class.java)
     }
-    private val enName by lazy { arguments?.getString(ARG_EN_NAME) ?: "" }
+    private val typeId by lazy { arguments?.getString(ARG_TYPE_ID) ?: "" }
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) { FeedAdapter(arrayListOf(), this) }
+    private var page: Int = 1
+
 
     companion object {
-        private const val ARG_EN_NAME = "en_name"
-        fun newInstance(enName: String): FeedFragment {
+        private const val ARG_TYPE_ID = "typeId"
+        fun newInstance(typeId: String): FeedFragment {
             val fragment = FeedFragment()
             val arg = Bundle()
-            arg.putString(ARG_EN_NAME, enName)
+            arg.putString(ARG_TYPE_ID, typeId)
             fragment.arguments = arg
             return fragment
         }
@@ -35,15 +40,49 @@ class FeedFragment : LazyFragment() {
     override fun getLayoutId() = R.layout.feed_fragment
 
     override fun getData() {
+        viewModel.getFeed().observe(this, Observer {
+            it?.let { data ->
+                if (page == 1) {
+                    adapter.setNewData(data)
+                } else {
+                    adapter.addData(data)
+                    adapter.setLoadComplete()
+                }
+                layout_refresh.isRefreshing = false
+            }
+        })
+        viewModel.getError().observe(this, Observer {
+            it?.message?.let { msg ->
+                toast(msg)
+            }
+            if (page > 1) {
+                adapter.setLoadFail()
+            }
+        })
+        viewModel.refresh(typeId)
+    }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        layout_refresh.isRefreshing = true
+        adapter.setLoadMoreListener(ryc_main) {
+            page++
+            viewModel.requestData(page)
+            layout_refresh.isRefreshing = true
+        }
+        layout_refresh.setOnRefreshListener {
+            page = 1
+            viewModel.refresh(typeId)
+        }
+        adapter.setItemClick { item, binding ->
+
+        }
     }
 
     override fun initView() {
         ryc_main.layoutManager = LinearLayoutManager(activity)
         ryc_main.adapter = adapter
         layout_refresh.setColorSchemeResources(R.color.colorAccent)
-        layout_refresh.setOnRefreshListener {
-            viewModel.refresh(enName)
-        }
+        ryc_main.addItemDecoration(SimpleDecoration())
     }
 }

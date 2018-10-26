@@ -15,16 +15,19 @@ import com.howshea.read.model.Feed
  */
 class FeedAdapter(items: MutableList<Feed.Results>, private val fragment: Fragment) : BaseAdapter<Feed.Results, ItemFeedAdapterBinding>(items, R.layout.item_feed_adapter) {
     override fun bindItem(binding: ItemFeedAdapterBinding, item: Feed.Results) {
-        binding.item = item
-        Glide.with(fragment)
-            .load(item.cover)
-            .transition(withCrossFade())
-            .apply(RequestOptions().placeholder(R.color.divider))
-            .into(binding.imgCover)
+        binding.feed = item
         Glide.with(fragment)
             .load(item.site.icon)
             .transition(withCrossFade())
             .apply(RequestOptions().placeholder(R.color.divider))
             .into(binding.imgIcon)
+        if ("none" != item.cover) {
+            Glide.with(fragment)
+                .load(item.cover)
+                .transition(withCrossFade())
+                .apply(RequestOptions().placeholder(R.color.divider))
+                .into(binding.imgCover)
+        }
+
     }
 }
