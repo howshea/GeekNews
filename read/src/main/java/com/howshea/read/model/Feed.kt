@@ -6,7 +6,7 @@ package com.howshea.read.model
 data class Feed(var error: Boolean,
                 var results: List<Results>) {
     data class Results(var content: String,
-                       var cover: String,
+                       var cover: String?,
                        var crawled: Long,
                        var created_at: String,
                        var deleted: Boolean,

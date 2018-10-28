@@ -25,7 +25,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:scaleType="centerCrop"
-            android:visibility="@{(feed.cover.equals(`none`)||feed.cover==null)?View.GONE:View.VISIBLE}"
+            android:visibility="@{feed.cover==null||(feed.cover.equals(`none`))?View.GONE:View.VISIBLE}"
             app:borderColor="@color/border"
             app:borderWidth="0.5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,12 +68,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="@{feed.site.name+` · `+feed.published_at.substring(0,10).replace('-','.')}"
+            android:text="@{feed.site.name+` . `+feed.published_at.substring(0,10).replace('-','.')}"
             android:textColor="@color/textThird"
             app:layout_constraintBottom_toBottomOf="@id/img_icon"
             app:layout_constraintStart_toEndOf="@id/img_icon"
             app:layout_constraintTop_toTopOf="@id/img_icon"
-            tools:text="好奇心日报 · 2018.10.22" />
+            tools:text="好奇心日报 . 2018.10.22" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -65,12 +65,11 @@ class SToolbar : FrameLayout {
     private var titleMarginStart: Int? = null
     private var titleMarginEnd: Int? = null
     //标题
-    var title: CharSequence = ""
+    var title: CharSequence = "                          "
         set(value) {
             field = value
             titleTextView
                 ?.let {
-                    it.layoutParams = getTitleLp()
                     it.text = value
                 }
         }
@@ -99,7 +98,7 @@ class SToolbar : FrameLayout {
                 if (hasValue(R.styleable.SToolbar_titleMarginEnd))
                     titleMarginEnd = getDimension(R.styleable.SToolbar_titleMarginEnd, 0f).toInt()
 
-                title = getString(R.styleable.SToolbar_title) ?: ""
+                title = getString(R.styleable.SToolbar_title) ?: title
                 titleColor = getColor(R.styleable.SToolbar_titleColor, Color.parseColor("#707070"))
                 titleSize = getDimension(R.styleable.SToolbar_titleSize, sp(20).toFloat())
                 titleStyle = getInt(R.styleable.SToolbar_titleStyle, 1)

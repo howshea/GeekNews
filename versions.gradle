@@ -14,7 +14,7 @@ versions.rxkotlin2 = "2.2.0"
 versions.rx_android = "2.0.2"
 versions.glide = "4.8.0"
 versions.arouter_api = "1.4.1"
-versions.arounter_compiler = "1.2.2"
+versions.arouter_compiler = "1.2.2"
 def deps = [:]
 
 def support = [:]

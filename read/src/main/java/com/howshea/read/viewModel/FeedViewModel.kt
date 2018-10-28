@@ -24,12 +24,12 @@ class FeedViewModel : RxViewModel() {
 
     fun refresh(typeId: String) {
         this.typeId = typeId
-        ReadService.getFeed(typeId, 10, 1)
+        ReadService.getFeed(typeId, 20, 1)
             .uniformDispose()
     }
 
     fun requestData(page: Int) {
-        ReadService.getFeed(typeId, 10, page)
+        ReadService.getFeed(typeId, 20, page)
             .uniformDispose()
     }
 

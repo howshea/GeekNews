@@ -21,6 +21,11 @@ android {
     dataBinding {
         enabled = true
     }
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
 }
 
 dependencies {
@@ -40,9 +45,8 @@ dependencies {
     api deps.support.design
     //glide
     api deps.glide.glide
-    kapt deps.glide.compiler
-
     api deps.arouter.api
+    kapt deps.arouter.compiler
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner

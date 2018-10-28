@@ -59,7 +59,7 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
                 super.onScrolled(ry, dx, dy)
                 val lastVisibleItem = (ry.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                 val totalItemCount = ry.layoutManager.itemCount
-                if (lastVisibleItem >= totalItemCount - 3 && dy > 0) {
+                if (lastVisibleItem >= totalItemCount - 10 && dy > 0) {
                     if (!isLoading) {
                         loader()
                         isLoading = true
@@ -71,7 +71,7 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
                 super.onScrollStateChanged(ry, newState)
                 val lastVisibleItem = (ry.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                 val totalItemCount = ry.layoutManager.itemCount
-                if (lastVisibleItem >= totalItemCount - 3 && newState == 0) {
+                if (lastVisibleItem >= totalItemCount - 10 && newState == 0) {
                     if (!isLoading) {
                         loader()
                         isLoading = true

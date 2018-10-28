@@ -21,7 +21,7 @@ class PastNewsViewModel : RxViewModel() {
     fun getError(): LiveData<Throwable> = rxError
 
     fun requestData(page: Int) {
-        HomeService.getHistory(10, page)
+        HomeService.getHistory(20, page)
             .flatMap<List<HistoryResult>> { data ->
                 data.results.forEach { historyResult ->
                     historyResult.cover = parseSrc(historyResult.cover!!)

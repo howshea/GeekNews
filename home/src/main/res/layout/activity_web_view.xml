@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,23 +8,32 @@
     android:orientation="vertical"
     tools:context=".ui.activity.WebViewActivity">
 
-    <com.howshea.basemodule.component.viewGroup.SToolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:menuIcon="@drawable/ic_menu"
-        app:navIcon="@drawable/ic_back"
-        app:titleColor="@color/textSecondary"
-        app:titleSize="18sp"
-        app:titleStyle="normal" />
+        app:elevation="0dp"
+        android:layout_height="wrap_content">
+
+        <com.howshea.basemodule.component.viewGroup.SToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menuIcon="@drawable/ic_menu"
+            app:navIcon="@drawable/ic_back"
+            app:titleColor="@color/textSecondary"
+            app:titleSize="18sp"
+            app:titleStyle="normal" />
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <WebView
+        <com.howshea.basemodule.component.viewGroup.NestedScrollWebView
             android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -38,4 +47,4 @@
             app:progress_text_visibility="invisible" />
     </FrameLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

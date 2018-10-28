@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.utils.toast
 import com.howshea.read.R
@@ -58,6 +59,7 @@ class FeedFragment : LazyFragment() {
             if (page > 1) {
                 adapter.setLoadFail()
             }
+            layout_refresh.isRefreshing = false
         })
         viewModel.refresh(typeId)
     }
@@ -74,8 +76,11 @@ class FeedFragment : LazyFragment() {
             page = 1
             viewModel.refresh(typeId)
         }
-        adapter.setItemClick { item, binding ->
-
+        adapter.setItemClick { item, _ ->
+            ARouter.getInstance().build("/home/webActivity")
+                .withString("web_url", item.url)
+                .withBoolean("isArticle",true)
+                .navigation()
         }
     }
 

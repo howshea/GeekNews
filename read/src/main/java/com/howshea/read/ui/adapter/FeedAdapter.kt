@@ -1,6 +1,7 @@
 package com.howshea.read.ui.adapter
 
 import android.support.v4.app.Fragment
+import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
@@ -21,13 +22,19 @@ class FeedAdapter(items: MutableList<Feed.Results>, private val fragment: Fragme
             .transition(withCrossFade())
             .apply(RequestOptions().placeholder(R.color.divider))
             .into(binding.imgIcon)
-        if ("none" != item.cover) {
+        if (!(item.cover == "none" || item.cover == null)) {
             Glide.with(fragment)
                 .load(item.cover)
                 .transition(withCrossFade())
                 .apply(RequestOptions().placeholder(R.color.divider))
                 .into(binding.imgCover)
         }
+    }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        if (holder.getBinding().imgCover.visibility == View.VISIBLE) {
+            Glide.with(fragment).clear(holder.getBinding().imgCover)
+        }
     }
 }

@@ -12,15 +12,18 @@ import android.support.v4.app.ShareCompat
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.howshea.basemodule.extentions.copyToClipBoard
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.isOpenApp
+import com.howshea.basemodule.utils.setDarkStatusIcon
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.home.R
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_web.view.*
 
+@Route(path = "/home/webActivity")
 class WebViewActivity : AppCompatActivity() {
     private lateinit var url: String
     private lateinit var webSetting: WebSettings
@@ -28,6 +31,7 @@ class WebViewActivity : AppCompatActivity() {
 
     companion object {
         private const val EXTRA_URL = "web_url"
+        @JvmStatic
         fun newIntent(context: Context, url: String): Intent {
             val intent = Intent(context, WebViewActivity::class.java)
             intent.putExtra(EXTRA_URL, url)
@@ -39,9 +43,8 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         url = intent.getStringExtra(EXTRA_URL)
-        setStatusTransAndDarkIcon(Color.WHITE)
+        setDarkStatusIcon(true)
         toolbar.apply {
-            topPadding = getStatusBarHeight()
             setOnNavClick { onBackPressed() }
             setOnMenuClick { menuDialog.show() }
         }
@@ -122,7 +125,9 @@ class WebViewActivity : AppCompatActivity() {
         }
         web_view.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView?, title: String) {
-                toolbar.title = title
+                //如果是read module 启动的，就不显示title
+                if (!intent.getBooleanExtra("isArticle", false))
+                    toolbar.title = title
             }
 
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
