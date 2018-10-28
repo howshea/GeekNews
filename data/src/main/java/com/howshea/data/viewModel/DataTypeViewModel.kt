@@ -1,52 +1,50 @@
-package com.howshea.read.viewModel
+package com.howshea.data.viewModel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.basemodule.extentions.dispatchDefault
-import com.howshea.read.model.Feed
-import com.howshea.read.repository.ReadService
+import com.howshea.data.model.Data
+import com.howshea.data.repository.DataServices
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import java.lang.Exception
 
 /**
- * Created by Howshea
- * on 2018/10/25
+ * Created by haipo
+ * on 2018/10/29.
  */
-class FeedViewModel : RxViewModel() {
-    private lateinit var typeId: String
-    private val feedLiveDate: MutableLiveData<List<Feed.Results>> = MutableLiveData()
+class DataTypeViewModel : RxViewModel() {
+    private lateinit var type: String
     private val rxError: MutableLiveData<Throwable> = MutableLiveData()
-    fun getFeed(): LiveData<List<Feed.Results>> = feedLiveDate
+    private val dataLiveData: MutableLiveData<List<Data.Results>> = MutableLiveData()
+
     fun getError(): LiveData<Throwable> = rxError
+    fun getTypeData(): LiveData<List<Data.Results>> = dataLiveData
 
-
-    fun refresh(typeId: String) {
-        this.typeId = typeId
-        ReadService.getFeed(typeId, 20, 1)
+    fun refresh(type: String) {
+        this.type = type
+        DataServices.getDataOfType(type, 20, 1)
             .uniformDispose()
     }
 
     fun requestData(page: Int) {
-        ReadService.getFeed(typeId, 20, page)
+        DataServices.getDataOfType(type, 20, page)
             .uniformDispose()
     }
 
-    private fun Observable<Feed>.uniformDispose() {
+    private fun Observable<Data>.uniformDispose() {
         this.dispatchDefault()
             .subscribeBy(
                 onNext = {
                     if (it.error || it.results.isEmpty()) {
                         rxError.value = Exception("服务器错误")
                     } else {
-                        feedLiveDate.value = it.results
+                        dataLiveData.value = it.results
                     }
-                },
-                onError = {
-                    rxError.value = it
                 }
             )
             .addDispose()
     }
+
 }

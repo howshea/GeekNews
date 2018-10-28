@@ -16,6 +16,8 @@
     <style name="item_desc" parent="AppTheme">
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0.02</item>
     </style>
 
     <style name="title_feed" parent="AppTheme">
@@ -28,6 +30,8 @@
     <style name="item_author">
         <item name="android:textColor">@color/textThird</item>
         <item name="android:textSize">11sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0.02</item>
     </style>
 
     <style name="item_share_dialog">

@@ -1,4 +1,4 @@
-package com.howshea.read.ui.fragment
+package com.howshea.data.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,42 +6,37 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.howshea.basemodule.component.fragment.LazyFragment
-import com.howshea.basemodule.utils.toast
-import com.howshea.read.R
-import com.howshea.read.ui.adapter.FeedAdapter
 import com.howshea.basemodule.component.viewGroup.baseAdapter.SimpleDecoration
-import com.howshea.read.viewModel.FeedViewModel
-import kotlinx.android.synthetic.main.feed_fragment.*
+import com.howshea.basemodule.utils.toast
+import com.howshea.data.R
+import com.howshea.data.viewModel.DataTypeViewModel
+import kotlinx.android.synthetic.main.data_type_fragment.*
 
 /**
- * Created by Howshea
- * on 2018/10/24
+ * Created by haipo
+ * on 2018/10/29.
  */
-class FeedFragment : LazyFragment() {
+class DataTypeFragment : LazyFragment() {
+    private val repoType by lazy { arguments?.getString(ARG_REPO_TYPE) ?: "" }
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) { DataTypeAdapter(arrayListOf()) }
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProviders.of(this).get(FeedViewModel::class.java)
+        ViewModelProviders.of(this).get(DataTypeViewModel::class.java)
     }
-    private val typeId by lazy { arguments?.getString(ARG_TYPE_ID) ?: "" }
-
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) { FeedAdapter(arrayListOf(), this) }
     private var page: Int = 1
 
-
     companion object {
-        private const val ARG_TYPE_ID = "typeId"
-        fun newInstance(typeId: String): FeedFragment {
-            val fragment = FeedFragment()
+        private const val ARG_REPO_TYPE = "type"
+        fun newInstance(type: String): DataTypeFragment {
+            val fragment = DataTypeFragment()
             val arg = Bundle()
-            arg.putString(ARG_TYPE_ID, typeId)
+            arg.putString(ARG_REPO_TYPE, type)
             fragment.arguments = arg
             return fragment
         }
     }
 
-    override fun getLayoutId() = R.layout.feed_fragment
-
     override fun getData() {
-        viewModel.getFeed().observe(this, Observer {
+        viewModel.getTypeData().observe(this, Observer {
             it?.let { data ->
                 if (page == 1) {
                     adapter.setNewData(data)
@@ -61,33 +56,31 @@ class FeedFragment : LazyFragment() {
             }
             layout_refresh.isRefreshing = false
         })
-        viewModel.refresh(typeId)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        viewModel.refresh(repoType)
         layout_refresh.isRefreshing = true
-        adapter.setLoadMoreListener(ryc_main) {
+
+        layout_refresh.setOnRefreshListener {
+            page = 1
+            viewModel.refresh(repoType)
+        }
+        adapter.setLoadMoreListener(ryc) {
             page++
             viewModel.requestData(page)
             layout_refresh.isRefreshing = true
         }
-        layout_refresh.setOnRefreshListener {
-            page = 1
-            viewModel.refresh(typeId)
-        }
         adapter.setItemClick { item, _ ->
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", item.url)
-                .withBoolean("isArticle",true)
                 .navigation()
         }
     }
 
     override fun initView() {
-        ryc_main.layoutManager = LinearLayoutManager(activity)
-        ryc_main.adapter = adapter
+        ryc.layoutManager = LinearLayoutManager(activity)
+        ryc.adapter = adapter
         layout_refresh.setColorSchemeResources(R.color.colorAccent)
-        ryc_main.addItemDecoration(SimpleDecoration())
+        ryc.addItemDecoration(SimpleDecoration())
     }
+
+    override fun getLayoutId() = R.layout.data_type_fragment
 }

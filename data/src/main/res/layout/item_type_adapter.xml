@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.howshea.data.model.Data.Results" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/press_effect_white_bg"
+        android:paddingStart="@dimen/global_margin"
+        android:paddingTop="15dp"
+        android:paddingEnd="@dimen/global_margin"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:id="@+id/tv_desc"
+            style="@style/item_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="@{data.desc.replace('\n',' ').trim()}"
+            tools:text="目标检测（Object Detection）任务上深度学习方法的总结" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            style="@style/item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:text="@{data.who}"
+            tools:text="via. avid D. Lee" />
+
+        <TextView
+            android:id="@+id/tv_publish_at"
+            style="@style/item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_desc"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="14dp"
+            android:text="@{data.publishedAt.substring(0,10).replace('-','.')}"
+            tools:text="2018.10.22" />
+    </RelativeLayout>
+</layout>

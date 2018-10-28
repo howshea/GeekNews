@@ -1,4 +1,4 @@
-package com.howshea.read.ui.adapter
+package com.howshea.basemodule.component.viewGroup.baseAdapter
 
 import android.graphics.Canvas
 import android.graphics.Color

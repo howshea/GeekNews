@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
+import com.howshea.data.ui.DataFragment
 import com.howshea.geekNews.utils.disableShiftMode
 import com.howshea.geekNews.utils.setupWithViewPager
 import com.howshea.home.ui.fragment.HomeFragment
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
             return when (position) {
                 0 -> HomeFragment()
                 1 -> ReadFragment()
-                else -> HomeFragment()
+                2 -> DataFragment()
+                else ->HomeFragment()
             }
         }
 
