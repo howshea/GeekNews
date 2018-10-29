@@ -50,6 +50,10 @@ class PastNewsActivity : AppCompatActivity() {
             it?.let { _ ->
                 toast("${it.message}")
             }
+            if (page > 1) {
+                page--
+                adapter.setLoadFail()
+            }
         })
         model.requestData(page)
         adapter.setItemClick { item, binding ->

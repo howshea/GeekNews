@@ -13,7 +13,7 @@ import com.howshea.data.viewModel.DataTypeViewModel
 import kotlinx.android.synthetic.main.data_type_fragment.*
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/10/29.
  */
 class DataTypeFragment : LazyFragment() {
@@ -52,6 +52,7 @@ class DataTypeFragment : LazyFragment() {
                 toast(msg)
             }
             if (page > 1) {
+                page--
                 adapter.setLoadFail()
             }
             layout_refresh.isRefreshing = false

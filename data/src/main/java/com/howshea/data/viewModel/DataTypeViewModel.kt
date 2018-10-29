@@ -11,7 +11,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import java.lang.Exception
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/10/29.
  */
 class DataTypeViewModel : RxViewModel() {
@@ -42,6 +42,9 @@ class DataTypeViewModel : RxViewModel() {
                     } else {
                         dataLiveData.value = it.results
                     }
+                },
+                onError = {
+                    rxError.value = it
                 }
             )
             .addDispose()

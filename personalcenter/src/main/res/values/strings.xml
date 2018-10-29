@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PersonalCenter</string>
+    <string name="myCollections">我的收藏</string>
+    <string name="clearCache">清除缓存</string>
+    <string name="settings">设置中心</string>
+    <string name="about">关于应用</string>
 </resources>

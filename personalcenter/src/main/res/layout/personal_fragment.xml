@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
+
+    <com.howshea.basemodule.component.viewGroup.SToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Me"
+        app:titleColor="@color/darkBlue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="41dp"
+        android:src="@drawable/logo_round_big" />
+
+
+    <TextView
+        android:id="@+id/tv_collection"
+        style="@style/item_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:drawableStart="@drawable/ic_collection"
+        android:text="@string/myCollections" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="53dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/tv_clear"
+        style="@style/item_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_clear"
+        android:text="@string/clearCache" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="53dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/tv_setting"
+        style="@style/item_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_setting"
+        android:text="@string/settings" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="53dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/tv_about"
+        style="@style/item_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_about"
+        android:text="@string/about" />
+</LinearLayout>

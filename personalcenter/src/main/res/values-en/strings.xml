@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PersonalCenter</string>
+    <string name="myCollections">Collections</string>
+    <string name="clearCache">Clear Caches</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+
+</resources>

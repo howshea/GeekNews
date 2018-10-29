@@ -57,6 +57,7 @@ class FeedFragment : LazyFragment() {
                 toast(msg)
             }
             if (page > 1) {
+                page--
                 adapter.setLoadFail()
             }
             layout_refresh.isRefreshing = false
