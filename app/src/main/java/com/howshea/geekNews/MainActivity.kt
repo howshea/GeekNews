@@ -11,7 +11,7 @@ import com.howshea.data.ui.DataFragment
 import com.howshea.geekNews.utils.disableShiftMode
 import com.howshea.geekNews.utils.setupWithViewPager
 import com.howshea.home.ui.fragment.HomeFragment
-import com.howshea.personalcenter.PersonalFragment
+import com.howshea.personalcenter.ui.PersonalFragment
 import com.howshea.read.ui.fragment.ReadFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
