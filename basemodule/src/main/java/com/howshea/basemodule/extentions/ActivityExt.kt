@@ -1,7 +1,10 @@
 package com.howshea.basemodule.extentions
 
+import android.app.Activity
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.ViewGroup
 
 /**
  * Created by Howshea
@@ -14,3 +17,6 @@ fun AppCompatActivity.addFragment(layoutRes: Int, otherFragment: Fragment) {
         .add(layoutRes, otherFragment)
         .commit()
 }
+
+inline val Activity.contentView: View?
+    get() = findViewById<ViewGroup>(android.R.id.content)?.getChildAt(0)

@@ -22,7 +22,6 @@ class DataFragment : LazyFragment() {
     }
 
     override fun initView() {
-        app_bar.topPadding = activity!!.getStatusBarHeight()
         toolbar.title = toolbar.title.setLogo()
     }
 

@@ -2,6 +2,7 @@ package com.howshea.personalcenter.util
 
 import android.content.Context
 import android.os.Environment
+import com.howshea.basemodule.extentions.deleteDir
 import java.io.File
 
 /**
@@ -16,19 +17,3 @@ fun Context.clearCache(): Boolean {
     return result
 }
 
-private fun File.deleteDir(): Boolean {
-    if (isDirectory) {
-        val children = list()
-        if (children != null && children.isNotEmpty()) {
-            children.forEach {
-                val success = File(this, it).deleteDir()
-                if (!success) return false
-            }
-        } else {
-            return delete()
-        }
-    } else if (exists()) {
-        return delete()
-    }
-    return true
-}

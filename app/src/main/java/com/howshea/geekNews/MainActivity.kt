@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
+import com.howshea.basemodule.extentions.contentView
+import com.howshea.basemodule.extentions.topPadding
+import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.data.ui.DataFragment
 import com.howshea.geekNews.utils.disableShiftMode
 import com.howshea.geekNews.utils.setupWithViewPager
 import com.howshea.home.ui.fragment.HomeFragment
-import com.howshea.personalcenter.ui.PersonalFragment
+import com.howshea.personalcenter.ui.fragment.PersonalFragment
 import com.howshea.read.ui.fragment.ReadFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setStatusTransAndDarkIcon(Color.WHITE)
+        contentView?.topPadding = getStatusBarHeight()
         bottom_nav.disableShiftMode()
         view_pager.adapter = MainPagerAdapter(supportFragmentManager)
         view_pager.offscreenPageLimit = 3

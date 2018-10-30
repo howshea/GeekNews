@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/divider"
+    android:orientation="vertical"
+    tools:context=".ui.activity.SettingActivity">
+
+    <com.howshea.basemodule.component.viewGroup.SToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleStyle="normal"
+        app:titleGravity="LEFT"
+        app:contentHeight="55dp"
+        android:id="@+id/toolbar"
+        android:background="@color/white"
+        app:navIcon="@drawable/ic_back"
+        app:title="@string/settings" />
+
+    <TextView
+        android:id="@+id/tv_sort"
+        style="@style/item_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="@string/typeSort" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/tv_github"
+        style="@style/item_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_github" />
+</LinearLayout>

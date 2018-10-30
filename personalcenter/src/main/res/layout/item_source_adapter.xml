@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/global_margin"
+    android:paddingTop="8dp"
+    android:paddingEnd="@dimen/global_margin"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.02"
+        android:textColor="@color/textSecondaryBlue"
+        android:textSize="13sp"
+        tools:targetApi="lollipop"
+        tools:text="rxKotlin2 - ReactvieX" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.02"
+        android:textColor="@color/textThird"
+        android:textSize="12sp"
+        tools:targetApi="lollipop"
+        tools:text="https://github.com/ReactiveX/RxKotlin" />
+</LinearLayout>

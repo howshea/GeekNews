@@ -13,6 +13,7 @@
         app:menuIcon="@drawable/ic_history"
         app:navIcon="@drawable/ic_search"
         app:titleColor="@color/darkBlue"
+        android:background="@color/white"
         app:title="Geek News" />
 
     <View

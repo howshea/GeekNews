@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
-
     </style>
 
     <style name="Transparent" parent="AppTheme">

@@ -96,7 +96,6 @@ class HomeFragment : LazyFragment() {
             toolbar.visibility = View.GONE
             toolbar_divider.visibility = View.GONE
         } else {
-            toolbar.topPadding = activity!!.getStatusBarHeight()
             toolbar.setOnNavClick {
                 toast("计划开发中...")
             }

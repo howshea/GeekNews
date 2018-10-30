@@ -105,7 +105,6 @@ class SToolbar : FrameLayout {
                 titleGravity = getInt(R.styleable.SToolbar_titleGravity, 1)
                 recycle()
             }
-        setBackgroundColor(Color.WHITE)
         initSubView()
     }
 

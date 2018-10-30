@@ -1,2 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.howshea.personalcenter" />
+    package="com.howshea.personalcenter">
+
+    <application>
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.CollectionActivity" />
+        <activity android:name=".ui.activity.AboutActivity"></activity>
+    </application>
+
+</manifest>

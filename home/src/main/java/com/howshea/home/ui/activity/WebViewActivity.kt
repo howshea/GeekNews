@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.howshea.basemodule.extentions.contentView
 import com.howshea.basemodule.extentions.copyToClipBoard
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
@@ -43,7 +44,8 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         url = intent.getStringExtra(EXTRA_URL)
-        setDarkStatusIcon(true)
+        setStatusTransAndDarkIcon()
+        contentView?.topPadding = getStatusBarHeight()
         toolbar.apply {
             setOnNavClick { onBackPressed() }
             setOnMenuClick { menuDialog.show() }
