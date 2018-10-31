@@ -5,7 +5,7 @@
     <string name="settings">设置中心</string>
     <string name="about">关于应用</string>
     <string name="typeSort">首页分类排序</string>
-    <string name="login_github">登录你的 Github 帐号</string>
+    <string name="login_github">登录你的Github帐号 (仅用于保存cookie)</string>
     <string name="brief">简介</string>
     <string name="briefMsg"><b>Geek News</b> 是一个练手项目，使用 Kotlin 语言开发，使用了基于 <b>Android JetPack</b> 中的 ViewModel、LiveData、Data Binding 以及 Room 组成的 MVVM 架构。为了学习和巩固自定义view和viewGroup的绘制，这个项目里尽量少的依赖第三方库，自己实现了不少组件。另外，尝试了一下组件化（但是写完发现由于功能太少，完全没必要）。\nAPI来源: <u>https://gank.io</u>\n项目源码: <u>https://github.com/howshea/GeekNews</u></string>
     <string name="sources">开源库</string>

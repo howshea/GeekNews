@@ -6,7 +6,7 @@ import com.howshea.data.databinding.ItemTypeAdapterBinding
 import com.howshea.data.model.Data
 
 /**
- * Created by haipo
+ * Created by Howshea
  * on 2018/10/29.
  */
 class DataTypeAdapter(items: MutableList<Data.Results>) : BaseAdapter<Data.Results, ItemTypeAdapterBinding>(items, R.layout.item_type_adapter) {

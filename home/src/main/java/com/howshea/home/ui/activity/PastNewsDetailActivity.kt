@@ -2,11 +2,8 @@ package com.howshea.home.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.*
-import android.view.Gravity
+import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.howshea.basemodule.extentions.addFragment

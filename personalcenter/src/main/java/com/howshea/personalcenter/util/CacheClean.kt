@@ -3,7 +3,6 @@ package com.howshea.personalcenter.util
 import android.content.Context
 import android.os.Environment
 import com.howshea.basemodule.extentions.deleteDir
-import java.io.File
 
 /**
  * Created by Howshea

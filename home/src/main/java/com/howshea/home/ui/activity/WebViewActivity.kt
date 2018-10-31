@@ -97,7 +97,6 @@ class WebViewActivity : AppCompatActivity() {
             loadWithOverviewMode = true
             loadsImagesAutomatically = true
             defaultTextEncodingName = "utf-8"
-            cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
             domStorageEnabled = true
             databaseEnabled = true
             setAppCacheEnabled(true)
