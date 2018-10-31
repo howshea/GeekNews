@@ -6,7 +6,7 @@
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.CollectionActivity" />
         <activity android:name=".ui.activity.AboutActivity" />
-        <activity android:name=".ui.activity.TypeSortActivity"></activity>
+        <activity android:name=".ui.activity.TypeSortActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/divider"
+    android:orientation="vertical"
+    tools:context=".ui.activity.TypeSortActivity">
+
+    <com.howshea.basemodule.component.viewGroup.SToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        app:contentHeight="55dp"
+        app:navIcon="@drawable/ic_back"
+        app:title="首页分类排序"
+        app:titleGravity="LEFT"
+        app:titleStyle="normal" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ryc_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
