@@ -44,6 +44,9 @@ class AboutActivity : AppCompatActivity() {
         tv_version.text = AppContext.getVersionName()
         setStatusTransparent()
         toolbar.topPadding = getStatusBarHeight()
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
         app_bar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (verticalOffset == 0) {
                 if (state != CollapsingToolbarLayoutState.EXPANDED) {
@@ -60,7 +63,7 @@ class AboutActivity : AppCompatActivity() {
 
         ryc_sources.layoutManager = LinearLayoutManager(this)
         ryc_sources.adapter = adapter
-        ryc_sources.addItemDecoration(SimpleDecoration())
+        ryc_sources.addItemDecoration(SimpleDecoration(0))
         adapter.setItemClick { item, _ ->
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", item.address)
