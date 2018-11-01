@@ -3,6 +3,7 @@ package com.howshea.personalcenter.ui.activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import com.howshea.basemodule.component.viewGroup.baseAdapter.SimpleDecoration
 import com.howshea.basemodule.extentions.topPadding
@@ -16,7 +17,9 @@ import kotlinx.android.synthetic.main.activity_type_sort.*
 
 class TypeSortActivity : AppCompatActivity() {
     private val typeList = ArrayList<String>()
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) { TypeSortAdapter(typeList,this) }
+    //记录进入时初始排序
+    private val originalList = ArrayList<String>()
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) { TypeSortAdapter(typeList, this) }
 
     companion object {
         private const val typeCount = 8
@@ -43,11 +46,14 @@ class TypeSortActivity : AppCompatActivity() {
             (0 until typeCount).forEach {
                 editor.putString("$KEY_ITEM$it", tempArray[it])
                 typeList.add(tempArray[it])
+                originalList.add(tempArray[it])
             }
             editor.apply()
         } else {
             (0 until typeCount).forEach { it ->
-                typeList.add(sp.getString("$KEY_ITEM$it", ""))
+                val element = sp.getString("$KEY_ITEM$it", "")
+                typeList.add(element)
+                originalList.add(element)
             }
         }
         ryc_sort.layoutManager = LinearLayoutManager(this)
@@ -58,11 +64,31 @@ class TypeSortActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        if (originalList != typeList)
+            AlertDialog.Builder(this)
+                .setTitle("确定要修改排序吗")
+                .setMessage("返回首页手动刷新即可生效")
+                .setPositiveButton("确定") { dialog, _ ->
+                    executeSortResult()
+                    dialog.dismiss()
+                    super.onBackPressed()
+                }
+                .setNegativeButton("取消") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+        else {
+            super.onBackPressed()
+        }
+    }
+
+    //排序结果写入sp
+    private fun executeSortResult() {
         val editor = getSharedPreferences(KEY_SORT, Context.MODE_PRIVATE).edit()
         (0 until typeCount).forEach {
             editor.putString("$KEY_ITEM$it", typeList[it])
         }
         editor.apply()
-        super.onBackPressed()
     }
 }

@@ -57,8 +57,8 @@ class HomeFragment : LazyFragment() {
             it?.let { data ->
                 layout_refresh.isRefreshing = false
                 adapter.setNewData(data)
-                //防止重复添加
                 val decoration = CategoryDecoration(data, context!!)
+                //因为设置中有可能重新排序，所以写移除旧的 Decoration
                 if (ryc_main.itemDecorationCount != 0) {
                     ryc_main.removeItemDecorationAt(0)
                 }

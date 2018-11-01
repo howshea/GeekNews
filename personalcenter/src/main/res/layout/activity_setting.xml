@@ -9,15 +9,15 @@
     tools:context=".ui.activity.SettingActivity">
 
     <com.howshea.basemodule.component.viewGroup.SToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleStyle="normal"
-        app:titleGravity="LEFT"
-        app:contentHeight="55dp"
-        android:id="@+id/toolbar"
         android:background="@color/white"
+        app:contentHeight="55dp"
         app:navIcon="@drawable/ic_back"
-        app:title="@string/settings" />
+        app:title="@string/settings"
+        app:titleGravity="LEFT"
+        app:titleStyle="normal" />
 
     <TextView
         android:id="@+id/tv_sort"
@@ -25,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
+        android:background="@drawable/press_effect_white_bg"
+        android:paddingBottom="18dp"
         android:text="@string/typeSort" />
 
     <View
@@ -32,10 +34,29 @@
         android:layout_height="0.7dp"
         android:background="@color/divider" />
 
-    <TextView
-        android:id="@+id/tv_github"
-        style="@style/item_setting"
+    <LinearLayout
+        android:id="@+id/ll_github"
         android:layout_width="match_parent"
+        android:background="@drawable/press_effect_white_bg"
         android:layout_height="wrap_content"
-        android:text="@string/login_github" />
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/item_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_github" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="@dimen/global_margin"
+            android:layout_marginBottom="18dp"
+            android:text="@string/hint_cookie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textThird"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
 </LinearLayout>

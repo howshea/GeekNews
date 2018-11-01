@@ -49,8 +49,8 @@ class FeedFragment : LazyFragment() {
                     adapter.addData(data)
                     adapter.setLoadComplete()
                 }
-                layout_refresh.isRefreshing = false
             }
+            layout_refresh.isRefreshing = false
         })
         viewModel.getError().observe(this, Observer {
             it?.message?.let { msg ->

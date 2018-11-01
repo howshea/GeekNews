@@ -20,7 +20,7 @@ class SettingActivity : AppCompatActivity() {
         toolbar.setOnNavClick {
             onBackPressed()
         }
-        tv_github.setOnClickListener {
+        ll_github.setOnClickListener {
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", "https://github.com/login")
                 .navigation()

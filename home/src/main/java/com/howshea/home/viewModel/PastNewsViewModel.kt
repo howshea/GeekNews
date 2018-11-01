@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.basemodule.extentions.dispatchDefault
+import com.howshea.home.model.History
 import com.howshea.home.model.HistoryResult
 import com.howshea.home.repository.HomeService
 import io.reactivex.Observable
@@ -21,13 +22,20 @@ class PastNewsViewModel : RxViewModel() {
     fun getError(): LiveData<Throwable> = rxError
 
     fun requestData(page: Int) {
-        HomeService.getHistory(20, page)
-            .flatMap<List<HistoryResult>> { data ->
-                data.results.forEach { historyResult ->
-                    historyResult.cover = parseSrc(historyResult.cover!!)
-                }
-                Observable.fromArray(data.results)
+        HomeService.getHistory(20, page).uniformDispose()
+    }
+
+    fun refresh() {
+        HomeService.getHistory(20, 1).uniformDispose()
+    }
+
+    private fun Observable<History>.uniformDispose() {
+        this.flatMap<List<HistoryResult>> { data ->
+            data.results.forEach { historyResult ->
+                historyResult.cover = parseSrc(historyResult.cover!!)
             }
+            Observable.fromArray(data.results)
+        }
             .dispatchDefault()
             .subscribeBy(
                 onNext = {

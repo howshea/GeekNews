@@ -15,6 +15,7 @@ versions.rx_android = "2.0.2"
 versions.glide = "4.8.0"
 versions.arouter_api = "1.4.1"
 versions.arouter_compiler = "1.2.2"
+versions.room = "1.1.1"
 def deps = [:]
 
 def support = [:]
@@ -56,6 +57,12 @@ def arouter = [:]
 arouter.api = "com.alibaba:arouter-api:$versions.arouter_api"
 arouter.compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
 deps.arouter = arouter
+
+def room = [:]
+room.runtime = "android.arch.persistence.room:runtime:$versions.room"
+room.compiler = "android.arch.persistence.room:compiler:$versions.room"
+room.rxjava2 = "android.arch.persistence.room:rxjava2:$versions.room"
+deps.room = room
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 

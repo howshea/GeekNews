@@ -39,5 +39,5 @@ dependencies {
     //module
     implementation project(':basemodule')
     kapt deps.arouter.compiler
-
+    kapt deps.room.compiler
 }

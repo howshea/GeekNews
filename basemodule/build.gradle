@@ -47,6 +47,10 @@ dependencies {
     api deps.glide.glide
     api deps.arouter.api
     kapt deps.arouter.compiler
+    //room
+    api deps.room.runtime
+    api deps.room.rxjava2
+    kapt deps.room.compiler
     //test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner

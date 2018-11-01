@@ -36,26 +36,30 @@ class PastNewsActivity : AppCompatActivity() {
         toolbar.setOnNavClick { onBackPressed() }
         ryc_main.adapter = adapter
         ryc_main.layoutManager = LinearLayoutManager(this)
+        layout_refresh.setColorSchemeResources(R.color.colorAccent)
         model.getHistory().observe(this, Observer {
             it?.let { data ->
-                if (adapter.itemCount == 0) {
+                if (page == 1) {
                     adapter.setNewData(data)
                 } else {
                     adapter.addData(data)
                     adapter.setLoadComplete()
                 }
             }
+            layout_refresh.isRefreshing = false
         })
         model.getError().observe(this, Observer {
-            it?.let { _ ->
-                toast("${it.message}")
+            it?.let { throwable ->
+                toast("${throwable.message}")
             }
             if (page > 1) {
                 page--
                 adapter.setLoadFail()
             }
+            layout_refresh.isRefreshing = false
         })
-        model.requestData(page)
+        model.refresh()
+        layout_refresh.isRefreshing = true
         adapter.setItemClick { item, binding ->
             item.cover?.let {
                 val intent = PastNewsDetailActivity.newIntent(this@PastNewsActivity, it, item.title, item.publishedAt)
@@ -69,6 +73,11 @@ class PastNewsActivity : AppCompatActivity() {
         adapter.setLoadMoreListener(ryc_main) {
             page++
             model.requestData(page)
+            layout_refresh.isRefreshing = true
+        }
+        layout_refresh.setOnRefreshListener {
+            page = 1
+            model.refresh()
         }
     }
 }

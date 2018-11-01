@@ -83,4 +83,9 @@ class PastNewsDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
     }
+
+    override fun onBackPressed() {
+        //为了去掉返回上一页时的共享元素动画
+        finish()
+    }
 }

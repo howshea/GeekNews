@@ -3,7 +3,6 @@ package com.howshea.read.ui.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.howshea.read.model.MainCategory
 import com.howshea.read.model.SubCategory
 import com.howshea.read.ui.fragment.FeedFragment
 

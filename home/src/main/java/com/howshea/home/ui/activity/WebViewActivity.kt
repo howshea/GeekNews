@@ -13,14 +13,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.howshea.basemodule.database.CollectionDataBase
 import com.howshea.basemodule.extentions.contentView
 import com.howshea.basemodule.extentions.copyToClipBoard
+import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.isOpenApp
 import com.howshea.basemodule.utils.setDarkStatusIcon
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.home.R
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_web.view.*
 
@@ -55,6 +60,11 @@ class WebViewActivity : AppCompatActivity() {
 
     private fun initDialog(): BottomSheetDialog {
         val view = layoutInflater.inflate(R.layout.dialog_web, null)
+        CollectionDataBase.getInstance(this).collectionDao().checkIsCollected("")
+            .dispatchDefault()
+            .subscribeBy {
+
+            }
         view.tv_cancel.setOnClickListener {
             menuDialog.cancel()
         }
@@ -74,6 +84,9 @@ class WebViewActivity : AppCompatActivity() {
                 .setText("${toolbar.title} $url")
                 .setChooserTitle(R.string.share)
                 .startChooser()
+        }
+        view.tv_collect.setOnClickListener {
+
         }
         return BottomSheetDialog(this).apply {
             setContentView(view)

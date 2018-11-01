@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         android:paddingLeft="9dp"
-        android:paddingRight="9dp"
-        android:orientation="horizontal">
+        android:paddingRight="9dp">
 
         <TextView
             android:id="@+id/tv_collect"
@@ -27,7 +27,7 @@
             style="@style/item_share_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_share"
+            android:drawableTop="@drawable/selector_collect"
             android:gravity="center"
             android:text="@string/share" />
 
