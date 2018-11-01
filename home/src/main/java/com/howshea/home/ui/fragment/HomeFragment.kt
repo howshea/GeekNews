@@ -58,9 +58,11 @@ class HomeFragment : LazyFragment() {
                 layout_refresh.isRefreshing = false
                 adapter.setNewData(data)
                 //防止重复添加
-                if (ryc_main.itemDecorationCount == 0) {
-                    ryc_main.addItemDecoration(CategoryDecoration(data, context!!))
+                val decoration = CategoryDecoration(data, context!!)
+                if (ryc_main.itemDecorationCount != 0) {
+                    ryc_main.removeItemDecorationAt(0)
                 }
+                ryc_main.addItemDecoration(decoration)
             }
         })
 

@@ -2,6 +2,9 @@ package com.howshea.home.viewModel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.component.lifecycle.RxViewModel
 import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.basemodule.extentions.otherwise
@@ -24,6 +27,13 @@ class DailyViewModel : RxViewModel() {
     fun getTodayData(): LiveData<List<Common>> = dailyData
 
     fun getError(): LiveData<Throwable> = rxError
+
+    companion object {
+        private const val typeCount = 8
+        private const val KEY_COUNT = "type_count"
+        private const val KEY_ITEM = "item_"
+        private const val KEY_SORT = "type_sort"
+    }
 
     fun refresh(isComponent: Boolean, date: String) {
         if (isComponent) {
@@ -95,6 +105,10 @@ class DailyViewModel : RxViewModel() {
                 tempList += it
             }
             video?.let { tempList += it }
+            val sp = AppContext.getSharedPreferences(KEY_SORT, MODE_PRIVATE)
+            if (sp.getInt(KEY_COUNT, 0) != 0) {
+                sort(tempList, sp)
+            }
         }
         tempList.forEach { item ->
             item.images
@@ -114,5 +128,21 @@ class DailyViewModel : RxViewModel() {
         }
         return Observable.fromArray(tempList)
     }
-}
 
+
+    private fun sort(tempList: MutableList<Common>, sp: SharedPreferences) {
+        var startIndex = 0
+        (0 until typeCount).forEach { index ->
+            val typeName = sp.getString("$KEY_ITEM$index", "")
+            (startIndex until tempList.size).forEach {
+                if (tempList[it].type == typeName) {
+                    val tempItem = tempList[startIndex]
+                    tempList[startIndex] = tempList[it]
+                    tempList[it] = tempItem
+                    //每交换一个位置都减小下一次的迭代次数
+                    startIndex++
+                }
+            }
+        }
+    }
+}
