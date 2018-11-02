@@ -42,12 +42,15 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
                 itemClickListener?.invoke(item, binding)
             }
             binding.executePendingBindings()
+            bindAfterExecute(binding, item)
         }
 
         fun getBinding() = binding
     }
 
     abstract fun bindItem(binding: B, item: T)
+
+    open fun bindAfterExecute(binding: B, item: T) {}
 
     fun setItemClick(click: (item: T, binding: B) -> Unit) {
         itemClickListener = click

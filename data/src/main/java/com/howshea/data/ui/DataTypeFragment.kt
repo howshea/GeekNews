@@ -72,6 +72,7 @@ class DataTypeFragment : LazyFragment() {
         adapter.setItemClick { item, _ ->
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", item.url)
+                .withString("title", item.desc)
                 .navigation()
         }
     }

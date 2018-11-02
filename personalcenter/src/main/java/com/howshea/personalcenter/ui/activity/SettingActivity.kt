@@ -23,6 +23,7 @@ class SettingActivity : AppCompatActivity() {
         ll_github.setOnClickListener {
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", "https://github.com/login")
+                .withBoolean("close_collection", true)
                 .navigation()
         }
         tv_sort.setOnClickListener {

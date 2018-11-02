@@ -1,54 +1,54 @@
 package com.howshea.home.ui.activity
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.ShareCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.howshea.basemodule.database.Collection
 import com.howshea.basemodule.database.CollectionDataBase
 import com.howshea.basemodule.extentions.contentView
 import com.howshea.basemodule.extentions.copyToClipBoard
 import com.howshea.basemodule.extentions.dispatchDefault
 import com.howshea.basemodule.extentions.topPadding
-import com.howshea.basemodule.utils.getStatusBarHeight
-import com.howshea.basemodule.utils.isOpenApp
-import com.howshea.basemodule.utils.setDarkStatusIcon
-import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
+import com.howshea.basemodule.utils.*
 import com.howshea.home.R
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Completable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.dialog_web.view.*
 
 @Route(path = "/home/webActivity")
 class WebViewActivity : AppCompatActivity() {
-    private lateinit var url: String
+    private val url by lazy(LazyThreadSafetyMode.NONE) {
+        intent.getStringExtra("web_url")
+    }
+    private val coverUrl by lazy(LazyThreadSafetyMode.NONE) {
+        intent.getStringExtra("cover_url")
+    }
+    private val title by lazy(LazyThreadSafetyMode.NONE) {
+        intent.getStringExtra("title")
+    }
     private lateinit var webSetting: WebSettings
     private val menuDialog: BottomSheetDialog by lazy(LazyThreadSafetyMode.NONE) { initDialog() }
+    private val disposes = CompositeDisposable()
+    private lateinit var collection: Collection
 
-    companion object {
-        private const val EXTRA_URL = "web_url"
-        @JvmStatic
-        fun newIntent(context: Context, url: String): Intent {
-            val intent = Intent(context, WebViewActivity::class.java)
-            intent.putExtra(EXTRA_URL, url)
-            return intent
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
-        url = intent.getStringExtra(EXTRA_URL)
         setStatusTransAndDarkIcon()
         contentView?.topPadding = getStatusBarHeight()
         toolbar.apply {
@@ -60,11 +60,19 @@ class WebViewActivity : AppCompatActivity() {
 
     private fun initDialog(): BottomSheetDialog {
         val view = layoutInflater.inflate(R.layout.dialog_web, null)
-        CollectionDataBase.getInstance(this).collectionDao().checkIsCollected("")
-            .dispatchDefault()
-            .subscribeBy {
-
+        if (intent.getBooleanExtra("close_collection", false)) {
+            view.tv_collect.visibility = View.GONE
+        } else {
+            checkIsCollected(view)
+            view.tv_collect.setOnClickListener {
+                if (it.isSelected) {
+                    deleteInCollection(collection, view)
+                } else {
+                    val time = "${getYear()}/${getMonth()}/${getDay()} ${getHour()}:${getMinute()}"
+                    insertCollection(Collection(title, url, time, coverUrl ?: ""), view)
+                }
             }
+        }
         view.tv_cancel.setOnClickListener {
             menuDialog.cancel()
         }
@@ -85,9 +93,6 @@ class WebViewActivity : AppCompatActivity() {
                 .setChooserTitle(R.string.share)
                 .startChooser()
         }
-        view.tv_collect.setOnClickListener {
-
-        }
         return BottomSheetDialog(this).apply {
             setContentView(view)
             //去除自带的白色背景
@@ -95,6 +100,53 @@ class WebViewActivity : AppCompatActivity() {
                 .findViewById<View>(android.support.design.R.id.design_bottom_sheet)
                 ?.setBackgroundColor(resources.getColor(android.R.color.transparent))
         }
+    }
+
+    private fun checkIsCollected(view: View) {
+        CollectionDataBase.getInstance(this).collectionDao().checkIsCollected(url)
+            .dispatchDefault()
+            .subscribeBy(
+                onError = {
+                    view.tv_collect.isSelected = false
+                },
+                onSuccess = {
+                    collection = it
+                    view.tv_collect.isSelected = true
+                }
+            )
+            .addDispose()
+    }
+
+    private fun insertCollection(collection: Collection, view: View) {
+        Completable.fromAction {
+            CollectionDataBase.getInstance(this).collectionDao().insertCollection(collection)
+        }
+            .dispatchDefault()
+            .subscribeBy(
+                onError = {
+                    toast("收藏失败")
+                },
+                onComplete = {
+                    view.tv_collect.isSelected = true
+                }
+            )
+            .addDispose()
+    }
+
+    private fun deleteInCollection(collection: Collection, view: View) {
+        Completable.fromAction {
+            CollectionDataBase.getInstance(this).collectionDao().delete(collection)
+        }
+            .dispatchDefault()
+            .subscribeBy(
+                onError = {
+                    toast("取消收藏失败")
+                },
+                onComplete = {
+                    view.tv_collect.isSelected = false
+                }
+            )
+            .addDispose()
     }
 
     private fun setWebView() {
@@ -117,7 +169,7 @@ class WebViewActivity : AppCompatActivity() {
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
         }
-        web_view.loadUrl(intent.getStringExtra(EXTRA_URL))
+        web_view.loadUrl(url)
         web_view.webViewClient = object : WebViewClient() {
             @Suppress("DEPRECATION", "OverridingDeprecatedMember")
             override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
@@ -168,5 +220,14 @@ class WebViewActivity : AppCompatActivity() {
         web_view?.removeAllViews()
         web_view?.destroy()
         super.onDestroy()
+    }
+
+    override fun onStop() {
+        disposes.clear()
+        super.onStop()
+    }
+
+    private fun Disposable.addDispose() {
+        disposes.add(this)
     }
 }

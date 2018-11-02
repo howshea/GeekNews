@@ -14,7 +14,7 @@ data class Collection(
     val url: String,
     //加入收藏的时间
     val time: String,
-    var cover: String?
+    var cover: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id = 0

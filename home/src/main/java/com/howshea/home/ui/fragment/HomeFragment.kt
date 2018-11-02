@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.setLogo
 import com.howshea.basemodule.extentions.topPadding
@@ -77,7 +78,10 @@ class HomeFragment : LazyFragment() {
         layout_refresh.isRefreshing = true
         adapter.setItemClick { item, _ ->
             item.url.isNotEmpty().yes {
-                startActivity(WebViewActivity.newIntent(activity!!, item.url))
+                ARouter.getInstance().build("/home/webActivity")
+                    .withString("web_url", item.url)
+                    .withString("title", item.desc)
+                    .navigation()
             }
         }
         adapter.setOnImageClick { v, position, imageList ->

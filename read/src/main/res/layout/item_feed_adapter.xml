@@ -14,14 +14,16 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/press_effect_white_bg"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:paddingEnd="@dimen/global_margin"
+        android:background="@drawable/press_effect_white_bg">
 
         <com.howshea.basemodule.component.view.RoundCornerImageView
             android:id="@+id/img_cover"
             android:layout_width="100dp"
             android:layout_height="84dp"
-            android:layout_marginStart="@dimen/global_margin"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:scaleType="centerCrop"
@@ -40,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="@dimen/global_margin"
+            android:ellipsize="end"
             android:maxLines="3"
             android:text="@{feed.title}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +54,13 @@
             android:id="@+id/img_icon"
             android:layout_width="12dp"
             android:layout_height="12dp"
+            android:layout_marginTop="14dp"
             android:layout_marginBottom="15dp"
             app:borderColor="@color/border"
             app:borderWidth="0.4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
-            android:layout_marginTop="14dp"
             app:layout_constraintVertical_bias="1"
             app:radius="6dp" />
 

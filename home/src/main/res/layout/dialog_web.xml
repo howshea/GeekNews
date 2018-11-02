@@ -18,7 +18,7 @@
             style="@style/item_share_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_collect"
+            android:drawableTop="@drawable/selector_collect"
             android:gravity="center"
             android:text="@string/collection" />
 
@@ -27,7 +27,7 @@
             style="@style/item_share_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/selector_collect"
+            android:drawableTop="@drawable/ic_share"
             android:gravity="center"
             android:text="@string/share" />
 

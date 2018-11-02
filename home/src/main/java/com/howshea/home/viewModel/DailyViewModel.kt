@@ -136,10 +136,9 @@ class DailyViewModel : RxViewModel() {
             val typeName = sp.getString("$KEY_ITEM$index", "")
             (startIndex until tempList.size).forEach {
                 if (tempList[it].type == typeName) {
-                    val tempItem = tempList[startIndex]
-                    tempList[startIndex] = tempList[it]
-                    tempList[it] = tempItem
-                    //每交换一个位置都减小下一次的迭代次数
+                    val tempItem = tempList[it]
+                    tempList.add(startIndex, tempItem)
+                    tempList.removeAt(it + 1)
                     startIndex++
                 }
             }

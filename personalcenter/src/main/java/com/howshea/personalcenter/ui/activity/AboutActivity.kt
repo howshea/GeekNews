@@ -12,7 +12,7 @@ import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.setStatusTransparent
 import com.howshea.personalcenter.R
 import com.howshea.personalcenter.ui.adapter.SourceAdapter
-import com.howshea.personalcenter.ui.model.Source
+import com.howshea.personalcenter.model.Source
 import kotlinx.android.synthetic.main.activity_about.*
 import kotlin.math.absoluteValue
 
@@ -67,6 +67,7 @@ class AboutActivity : AppCompatActivity() {
         adapter.setItemClick { item, _ ->
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", item.address)
+                .withBoolean("close_collection", true)
                 .navigation()
         }
     }

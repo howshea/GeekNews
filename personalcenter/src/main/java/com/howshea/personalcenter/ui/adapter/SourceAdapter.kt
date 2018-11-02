@@ -4,7 +4,7 @@ import android.graphics.Paint
 import com.howshea.basemodule.component.viewGroup.baseAdapter.BaseAdapter
 import com.howshea.personalcenter.R
 import com.howshea.personalcenter.databinding.ItemSourceAdapterBinding
-import com.howshea.personalcenter.ui.model.Source
+import com.howshea.personalcenter.model.Source
 
 /**
  * Created by Howshea

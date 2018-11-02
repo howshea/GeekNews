@@ -6,7 +6,7 @@
 
         <variable
             name="source"
-            type="com.howshea.personalcenter.ui.model.Source" />
+            type="com.howshea.personalcenter.model.Source" />
     </data>
 
     <LinearLayout

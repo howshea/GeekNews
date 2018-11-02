@@ -1,7 +1,7 @@
 package com.howshea.data.model
 
 /**
- * Created by haipo on 2018-10-29
+ * Created by Howshea on 2018-10-29
  */
 data class Data(var error: Boolean,
                 var results: List<Results>) {

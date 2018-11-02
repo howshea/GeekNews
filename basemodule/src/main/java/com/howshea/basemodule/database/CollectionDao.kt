@@ -1,7 +1,9 @@
 package com.howshea.basemodule.database
 
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -11,14 +13,14 @@ import io.reactivex.Single
 @Dao
 interface CollectionDao {
     @Query("SELECT * FROM collection ORDER BY id DESC")
-    fun getCollections(): Maybe<List<Collection>>
+    fun getCollections(): Flowable<List<Collection>>
 
-    @Query("SELECT * FROM collection WHERE title = :title")
-    fun checkIsCollected(title: String):Single<Collection>
+    @Query("SELECT * FROM collection WHERE url = :url")
+    fun checkIsCollected(url: String):Single<Collection>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCollection(collection: Collection)
 
-    @Delete
+    @Delete()
     fun delete(collection: Collection)
 }

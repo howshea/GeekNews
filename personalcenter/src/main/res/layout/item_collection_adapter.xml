@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="collection"
+            type="com.howshea.basemodule.database.Collection" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/press_effect_white_bg"
+        android:paddingStart="@dimen/global_margin"
+        android:paddingTop="14dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="14dp">
+
+        <com.howshea.basemodule.component.view.RoundCornerImageView
+            android:id="@+id/img_cover"
+            android:layout_width="100dp"
+            android:layout_height="84dp"
+            android:layout_marginEnd="14dp"
+            android:scaleType="centerCrop"
+            android:visibility="@{(collection.cover.isEmpty())?View.GONE:View.VISIBLE}"
+            app:borderColor="@color/border"
+            app:borderWidth="0.5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:radius="8dp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/title_feed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{collection.title}"
+            app:layout_constraintEnd_toStartOf="@id/img_cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="特斯拉上海工厂能让新车便宜近 20 万，但它可能来晚了" />
+
+        <TextView
+            style="@style/item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@{collection.time}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintVertical_bias="1"
+            tools:text="18/10/29 02:44" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

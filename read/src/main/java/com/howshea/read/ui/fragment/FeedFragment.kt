@@ -80,7 +80,9 @@ class FeedFragment : LazyFragment() {
         adapter.setItemClick { item, _ ->
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", item.url)
-                .withBoolean("isArticle",true)
+                .withString("title", item.title)
+                .withString("cover_url", item.cover)
+                .withBoolean("isArticle", true)
                 .navigation()
         }
     }

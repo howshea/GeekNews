@@ -26,12 +26,12 @@ fun File.ensureDir(): Boolean {
 fun File.deleteDir(): Boolean {
     if (isDirectory) {
         val children = list()
-        if (children != null && children.isNotEmpty()) {
+        (children != null && children.isNotEmpty()) {
             children.forEach {
                 val success = File(this, it).deleteDir()
                 if (!success) return false
             }
-        } else {
+        } otherwise {
             return delete()
         }
     } else if (exists()) {

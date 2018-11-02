@@ -1,4 +1,4 @@
-package com.howshea.personalcenter.ui.model
+package com.howshea.personalcenter.model
 
 /**
  * Created by Howshea
