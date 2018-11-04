@@ -23,6 +23,9 @@ class HomeAdapter(items: MutableList<Common>, private val fragment: Fragment) : 
 
     override fun bindItem(binding: ItemDailyAdapterBinding, item: Common) {
         binding.common = item
+    }
+
+    override fun bindAfterExecute(binding: ItemDailyAdapterBinding, item: Common) {
         binding.layoutNineGrid.run {
             setImageList(item.images, item.ratio)
             onItemClick { v, position ->

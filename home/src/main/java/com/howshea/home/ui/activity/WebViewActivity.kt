@@ -43,7 +43,6 @@ class WebViewActivity : AppCompatActivity() {
     private lateinit var webSetting: WebSettings
     private val menuDialog: BottomSheetDialog by lazy(LazyThreadSafetyMode.NONE) { initDialog() }
     private val disposes = CompositeDisposable()
-    private lateinit var collection: Collection
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +65,7 @@ class WebViewActivity : AppCompatActivity() {
             checkIsCollected(view)
             view.tv_collect.setOnClickListener {
                 if (it.isSelected) {
-                    deleteInCollection(collection, view)
+                    deleteInCollection(url, view)
                 } else {
                     val time = "${getYear()}/${getMonth()}/${getDay()} ${getHour()}:${getMinute()}"
                     insertCollection(Collection(title, url, time, coverUrl ?: ""), view)
@@ -102,6 +101,7 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 
+    //查询是否已被收藏
     private fun checkIsCollected(view: View) {
         CollectionDataBase.getInstance(this).collectionDao().checkIsCollected(url)
             .dispatchDefault()
@@ -110,13 +110,13 @@ class WebViewActivity : AppCompatActivity() {
                     view.tv_collect.isSelected = false
                 },
                 onSuccess = {
-                    collection = it
                     view.tv_collect.isSelected = true
                 }
             )
             .addDispose()
     }
 
+    //加入收藏
     private fun insertCollection(collection: Collection, view: View) {
         Completable.fromAction {
             CollectionDataBase.getInstance(this).collectionDao().insertCollection(collection)
@@ -133,9 +133,10 @@ class WebViewActivity : AppCompatActivity() {
             .addDispose()
     }
 
-    private fun deleteInCollection(collection: Collection, view: View) {
+    //取消收藏
+    private fun deleteInCollection(url: String, view: View) {
         Completable.fromAction {
-            CollectionDataBase.getInstance(this).collectionDao().delete(collection)
+            CollectionDataBase.getInstance(this).collectionDao().delete(url)
         }
             .dispatchDefault()
             .subscribeBy(

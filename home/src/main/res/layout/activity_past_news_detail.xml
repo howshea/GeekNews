@@ -27,7 +27,6 @@
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5"
                 app:ratio="1.286"
-                tools:src="@drawable/test"
                 tools:targetApi="lollipop" />
 
             <com.howshea.basemodule.component.view.CoverImageView

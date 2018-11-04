@@ -22,7 +22,6 @@
             android:scaleType="centerCrop"
             app:cover="#66000000"
             app:ratio="2"
-            tools:src="@drawable/test"
             tools:targetApi="lollipop" />
 
         <RelativeLayout

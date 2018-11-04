@@ -1,6 +1,7 @@
 package com.howshea.basemodule.database
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 
 /**
@@ -8,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey
  * on 2018/11/1
  */
 
-@Entity(tableName = TABLE_NAME)
+@Entity(tableName = TABLE_NAME, indices = [Index(value = ["url"], unique = true)])
 data class Collection(
     val title: String,
     val url: String,
