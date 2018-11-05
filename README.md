@@ -1,18 +1,21 @@
-# GankIo
+# Geek News
 
-#### 项目介绍
-时隔两年，Gank.io客户端的 reDesign && reCode
+![](https://img.shields.io/badge/Geek%20News-0.10-brightgreen.svg)
 
-## TODO
+这是一个基于 **MVVM** 结构的练习项目，使用 Kotlin 语言开发，主要尝试了 **Andorid Jetpack** 中的 DataBinding, ViewModel, LiveData 和 Room. 另外练习了一下 viewGroup 的绘制（见项目中的SToolbar和NineGridImageLayout)
 
-- [x] WebView界面
-- [x] webview进度条，刷新，分享，收藏(功能先不做，放在个人中心模块)，复制链接
-- [x] 九宫格单张图片点击
-- [x] 可点击控件的按压效果，以及4.4的兼容
-- [x] 首页刷新
-- [x] 历史列表页面
-- [x] 历史列表详情页
-- [ ] 替换Gson
-- [ ] 点击Bottom的Icon回到列表顶部并刷新
-- [x] 统一的网络异常处理
+### 下载地址
 
+v 0.10 [https://fir.im/hv8x](https://fir.im/hv8x)
+
+### 界面截图
+
+<img src="https://github.com/howshea/GeekNews/raw/master/screenshot/1.png" width=200> <img src="https://github.com/howshea/GeekNews/raw/master/screenshot/2.png" width=200> <img src="https://github.com/howshea/GeekNews/raw/master/screenshot/3.png" width=200>
+
+<img src="https://github.com/howshea/GeekNews/raw/master/screenshot/4.png" width=200> <img src="https://github.com/howshea/GeekNews/raw/master/screenshot/5.png" width=200> <img src="https://github.com/howshea/GeekNews/raw/master/screenshot/6.png" width=200>
+
+<img src="https://github.com/howshea/GeekNews/raw/master/screenshot/7.png" width=200>
+
+
+
+> 喜欢的话点个star吧
