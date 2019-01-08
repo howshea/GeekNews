@@ -48,7 +48,6 @@ class CollectionActivity : AppCompatActivity() {
         adapter.setItemClick { item, _ ->
             ARouter.getInstance().build("/home/webActivity")
                 .withString("web_url", item.url)
-                .withBoolean("close_collection", true)
                 .navigation()
         }
     }
