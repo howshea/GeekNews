@@ -33,8 +33,8 @@ class FeedAdapter(items: MutableList<Feed.Results>, private val fragment: Fragme
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
-        if (holder.getBinding().imgCover.visibility == View.VISIBLE) {
-            Glide.with(fragment).clear(holder.getBinding().imgCover)
+        if (holder.binding.imgCover.visibility == View.VISIBLE) {
+            Glide.with(fragment).clear(holder.binding.imgCover)
         }
     }
 }

@@ -34,18 +34,17 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: B) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: B) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: T) {
             bindItem(binding, item)
+            binding.executePendingBindings()
             binding.root.setOnClickListener {
                 itemClickListener?.invoke(item, binding)
             }
-            binding.executePendingBindings()
             bindAfterExecute(binding, item)
         }
 
-        fun getBinding() = binding
     }
 
     abstract fun bindItem(binding: B, item: T)

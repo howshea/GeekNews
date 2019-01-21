@@ -44,7 +44,7 @@ class HomeAdapter(items: MutableList<Common>, private val fragment: Fragment) : 
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
-        holder.getBinding().layoutNineGrid.clearImages {
+        holder.binding.layoutNineGrid.clearImages {
             Glide.with(fragment).clear(it)
         }
     }

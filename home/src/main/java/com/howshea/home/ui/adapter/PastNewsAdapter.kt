@@ -16,18 +16,18 @@ import com.howshea.home.model.HistoryResult
  */
 class PastNewsAdapter(items: MutableList<HistoryResult>, private val context: Context) : BaseAdapter<HistoryResult, ItemPastNewsBinding>(items, R.layout.item_past_news) {
 
-    override fun bindItem(binding: ItemPastNewsBinding, item: HistoryResult) {
-        binding.history = item
-        Glide.with(context)
-            .load(item.cover)
-            .transition(withCrossFade())
-            .apply(RequestOptions().placeholder(R.color.divider).error(R.color.divider))
-            .into(binding.imgCover)
-    }
+	override fun bindItem(binding: ItemPastNewsBinding, item: HistoryResult) {
+		binding.history = item
+		Glide.with(context)
+			.load(item.cover)
+			.transition(withCrossFade())
+			.apply(RequestOptions().placeholder(R.color.divider).error(R.color.divider))
+			.into(binding.imgCover)
+	}
 
 
-    override fun onViewRecycled(holder: ViewHolder) {
-        super.onViewRecycled(holder)
-        Glide.with(context).clear(holder.getBinding().imgCover)
-    }
+	override fun onViewRecycled(holder: ViewHolder) {
+		super.onViewRecycled(holder)
+		Glide.with(context).clear(holder.binding.imgCover)
+	}
 }

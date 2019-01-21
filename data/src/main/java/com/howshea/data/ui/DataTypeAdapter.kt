@@ -1,6 +1,7 @@
 package com.howshea.data.ui
 
 import com.howshea.basemodule.component.viewGroup.baseAdapter.BaseAdapter
+import com.howshea.data.BR
 import com.howshea.data.R
 import com.howshea.data.databinding.ItemTypeAdapterBinding
 import com.howshea.data.model.Data
