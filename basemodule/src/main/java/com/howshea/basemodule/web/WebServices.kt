@@ -18,23 +18,25 @@ import java.util.concurrent.TimeUnit
 private const val GANK_URL = "https://gank.io/api/"
 
 private val cacheFile by lazy {
-    File(AppContext.cacheDir, "WebServiceCache").apply {
-        ensureDir()
-    }
+	File(AppContext.cacheDir, "WebServiceCache").apply {
+		ensureDir()
+	}
 }
 
 val retrofit: Retrofit by lazy {
-    Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .client(OkHttpClient.Builder()
-            .connectTimeout(6, TimeUnit.SECONDS)
-            .readTimeout(6, TimeUnit.SECONDS)
-            .writeTimeout(6, TimeUnit.SECONDS)
-            .cache(Cache(cacheFile, 1024 * 1024 * 1024))
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .build()
-        )
-        .baseUrl(GANK_URL)
-        .build()
+	Retrofit.Builder()
+		.addConverterFactory(GsonConverterFactory.create())
+		.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+		.client(OkHttpClient.Builder()
+			.connectTimeout(6, TimeUnit.SECONDS)
+			.readTimeout(6, TimeUnit.SECONDS)
+			.writeTimeout(6, TimeUnit.SECONDS)
+			.cache(Cache(cacheFile, 1024 * 1024 * 1024))
+			.sslSocketFactory(SSLSocketClient.sslSocketFactory)
+			.hostnameVerifier(SSLSocketClient.hostnameVerifier)
+			.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+			.build()
+		)
+		.baseUrl(GANK_URL)
+		.build()
 }
