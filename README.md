@@ -1,6 +1,6 @@
 # Geek News
 
-![](https://img.shields.io/badge/Geek%20News-0.10-brightgreen.svg)
+![](https://img.shields.io/badge/Geek%20News-0.12-brightgreen.svg)
 
 这是一个基于 **MVVM** 结构的练习项目，使用 Kotlin 语言开发，主要尝试了 **Andorid Jetpack** 中的 DataBinding, ViewModel, LiveData 和 Room. 另外练习了一下 viewGroup 的绘制（见项目中的SToolbar和NineGridImageLayout)
 
@@ -11,7 +11,7 @@
 
 ### 下载地址
 
-v 0.10 [https://fir.im/hv8x](https://fir.im/hv8x)
+v 0.12 [https://fir.im/hv8x](https://fir.im/hv8x)
 
 ### 界面截图
 
