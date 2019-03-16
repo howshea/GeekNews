@@ -6,7 +6,6 @@
 
 相关项目总结blog：
 
-- [模仿Google News的TabLayout](https://juejin.im/post/5c340f2ff265da615705a701)
 - [Kotlin结合DataBinding简单封装一个RecyclerView的Adapter](https://juejin.im/post/5c41a0f4f265da6147707bb0)
 
 ### 下载地址
