@@ -1,0 +1,1 @@
+include(":app", ":basemodule", ":home", ":read", ":data", ":personalcenter")
