@@ -10,4 +10,5 @@
     <string name="briefMsg"><b>Geek News</b> 是一个练手项目，使用 Kotlin 语言开发，使用了基于 <b>Android JetPack</b> 中的 ViewModel、LiveData、Data Binding 以及 Room 组成的 MVVM 架构。为了学习和巩固自定义 view/viewGroup 绘制的相关知识，这个项目里尽量少的依赖第三方库，自己实现了不少组件。另外，尝试了一下组件化（但是写完发现由于功能太少，完全没必要）。\nAPI来源: <u>https://gank.io</u>\n项目源码: <u>https://github.com/howshea/GeekNews</u></string>
     <string name="sources">开源库</string>
     <string name="hint_cookie">(仅用于记录 cookie)</string>
+    <string name="version">v %s</string>
 </resources>

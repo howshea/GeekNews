@@ -1,5 +1,6 @@
 package com.howshea.personalcenter.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -41,7 +42,7 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
-        tv_version.text = AppContext.getVersionName()
+        tv_version.text = getString(R.string.version).format(AppContext.getVersionName())
         setStatusTransparent()
         toolbar.topPadding = getStatusBarHeight()
         toolbar.setNavigationOnClickListener {
