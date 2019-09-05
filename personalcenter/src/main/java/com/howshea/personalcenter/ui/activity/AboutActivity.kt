@@ -1,6 +1,5 @@
 package com.howshea.personalcenter.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -12,8 +11,8 @@ import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.setStatusTransparent
 import com.howshea.personalcenter.R
-import com.howshea.personalcenter.ui.adapter.SourceAdapter
 import com.howshea.personalcenter.model.Source
+import com.howshea.personalcenter.ui.adapter.SourceAdapter
 import kotlinx.android.synthetic.main.activity_about.*
 import kotlin.math.absoluteValue
 

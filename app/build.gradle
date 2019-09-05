@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion build_versions.target_sdk
+    compileSdkVersion Build.targetSdk
     defaultConfig {
         applicationId "com.howshea.geeknews"
-        minSdkVersion build_versions.min_sdk
-        targetSdkVersion build_versions.target_sdk
-        versionCode build_versions.version_code
-        versionName build_versions.version_name
+        minSdkVersion Build.minSdk
+        targetSdkVersion Build.targetSdk
+        versionCode Build.versionCode
+        versionName Build.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
