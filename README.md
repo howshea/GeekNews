@@ -6,7 +6,7 @@
 
 **TO-DO**：
 
-- [x] 迁移到 `Gradle Kotlin`，使用 Kotlin 代替 Groovy，并使用了 Gradle 5.0 之后出的 **buildSrc** 结构
+- [x] 迁移到 `Gradle Kotlin`，使用 Kotlin 代替 Groovy，使用 Gradle 5.0 之后出的 **buildSrc** 结构
 - [ ] 适配 Android 10
 
 相关项目总结blog：
