@@ -1,4 +1,6 @@
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.kotlin.dsl.project
 
 /**
  * Created by haipo
@@ -55,11 +57,24 @@ object Deps {
     val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 
     fun addRepos(handler: RepositoryHandler) {
-        handler.google()
-        handler.jcenter()
-        handler.maven {
-            setUrl("https://jitpack.io")
+        handler.apply {
+            google()
+            jcenter()
+            maven {
+                setUrl("https://jitpack.io")
+            }
+            mavenCentral()
         }
-        handler.mavenCentral()
     }
+}
+
+fun DependencyHandlerScope.addCommonDeps(){
+    //test
+    "testImplementation"(Deps.Test.junit)
+    "androidTestImplementation"(Deps.Test.runner)
+    "androidTestImplementation"(Deps.Test.espresso)
+    //module
+    "implementation"(project(":basemodule"))
+    "kapt"(Deps.Arouter.compiler)
+    "kapt"(Deps.Room.compiler)
 }
