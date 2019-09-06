@@ -1,16 +1,25 @@
 # Geek News
 
-![](https://img.shields.io/badge/Geek%20News-0.12-brightgreen.svg)
+![](https://img.shields.io/badge/Geek%20News-0.13-brightgreen.svg)
 
-这是一个基于 **MVVM** 结构的练习项目，使用 Kotlin 语言开发，主要尝试了 **Andorid Jetpack** 中的 DataBinding, ViewModel, LiveData 和 Room. 另外练习了一下 viewGroup 的绘制（见项目中的SToolbar和NineGridImageLayout)
+这是一个基于 **MVVM** 结构的练习项目，使用 几乎 100% Kotlin 语言开发，主要用来尝试一些新东西，使用了 **Andorid Jetpack** 中的 DataBinding, ViewModel, LiveData 和 Room. 另外练习了一下 viewGroup 的绘制（见项目中的SToolbar和NineGridImageLayout)
+
+**TO-DO**：
+
+- [x] 迁移到 `Gradle Kotlin`，使用 Kotlin 代替 Groovy，并使用了 Gradle 5.0 之后出的 **buildSrc** 结构
+- [ ] 适配 Android 10
 
 相关项目总结blog：
 
 - [模仿Google News的TabLayout](https://juejin.im/post/5c340f2ff265da615705a701)
 
+## 版本更新
+
+v 0.13 Gradle Kotlin 迁移
+
 ### 下载地址
 
-v 0.12 [https://fir.im/hv8x](https://fir.im/hv8x)
+[https://fir.im/hv8x](https://fir.im/hv8x)
 
 ### 界面截图
 
