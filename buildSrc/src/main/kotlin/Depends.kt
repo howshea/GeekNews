@@ -6,7 +6,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
  */
 object Deps {
     object Support {
-        val app_compat = "com.android.support:appcompat-v7:${Versions.support}"
+        val appCompat = "com.android.support:appcompat-v7:${Versions.support}"
         val constraint = "com.android.support.constraint:constraint-layout:${Versions.constraint}"
         val design = "com.android.support:design:${Versions.support}"
     }
