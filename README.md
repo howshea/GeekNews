@@ -12,6 +12,7 @@
 相关项目总结blog：
 
 - [模仿Google News的TabLayout](https://juejin.im/post/5c340f2ff265da615705a701)
+- [Gradle Kotlin 迁移指南](https://juejin.im/post/5d899375f265da039d330e4f)
 
 ## 版本更新
 
