@@ -1,8 +1,3 @@
-import Build.versionCode
-import Build.versionName
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-import org.jetbrains.kotlin.resolve.calls.model.ResolvedCallArgument.DefaultArgument.arguments
-
 plugins {
     id("com.android.library")
     kotlin("android")
