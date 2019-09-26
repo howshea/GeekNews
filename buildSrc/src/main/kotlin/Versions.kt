@@ -24,6 +24,6 @@ object Versions {
 object Build {
     val minSdk = 19
     val targetSdk = 29
-    val versionCode = 4
-    val versionName = "0.13"
+    val versionCode = 5
+    val versionName = "0.14"
 }
