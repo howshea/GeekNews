@@ -25,7 +25,7 @@ fun BottomNavigationView.disableShiftMode() {
         shiftingMode.isAccessible = false
         (0 until menuView.childCount).forEach {
             (menuView.getChildAt(it) as BottomNavigationItemView).let { view ->
-                view.setShiftingMode(false)
+                view.setShifting(false)
                 // set once again checked value, so view will be updated
                 view.setChecked(view.itemData.isChecked)
             }

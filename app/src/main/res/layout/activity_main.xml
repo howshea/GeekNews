@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/color_nav_bottom_icon_tint"
         app:itemTextColor="@color/color_nav_bottom_text_tint"
         app:menu="@menu/bottom_navigation" />

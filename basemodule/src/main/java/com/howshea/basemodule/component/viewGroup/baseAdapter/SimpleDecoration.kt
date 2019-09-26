@@ -21,14 +21,14 @@ class SimpleDecoration(private var paddingLeft: Int = AppContext.dp(16)) : Recyc
     }
     private val lineHeight = AppContext.dp(0.7f)
 
-    override fun getItemOffsets(outRect: Rect?, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view)
         if (position < 0) return
-        outRect?.bottom = lineHeight
+        outRect.bottom = lineHeight
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         if (paddingLeft > 0) {
             val childCount = parent.childCount

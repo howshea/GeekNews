@@ -1,6 +1,5 @@
 package com.howshea.basemodule.utils
 
-import android.app.Fragment
 import android.content.Context
 import android.view.View
 
@@ -31,13 +30,4 @@ fun View.sp(value: Int): Int = context.sp(value)
 fun View.sp(value: Float): Int = context.sp(value)
 fun View.px2dp(px: Int): Float = context.px2dp(px)
 fun View.px2sp(px: Int): Float = context.px2sp(px)
-
-//same for Fragments
-fun Fragment.dp(value: Int): Int = activity.dp(value)
-
-fun Fragment.dp(value: Float): Int = activity.dp(value)
-fun Fragment.sp(value: Int): Int = activity.sp(value)
-fun Fragment.sp(value: Float): Int = activity.sp(value)
-fun Fragment.px2dp(px: Int): Float = activity.px2dp(px)
-fun Fragment.px2sp(px: Int): Float = activity.px2sp(px)
 

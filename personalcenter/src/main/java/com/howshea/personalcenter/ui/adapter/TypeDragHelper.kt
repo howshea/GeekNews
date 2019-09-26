@@ -11,7 +11,7 @@ class TypeDragHelper(callback: DragCallback) : ItemTouchHelper(callback)
 
 class DragCallback(private val adapter: ItemTouchHelperAdapter) : ItemTouchHelper.Callback() {
 
-    override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         val dragFlag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         val swipeFlag = ItemTouchHelper.START or ItemTouchHelper.END
         return makeMovementFlags(dragFlag, swipeFlag)
@@ -22,7 +22,7 @@ class DragCallback(private val adapter: ItemTouchHelperAdapter) : ItemTouchHelpe
         return false
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) = Unit
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) = Unit
 
     override fun isItemViewSwipeEnabled(): Boolean {
         return false

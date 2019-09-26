@@ -1,6 +1,7 @@
 package com.howshea.personalcenter.ui.activity
 
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
@@ -47,7 +48,7 @@ class AboutActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-        app_bar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+        app_bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (verticalOffset == 0) {
                 if (state != CollapsingToolbarLayoutState.EXPANDED) {
                     state = CollapsingToolbarLayoutState.EXPANDED
@@ -59,7 +60,7 @@ class AboutActivity : AppCompatActivity() {
                     toolbar.title = getString(R.string.about)
                 }
             }
-        }
+        })
 
         ryc_sources.layoutManager = LinearLayoutManager(this)
         ryc_sources.adapter = adapter

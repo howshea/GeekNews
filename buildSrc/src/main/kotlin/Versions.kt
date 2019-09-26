@@ -3,7 +3,7 @@
  * on 2019-09-05.
  */
 object Versions {
-    const val support = "27.1.1"
+    const val support = "28.0.0"
     const val constraint = "1.1.3"
     const val lifecycle = "1.1.1"
     const val junit = "4.12"
@@ -23,7 +23,7 @@ object Versions {
 
 object Build {
     val minSdk = 19
-    val targetSdk = 27
+    val targetSdk = 29
     val versionCode = 4
     val versionName = "0.13"
 }

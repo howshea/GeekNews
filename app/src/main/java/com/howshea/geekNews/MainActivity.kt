@@ -11,7 +11,6 @@ import com.howshea.basemodule.extentions.topPadding
 import com.howshea.basemodule.utils.getStatusBarHeight
 import com.howshea.basemodule.utils.setStatusTransAndDarkIcon
 import com.howshea.data.ui.DataFragment
-import com.howshea.geekNews.utils.disableShiftMode
 import com.howshea.geekNews.utils.setupWithViewPager
 import com.howshea.home.ui.fragment.HomeFragment
 import com.howshea.personalcenter.ui.fragment.PersonalFragment
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setStatusTransAndDarkIcon(Color.WHITE)
         contentView?.topPadding = getStatusBarHeight()
-        bottom_nav.disableShiftMode()
+//        bottom_nav.disableShiftMode()
         view_pager.adapter = MainPagerAdapter(supportFragmentManager)
         view_pager.offscreenPageLimit = 3
         bottom_nav.setupWithViewPager(view_pager)

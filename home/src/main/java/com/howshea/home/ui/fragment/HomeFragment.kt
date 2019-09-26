@@ -86,8 +86,10 @@ class HomeFragment : LazyFragment() {
         }
         adapter.setOnImageClick { v, position, imageList ->
             val intent = ImageActivity.newIntent(activity!!, imageList, position)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity!!, v, ViewCompat.getTransitionName(v))
-            startActivity(intent, options.toBundle())
+            val options = ViewCompat.getTransitionName(v)?.let {
+                ActivityOptionsCompat.makeSceneTransitionAnimation(activity!!, v, it)
+            }
+            startActivity(intent, options?.toBundle())
         }
     }
 

@@ -74,41 +74,39 @@ class SToolbar : FrameLayout {
                 }
         }
 
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        context
-            ?.obtainStyledAttributes(attrs, R.styleable.SToolbar)
-            ?.apply {
-                if (hasValue(R.styleable.SToolbar_navIcon))
-                    navigationDrawable = getDrawable(R.styleable.SToolbar_navIcon)
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        context.obtainStyledAttributes(attrs, R.styleable.SToolbar).apply {
+            if (hasValue(R.styleable.SToolbar_navIcon))
+                navigationDrawable = getDrawable(R.styleable.SToolbar_navIcon)
 
-                if (hasValue(R.styleable.SToolbar_menuIcon))
-                    menuDrawable = getDrawable(R.styleable.SToolbar_menuIcon)
+            if (hasValue(R.styleable.SToolbar_menuIcon))
+                menuDrawable = getDrawable(R.styleable.SToolbar_menuIcon)
 
-                if (hasValue(R.styleable.SToolbar_contentHeight)) {
-                    contentHeight = getDimension(R.styleable.SToolbar_contentHeight, 0f).toInt()
-                    (contentHeight < iconSize) {
-                        //contentHeight如果被设置小于icon的高度，就抛出异常
-                        throw IllegalArgumentException("contentHeight must be greater than iconSize")
-                    }
+            if (hasValue(R.styleable.SToolbar_contentHeight)) {
+                contentHeight = getDimension(R.styleable.SToolbar_contentHeight, 0f).toInt()
+                (contentHeight < iconSize) {
+                    //contentHeight如果被设置小于icon的高度，就抛出异常
+                    throw IllegalArgumentException("contentHeight must be greater than iconSize")
                 }
-                if (hasValue(R.styleable.SToolbar_titleMarginStart))
-                    titleMarginStart = getDimension(R.styleable.SToolbar_titleMarginStart, 0f).toInt()
-
-                if (hasValue(R.styleable.SToolbar_titleMarginEnd))
-                    titleMarginEnd = getDimension(R.styleable.SToolbar_titleMarginEnd, 0f).toInt()
-
-                title = getString(R.styleable.SToolbar_title) ?: title
-                titleColor = getColor(R.styleable.SToolbar_titleColor, Color.parseColor("#707070"))
-                titleSize = getDimension(R.styleable.SToolbar_titleSize, sp(20).toFloat())
-                titleStyle = getInt(R.styleable.SToolbar_titleStyle, 1)
-                titleGravity = getInt(R.styleable.SToolbar_titleGravity, 1)
-                recycle()
             }
+            if (hasValue(R.styleable.SToolbar_titleMarginStart))
+                titleMarginStart = getDimension(R.styleable.SToolbar_titleMarginStart, 0f).toInt()
+
+            if (hasValue(R.styleable.SToolbar_titleMarginEnd))
+                titleMarginEnd = getDimension(R.styleable.SToolbar_titleMarginEnd, 0f).toInt()
+
+            title = getString(R.styleable.SToolbar_title) ?: title
+            titleColor = getColor(R.styleable.SToolbar_titleColor, Color.parseColor("#707070"))
+            titleSize = getDimension(R.styleable.SToolbar_titleSize, sp(20).toFloat())
+            titleStyle = getInt(R.styleable.SToolbar_titleStyle, 1)
+            titleGravity = getInt(R.styleable.SToolbar_titleGravity, 1)
+            recycle()
+        }
         initSubView()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     private fun initSubView() {
         ensureNavButtonView()

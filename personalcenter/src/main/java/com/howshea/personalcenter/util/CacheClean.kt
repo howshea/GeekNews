@@ -11,7 +11,7 @@ import com.howshea.basemodule.extentions.deleteDir
 fun Context.clearCache(): Boolean {
     var result = cacheDir.deleteDir()
     if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-        result = result and externalCacheDir.deleteDir()
+        result = result and (externalCacheDir?.deleteDir() ?: false)
     }
     return result
 }

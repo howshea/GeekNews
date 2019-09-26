@@ -50,8 +50,8 @@ class TypeSortActivity : AppCompatActivity() {
             }
             editor.apply()
         } else {
-            (0 until typeCount).forEach { it ->
-                val element = sp.getString("$KEY_ITEM$it", "")
+            (0 until typeCount).forEach {
+                val element = sp.getString("$KEY_ITEM$it", "")?:""
                 typeList.add(element)
                 originalList.add(element)
             }

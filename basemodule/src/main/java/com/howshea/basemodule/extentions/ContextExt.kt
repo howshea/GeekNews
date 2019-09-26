@@ -17,7 +17,7 @@ import com.howshea.basemodule.utils.toast
 fun Context.copyToClipBoard(url: String) {
     val cm = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val text = ClipData.newPlainText("url", url)
-    cm.primaryClip = text
+    cm.setPrimaryClip(text)
     toast("已复制到剪贴板")
 }
 

@@ -20,7 +20,7 @@ import android.view.WindowManager
 fun <T : Activity> T.setDarkStatusIcon(dark: Boolean) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         val decorView = window.decorView
-        decorView ?: return
+        decorView
         var vis = decorView.systemUiVisibility
         vis = if (dark) {
             vis or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR

@@ -38,11 +38,11 @@ class CategoryDecoration(val data: List<Common>, context: Context) : RecyclerVie
     private val paddingLeft = context.dp(16)
     private val radius = context.dp(11)
 
-    override fun getItemOffsets(outRect: Rect?, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view)
         if (position < 0) return
-        outRect?.top = when {
+        outRect.top = when {
             position == 0 -> tagBgHeight
             isFirstInGroup(position) -> tagBgHeight + dividerHeight
             else -> lineHeight

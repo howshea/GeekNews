@@ -59,8 +59,9 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(ry: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(ry, dx, dy)
-                val lastVisibleItem = (ry.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                val totalItemCount = ry.layoutManager.itemCount
+                val layoutManager = ry.layoutManager as LinearLayoutManager
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                val totalItemCount = layoutManager.itemCount
                 if (lastVisibleItem >= totalItemCount - 10 && dy > 0) {
                     if (!isLoading) {
                         loader()
@@ -71,8 +72,9 @@ abstract class BaseAdapter<T, B : ViewDataBinding>(private var items: MutableLis
 
             override fun onScrollStateChanged(ry: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(ry, newState)
-                val lastVisibleItem = (ry.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                val totalItemCount = ry.layoutManager.itemCount
+                val layoutManager = ry.layoutManager as LinearLayoutManager
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                val totalItemCount = layoutManager.itemCount
                 if (lastVisibleItem >= totalItemCount - 10 && newState == 0) {
                     if (!isLoading) {
                         loader()
