@@ -3,7 +3,7 @@ package com.howshea.basemodule.component.viewGroup.tabLayout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.design.R;
+import com.google.android.material.R;
 import android.util.AttributeSet;
 import android.view.View;
 

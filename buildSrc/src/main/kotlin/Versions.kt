@@ -3,12 +3,12 @@
  * on 2019-09-05.
  */
 object Versions {
-    const val support = "28.0.0"
+    const val support = "1.0.0"
     const val constraint = "1.1.3"
-    const val lifecycle = "1.1.1"
+    const val lifecycle = "2.0.0"
     const val junit = "4.12"
-    const val runner = "1.0.2"
-    const val espresso = "3.0.2"
+    const val runner = "1.1.0"
+    const val espresso = "3.1.0"
     const val androidGradlePlugin = "3.5.0"
     const val kotlin = "1.3.50"
     const val retrofit = "2.3.0"
@@ -18,12 +18,12 @@ object Versions {
     const val glide = "4.8.0"
     const val arouterApi = "1.4.1"
     const val arouterCompiler = "1.2.2"
-    const val room = "1.1.1"
+    const val room = "2.0.0"
 }
 
 object Build {
-    val minSdk = 19
-    val targetSdk = 29
-    val versionCode = 5
-    val versionName = "0.14"
+    const val minSdk = 19
+    const val targetSdk = 29
+    const val versionCode = 5
+    const val versionName = "0.14"
 }

@@ -2,8 +2,8 @@ package com.howshea.basemodule.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 import android.widget.Toast
 
 /**
@@ -31,13 +31,13 @@ fun Context.toast(@StringRes resId:Int){
 }
 
 @SuppressLint("ShowToast")
-fun <T:Fragment> T.toast(text: CharSequence){
+fun <T: Fragment> T.toast(text: CharSequence){
     context?.toast(text)
 }
 
 /**
  * @param resId 字符串资源
  */
-fun <T:Fragment> T.toast(@StringRes resId: Int){
+fun <T: Fragment> T.toast(@StringRes resId: Int){
     toast(getString(resId))
 }

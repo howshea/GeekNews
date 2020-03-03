@@ -4,9 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.app.ShareCompat
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import androidx.core.app.ShareCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
@@ -96,7 +96,7 @@ class WebViewActivity : AppCompatActivity() {
             setContentView(view)
             //去除自带的白色背景
             delegate
-                .findViewById<View>(android.support.design.R.id.design_bottom_sheet)
+                .findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
                 ?.setBackgroundColor(resources.getColor(android.R.color.transparent))
         }
     }

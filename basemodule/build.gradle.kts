@@ -11,7 +11,7 @@ android {
         targetSdkVersion(Build.targetSdk)
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner ="android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -27,6 +27,9 @@ android {
         arguments {
             arg("AROUTER_MODULE_NAME", project.name)
         }
+    }
+    lintOptions {
+        isAbortOnError = false
     }
 }
 
@@ -51,5 +54,6 @@ dependencies {
     kapt(Deps.Room.compiler)
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.runner)
+    androidTestImplementation(Deps.Test.ext_unit)
     androidTestImplementation(Deps.Test.espresso)
 }

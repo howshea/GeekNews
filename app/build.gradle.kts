@@ -14,7 +14,7 @@ android {
         targetSdkVersion(Build.targetSdk)
         versionCode = Build.versionCode
         versionName = Build.versionName
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         getByName("release") {
@@ -33,6 +33,9 @@ android {
     packagingOptions {
         exclude("META-INF/rxjava.properties")
     }
+    lintOptions {
+        isAbortOnError = false
+    }
 }
 
 dependencies {
@@ -46,5 +49,6 @@ dependencies {
     //test
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.runner)
+    androidTestImplementation(Deps.Test.ext_unit)
     androidTestImplementation(Deps.Test.espresso)
 }

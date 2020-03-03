@@ -11,7 +11,7 @@ android {
         targetSdkVersion(Build.targetSdk)
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner ="android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

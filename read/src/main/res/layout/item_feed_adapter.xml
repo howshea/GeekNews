@@ -12,7 +12,7 @@
             type="com.howshea.read.model.Feed.Results" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="2dp"
@@ -77,7 +77,7 @@
             app:layout_constraintTop_toTopOf="@id/img_icon"
             tools:text="好奇心日报 . 2018.10.22" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
 

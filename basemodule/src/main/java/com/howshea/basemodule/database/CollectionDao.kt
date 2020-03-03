@@ -1,6 +1,6 @@
 package com.howshea.basemodule.database
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import io.reactivex.Flowable
 import io.reactivex.Single
 

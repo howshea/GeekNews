@@ -2,7 +2,7 @@ package com.howshea.home.ui.adapter
 
 import android.content.Context
 import android.graphics.*
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.howshea.basemodule.utils.dp
 import com.howshea.home.R

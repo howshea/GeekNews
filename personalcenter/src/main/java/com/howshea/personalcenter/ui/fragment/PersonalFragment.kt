@@ -1,7 +1,7 @@
 package com.howshea.personalcenter.ui.fragment
 
 import android.content.Intent
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import com.howshea.basemodule.AppContext
 import com.howshea.basemodule.component.fragment.LazyFragment
 import com.howshea.basemodule.extentions.dispatchDefault
