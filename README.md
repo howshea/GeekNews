@@ -1,6 +1,6 @@
 # Geek News
 
-![](https://img.shields.io/badge/Geek%20News-0.14-brightgreen.svg)
+![](https://img.shields.io/badge/Geek%20News-1.0-brightgreen.svg)
 
 这是一个基于 **MVVM** 结构的练习项目，使用 几乎 100% Kotlin 语言开发，主要用来尝试一些新东西，使用了 **Andorid Jetpack** 中的 DataBinding, ViewModel, LiveData 和 Room. 另外练习了一下 viewGroup 的绘制（见项目中的SToolbar和NineGridImageLayout)
 
@@ -8,7 +8,7 @@
 
 - [x] 迁移到 `Gradle Kotlin`，使用 Kotlin 代替 Groovy，使用 Gradle 5.0 之后出的 **buildSrc** 结构
 - [x] 适配 Android 10
-- [ ] 迁移 Android X
+- [x] 迁移 Android X
 
 相关项目总结blog：
 
@@ -16,6 +16,8 @@
 - [Gradle Kotlin 迁移指南](https://juejin.im/post/5d899375f265da039d330e4f)
 
 ## 版本更新
+
+v 1.0 迁移 AndroidX
 
 v 0.14 升级 Android 10，Support 28
 
