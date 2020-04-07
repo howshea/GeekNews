@@ -25,7 +25,7 @@ v 0.13 Gradle Kotlin 迁移
 
 ### 下载地址
 
-[https://fir.im/hv8x](https://fir.im/hv8x)
+[http://d.7short.com/hv8x](http://d.7short.com/hv8x)
 
 ### 界面截图
 
