@@ -3,7 +3,7 @@
  * on 2019-09-05.
  */
 object Versions {
-    const val support = "1.0.0"
+    const val support = "1.1.0"
     const val constraint = "1.1.3"
     const val lifecycle = "2.0.0"
     const val junit = "4.12"

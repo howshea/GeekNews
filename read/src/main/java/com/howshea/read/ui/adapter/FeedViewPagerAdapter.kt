@@ -10,7 +10,7 @@ import com.howshea.read.ui.fragment.FeedFragment
  * Created by Howshea
  * on 2018/10/25
  */
-class FeedViewPagerAdapter(fm: FragmentManager?, private val categories: List<SubCategory>) : FragmentStatePagerAdapter(fm) {
+class FeedViewPagerAdapter(fm: FragmentManager, private val categories: List<SubCategory>) : FragmentStatePagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return FeedFragment.newInstance(categories[position].id)
     }

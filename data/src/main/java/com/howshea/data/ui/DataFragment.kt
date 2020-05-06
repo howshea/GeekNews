@@ -34,7 +34,7 @@ class DataFragment : LazyFragment() {
         tab_layout.setupWithViewPager(view_pager)
     }
 
-    private inner class DataPagerAdapter(fm: FragmentManager?, private val types: Array<String>) : FragmentStatePagerAdapter(fm) {
+    private inner class DataPagerAdapter(fm: FragmentManager, private val types: Array<String>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return DataTypeFragment.newInstance(types[position])
         }
